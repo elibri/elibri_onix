@@ -1,0 +1,48 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.1.0)
+      multi_json (~> 1.0)
+    coderay (0.9.8)
+    git (1.2.5)
+    i18n (0.6.0)
+    jeweler (1.6.2)
+      bundler (~> 1.0)
+      git (>= 1.2.5)
+      rake
+    metaclass (0.0.1)
+    method_source (0.6.5)
+      ruby_parser (>= 2.0.5)
+    minitest (2.2.2)
+    mocha (0.10.0)
+      metaclass (~> 0.0.1)
+    multi_json (1.0.3)
+    nokogiri (1.5.0)
+    pry (0.9.6)
+      coderay (>= 0.9.8)
+      method_source (>= 0.6.5)
+      ruby_parser (>= 2.0.5)
+      slop (~> 2.1.0)
+    rake (0.8.7)
+    rcov (0.9.9)
+    roxml (3.1.6)
+      activesupport (>= 2.3.0)
+      nokogiri (>= 1.3.3)
+    ruby_parser (2.3.0)
+      sexp_processor (~> 3.0)
+    sexp_processor (3.0.6)
+    slop (2.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activesupport (>= 3.1.0)
+  bundler (~> 1.0.0)
+  i18n
+  jeweler (~> 1.6.2)
+  minitest
+  mocha
+  pry
+  rcov
+  roxml (>= 3.1.5)
