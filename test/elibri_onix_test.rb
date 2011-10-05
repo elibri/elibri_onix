@@ -1,7 +1,10 @@
 require 'helper'
 
-class TestElibriOnix < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+
+describe Elibri::ONIX do
+
+  it "should be able to establish its version" do
+    assert_match /\d+\.\d+\.\d+/, Elibri::ONIX::Version::STRING
   end
+
 end

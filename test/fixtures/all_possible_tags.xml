@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage release="3.0" xmlns:elibri="http://elibri.com.pl/ns/extensions" xmlns="http://www.editeur.org/onix/3.0/reference">
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20111005</SentDateTime>
+  </Header>
+  <Product>
+    <!-- Unikalne ID rekordu produktu -->
+    <RecordReference>fdb8fa072be774d97a97</RecordReference>
+    <!-- Typ powiadomienia
+    01 - wczesne powiadomienie
+    03 - powiadomienie o publikacji
+    05 - usunięcie rekordu -->
+    <NotificationType>03</NotificationType>
+    <!-- Występuje tylko gdy NotificationType == 05 -->
+    <DeletionText>Record had many errors</DeletionText>
+    <!-- ISBN -->
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9788324799992</IDValue>
+    </ProductIdentifier>
+    <!-- EAN-13 - gdy inny niż ISBN -->
+    <ProductIdentifier>
+      <ProductIDType>03</ProductIDType>
+      <IDValue>9788324788882</IDValue>
+    </ProductIdentifier>
+    <!-- Identyfikator własnościowy dostawcy Gildia.pl -->
+    <ProductIdentifier>
+      <ProductIDType>01</ProductIDType>
+      <IDTypeName>Gildia.pl</IDTypeName>
+      <IDValue>GILD-123</IDValue>
+    </ProductIdentifier>
+    <!-- Identyfikator własnościowy dostawcy PWN -->
+    <ProductIdentifier>
+      <ProductIDType>01</ProductIDType>
+      <IDTypeName>PWN</IDTypeName>
+      <IDValue>pl.pwn.ksiegarnia.produkt.id.76734</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <!-- Zawsze 00 - pojedynczy element -->
+      <ProductComposition>00</ProductComposition>
+      <!-- Format produktu
+          AC - audio CD
+          AI - audio DVD
+          EA - e-book
+          CZ - inny format kartograficzny
+          AB - kaseta magnetofonowa
+          BA - książka
+          CA - mapa
+          CC - mapa płaska
+          CB - mapa składana
+          CD - mapa w rolce
+          AA - nagranie audio -->
+      <ProductForm>BA</ProductForm>
+      <Measure>
+        <!-- Wysokość: 195mm -->
+        <MeasureType>01</MeasureType>
+        <Measurement>195</Measurement>
+        <MeasureUnitCode>mm</MeasureUnitCode>
+      </Measure>
+      <Measure>
+        <!-- Szerokość: 125mm -->
+        <MeasureType>02</MeasureType>
+        <Measurement>125</Measurement>
+        <MeasureUnitCode>mm</MeasureUnitCode>
+      </Measure>
+      <Measure>
+        <!-- Grubość: 20mm -->
+        <MeasureType>03</MeasureType>
+        <Measurement>20</Measurement>
+        <MeasureUnitCode>mm</MeasureUnitCode>
+      </Measure>
+      <Measure>
+        <!-- Masa: 90gr -->
+        <MeasureType>08</MeasureType>
+        <Measurement>90.5</Measurement>
+        <MeasureUnitCode>gr</MeasureUnitCode>
+      </Measure>
+      <Collection>
+        <!-- Zawsze 10 - seria wydawnictwa -->
+        <CollectionType>10</CollectionType>
+        <TitleDetail>
+          <!-- Zawsze 01 -->
+          <TitleType>01</TitleType>
+          <TitleElement>
+            <!-- Zawsze 02 -->
+            <TitleElementLevel>02</TitleElementLevel>
+            <PartNumber>Vol. 1</PartNumber>
+            <TitleText>Collection title</TitleText>
+          </TitleElement>
+        </TitleDetail>
+      </Collection>
+      <!-- Rozróżniane typy tytułów
+          01 - tytuł
+          03 - tytuł w języku oryginału
+          10 - tytuł wydawcy -->
+      <TitleDetail>
+        <TitleType>01</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <PartNumber>part 5</PartNumber>
+          <TitleText>Title</TitleText>
+          <Subtitle>Subtitle</Subtitle>
+        </TitleElement>
+        <TitleElement>
+          <TitleElementLevel>02</TitleElementLevel>
+          <PartNumber>Vol. 1</PartNumber>
+          <TitleText>Collection title</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <TitleDetail>
+        <TitleType>03</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Original title</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <TitleDetail>
+        <TitleType>10</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Trade title</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <!-- Gdy wyszczególniono autorów -->
+      <Contributor>
+        <SequenceNumber>1</SequenceNumber>
+        <!-- Rola autora
+          A01 - autor
+          A02 - współautor
+          A03 - scenarzysta
+          A10 - pomysłodawca
+          A12 - ilustrator
+          A13 - fotograf
+          A15 - autor wstępu
+          A35 - rysownik
+          A36 - projektant okładki
+          B01 - redaktor
+          B02 - korektor
+          B06 - tłumacz
+          E07 - lektor -->
+        <ContributorRole>B06</ContributorRole>
+        <!-- Tylko w przypadku tłumaczy: -->
+        <FromLanguage>pol</FromLanguage>
+        <PersonName>prof. Henryk von Sienkiewicz Ibrahim</PersonName>
+        <TitlesBeforeNames>prof.</TitlesBeforeNames>
+        <NamesBeforeKey>Henryk</NamesBeforeKey>
+        <PrefixToKey>von</PrefixToKey>
+        <KeyNames>Sienkiewicz</KeyNames>
+        <NamesAfterKey>Ibrahim</NamesAfterKey>
+        <BiographicalNote>Biografia Sienkiewicza</BiographicalNote>
+      </Contributor>
+      <!-- Opis wydania -->
+      <EditionStatement>wyd. 3, poprawione</EditionStatement>
+      <!-- Rola języka
+          01 - język tekstu
+          02 - język oryginału
+          03 - język streszczenia
+          08 - język ścieżki audio (CD/DVD)
+          08 - język napisów (CD/DVD) -->
+      <Language>
+        <LanguageRole>01</LanguageRole>
+        <LanguageCode>pol</LanguageCode>
+      </Language>
+      <Extent>
+        <!-- Liczba stron - tylko dla produktów typu książka -->
+        <ExtentType>00</ExtentType>
+        <ExtentValue>250</ExtentValue>
+        <ExtentUnit>03</ExtentUnit>
+      </Extent>
+      <!-- Liczba ilustracji - tylko dla produktów typu książka -->
+      <NumberOfIllustrations>32</NumberOfIllustrations>
+      <!-- Stosujemy wewnętrzną kategoryzację. Lista kategorii Elibri w formacie JSON: http://www.elibri.com.pl/assets/product_categories.js -->
+      <Subject>
+        <MainSubject/>
+        <SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
+        <SubjectSchemeName>elibri.com.pl</SubjectSchemeName>
+        <SubjectSchemeVersion>1.0</SubjectSchemeVersion>
+        <SubjectCode>1110</SubjectCode>
+        <SubjectHeadingText>Beletrystyka / Literatura popularna / Powieść historyczna</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
+        <SubjectSchemeName>elibri.com.pl</SubjectSchemeName>
+        <SubjectSchemeVersion>1.0</SubjectSchemeVersion>
+        <SubjectCode>21D0</SubjectCode>
+        <SubjectHeadingText>Dziecięca i młodzieżowa / Beletrystyka / Przygodowe</SubjectHeadingText>
+      </Subject>
+      <AudienceRange>
+        <!-- Ograniczenie dotyczy wieku czytelnika - zawsze 18 -->
+        <AudienceRangeQualifier>18</AudienceRangeQualifier>
+        <!-- Wiek od 7 lat -->
+        <AudienceRangePrecision>03</AudienceRangePrecision>
+        <AudienceRangeValue>7</AudienceRangeValue>
+        <!-- Wiek do 25 lat -->
+        <AudienceRangePrecision>04</AudienceRangePrecision>
+        <AudienceRangeValue>25</AudienceRangeValue>
+      </AudienceRange>
+    </DescriptiveDetail>
+    <CollateralDetail>
+      <!-- Typy tekstów
+          03 - opis produktu
+          04 - spis treści
+          07 - recenzja
+          14 - fragment książki -->
+      <TextContent>
+        <TextType>07</TextType>
+        <!-- Zawsze 00 - Unrestricted -->
+        <ContentAudience>00</ContentAudience>
+        <Text>
+          <![CDATA[Recenzja książki]]>
+        </Text>
+        <!-- Autor tylko gdy jest to recenzja -->
+        <TextAuthor>Jan Kowalski</TextAuthor>
+      </TextContent>
+      <SupportingResource>
+        <!-- Typ załącznika
+            01 - okładka (przód)
+            02 - okładka (tył)
+            11 - wywiad z autorem
+            13 - fragment książki czytany przez autora
+            15 - fragment książki lub audiobook-a
+            17 - recenzja
+            24 - mediapack -->
+        <ResourceContentType>01</ResourceContentType>
+        <!-- Zawsze 00 - Unrestricted -->
+        <ContentAudience>00</ContentAudience>
+        <!-- Rodzaj załącznika
+            02 - audio
+            03 - obrazek
+            04 - tekst -->
+        <ResourceMode>03</ResourceMode>
+        <ResourceVersion>
+          <!-- Zawsze 02 - Downloadable file -->
+          <ResourceForm>02</ResourceForm>
+          <ResourceLink>http://elibri.com.pl/sciezka/do/pliku.png</ResourceLink>
+        </ResourceVersion>
+      </SupportingResource>
+    </CollateralDetail>
+    <PublishingDetail>
+      <Imprint>
+        <ImprintName>National Geographic</ImprintName>
+      </Imprint>
+      <Publisher>
+        <!-- Wydawca - zawsze 01 -->
+        <PublishingRole>01</PublishingRole>
+        <PublisherName>GREG</PublisherName>
+      </Publisher>
+      <!-- Status publikacji
+          01 - anulowany
+          02 - nadchodzący
+          04 - w sprzedaży
+          07 - nakład wyczerpany
+          08 - niedostępny -->
+      <PublishingStatus>04</PublishingStatus>
+      <PublishingDate>
+        <!-- Zawsze 01 - data publikacji -->
+        <PublishingDateRole>01</PublishingDateRole>
+        <!-- Format daty
+            00 - RRRRMMDD
+            01 - RRRRMM
+            05 - RRRR -->
+        <DateFormat>05</DateFormat>
+        <Date>2011</Date>
+      </PublishingDate>
+      <SalesRestriction>
+        <!-- Typ restrykcji - zawsze 04 -->
+        <SalesRestrictionType>04</SalesRestrictionType>
+        <SalesOutlet>
+          <SalesOutletName>sklep.gildia.pl</SalesOutletName>
+        </SalesOutlet>
+        <!-- Ograniczenie wygasa 2012-07-22 -->
+        <EndDate>20120722</EndDate>
+      </SalesRestriction>
+    </PublishingDetail>
+    <RelatedMaterial>
+      <!-- Typy relacji
+          23 - produkty są podobne (mogą zainteresować klienta)
+          24 - produkty to faksymile (kopia lub dodruk) -->
+      <RelatedProduct>
+        <ProductRelationCode>24</ProductRelationCode>
+        <ProductIdentifier>
+          <!-- Zawsze 01 - symbol wydawcy -->
+          <ProductIDType>01</ProductIDType>
+          <IDValue>Tytuł dodruku</IDValue>
+        </ProductIdentifier>
+        <ProductIdentifier>
+          <!-- Zawsze ISBN-13 -->
+          <ProductIDType>15</ProductIDType>
+          <IDValue>9788324705818</IDValue>
+        </ProductIdentifier>
+      </RelatedProduct>
+      <RelatedProduct>
+        <ProductRelationCode>23</ProductRelationCode>
+        <ProductIdentifier>
+          <!-- Zawsze 01 - symbol wydawcy -->
+          <ProductIDType>01</ProductIDType>
+          <IDValue>Tytuł podobnej książki</IDValue>
+        </ProductIdentifier>
+        <ProductIdentifier>
+          <ProductIDType>15</ProductIDType>
+          <IDValue>9788324799992</IDValue>
+        </ProductIdentifier>
+      </RelatedProduct>
+    </RelatedMaterial>
+    <ProductSupply>
+      <SupplyDetail>
+        <Supplier>
+          <!-- Rola dostawcy
+            01 - sprzedaż wydawnictwa do detalu
+            02 - wyłączny dystrybutor wydawnictwa
+            03 - dystrybutor wydawnictwa bez prawa wyłączności
+            04 - hurtownia książek -->
+          <SupplierRole>03</SupplierRole>
+          <SupplierIdentifier>
+            <!-- Zawsze 02 - Proprietary. Identyfikujemy dostawcę po NIP -->
+            <SupplierIDType>02</SupplierIDType>
+            <IDTypeName>NIP</IDTypeName>
+            <IDValue>5213359408</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>Gildia.pl</SupplierName>
+          <TelephoneNumber>22 631 40 83</TelephoneNumber>
+          <EmailAddress>bok@gildia.pl</EmailAddress>
+          <Website>
+            <WebsiteLink>http://gildia.pl</WebsiteLink>
+          </Website>
+        </Supplier>
+        <!-- Typ dostępności
+          21 - na stanie
+          40 - niedostępne -->
+        <ProductAvailability>21</ProductAvailability>
+        <Stock>
+          <OnHand>1000</OnHand>
+        </Stock>
+        <!-- Ile produktów dostawca umieszcza w paczce -->
+        <PackQuantity>7</PackQuantity>
+        <Price>
+          <!-- Typ ceny
+            02 - sugerowana cena detaliczna brutto
+            01 - sugerowana cena detaliczna netto -->
+          <PriceType>02</PriceType>
+          <MinimumOrderQuantity>20</MinimumOrderQuantity>
+          <PriceAmount>12.99</PriceAmount>
+          <Tax>
+            <!-- VAT -->
+            <TaxType>01</TaxType>
+            <TaxRatePercent>7</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+          <!-- Cena na okładce?
+            01 - nie
+            02 - tak -->
+          <PrintedOnProduct>02</PrintedOnProduct>
+          <!-- Zawsze 00 - Unknown / unspecified -->
+          <PositionOnProduct>00</PositionOnProduct>
+        </Price>
+      </SupplyDetail>
+      <SupplyDetail>
+        <Supplier>
+          <!-- Rola dostawcy
+            01 - sprzedaż wydawnictwa do detalu
+            02 - wyłączny dystrybutor wydawnictwa
+            03 - dystrybutor wydawnictwa bez prawa wyłączności
+            04 - hurtownia książek -->
+          <SupplierRole>04</SupplierRole>
+          <SupplierIdentifier>
+            <!-- Zawsze 02 - Proprietary. Identyfikujemy dostawcę po NIP -->
+            <SupplierIDType>02</SupplierIDType>
+            <IDTypeName>NIP</IDTypeName>
+            <IDValue>5213359408</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>PWN</SupplierName>
+          <TelephoneNumber>22 631 40 83</TelephoneNumber>
+          <EmailAddress>bok@pwn.pl</EmailAddress>
+          <Website>
+            <WebsiteLink>http://pwn.pl</WebsiteLink>
+          </Website>
+        </Supplier>
+        <!-- Typ dostępności
+          21 - na stanie
+          40 - niedostępne -->
+        <ProductAvailability>21</ProductAvailability>
+        <Stock>
+          <!-- Nie znamy konkretnej ilości produktów na stanie -->
+          <StockQuantityCoded>
+            <!-- Zawsze 01 - Proprietary -->
+            <StockQuantityCodeType>01</StockQuantityCodeType>
+            <StockQuantityCode>mało</StockQuantityCode>
+          </StockQuantityCoded>
+        </Stock>
+        <!-- Ile produktów dostawca umieszcza w paczce -->
+        <PackQuantity>7</PackQuantity>
+        <Price>
+          <!-- Typ ceny
+            02 - sugerowana cena detaliczna brutto
+            01 - sugerowana cena detaliczna netto -->
+          <PriceType>02</PriceType>
+          <MinimumOrderQuantity>10</MinimumOrderQuantity>
+          <PriceAmount>14.99</PriceAmount>
+          <Tax>
+            <!-- VAT -->
+            <TaxType>01</TaxType>
+            <TaxRatePercent>7</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+          <!-- Cena na okładce?
+            01 - nie
+            02 - tak -->
+          <PrintedOnProduct>02</PrintedOnProduct>
+          <!-- Zawsze 00 - Unknown / unspecified -->
+          <PositionOnProduct>00</PositionOnProduct>
+        </Price>
+      </SupplyDetail>
+    </ProductSupply>
+    <!-- Format okładki
+          gąbka
+          kartonowa
+          kartonowa foliowana
+          miękka
+          miękka ze skrzydełkami
+          plastikowa
+          skórzana
+          twarda
+          twarda z obwolutą -->
+    <elibri:CoverType>miękka</elibri:CoverType>
+    <!-- Cena na okładce -->
+    <elibri:CoverPrice>12.99</elibri:CoverPrice>
+    <!-- Vat w procentach -->
+    <elibri:Vat>5</elibri:Vat>
+    <elibri:PKWiU>58.11.1</elibri:PKWiU>
+  </Product>
+</ONIXMessage>
