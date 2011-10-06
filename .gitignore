@@ -48,3 +48,4 @@ pkg
 #*.rbc
 
 tests.watchr
+.rake_tasks~
