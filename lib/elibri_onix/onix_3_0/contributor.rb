@@ -19,6 +19,7 @@ module Elibri
         xml_accessor :names_after_key, :from => 'NamesAfterKey'
         xml_accessor :biographical_note, :from => 'BiographicalNote'
 
+        xml_accessor :unnamed_persons, :from => 'UnnamedPersons'
       end
 
     end

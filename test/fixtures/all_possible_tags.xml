@@ -90,7 +90,7 @@
             <!-- Zawsze 02 -->
             <TitleElementLevel>02</TitleElementLevel>
             <PartNumber>Vol. 1</PartNumber>
-            <TitleText>Collection title</TitleText>
+            <TitleText>Publisher series title</TitleText>
           </TitleElement>
         </TitleDetail>
       </Collection>
@@ -152,10 +152,10 @@
         <PrefixToKey>von</PrefixToKey>
         <KeyNames>Sienkiewicz</KeyNames>
         <NamesAfterKey>Ibrahim</NamesAfterKey>
-        <BiographicalNote>Biografia Sienkiewicza</BiographicalNote>
+        <BiographicalNote>Sienkiewicz's biography</BiographicalNote>
       </Contributor>
       <!-- Opis wydania -->
-      <EditionStatement>wyd. 3, poprawione</EditionStatement>
+      <EditionStatement>second edition</EditionStatement>
       <!-- Rola języka
           01 - język tekstu
           02 - język oryginału
@@ -196,6 +196,10 @@
         <!-- Wiek od 7 lat -->
         <AudienceRangePrecision>03</AudienceRangePrecision>
         <AudienceRangeValue>7</AudienceRangeValue>
+      </AudienceRange>
+      <AudienceRange>
+        <!-- Ograniczenie dotyczy wieku czytelnika - zawsze 18 -->
+        <AudienceRangeQualifier>18</AudienceRangeQualifier>
         <!-- Wiek do 25 lat -->
         <AudienceRangePrecision>04</AudienceRangePrecision>
         <AudienceRangeValue>25</AudienceRangeValue>
@@ -212,7 +216,7 @@
         <!-- Zawsze 00 - Unrestricted -->
         <ContentAudience>00</ContentAudience>
         <Text>
-          <![CDATA[Recenzja książki]]>
+          <![CDATA[This book is purely <strong>awesome!</strong>]]>
         </Text>
         <!-- Autor tylko gdy jest to recenzja -->
         <TextAuthor>Jan Kowalski</TextAuthor>
@@ -237,7 +241,7 @@
         <ResourceVersion>
           <!-- Zawsze 02 - Downloadable file -->
           <ResourceForm>02</ResourceForm>
-          <ResourceLink>http://elibri.com.pl/sciezka/do/pliku.png</ResourceLink>
+          <ResourceLink>http://elibri.com.pl/path/to/file.png</ResourceLink>
         </ResourceVersion>
       </SupportingResource>
     </CollateralDetail>
@@ -286,7 +290,8 @@
         <ProductIdentifier>
           <!-- Zawsze 01 - symbol wydawcy -->
           <ProductIDType>01</ProductIDType>
-          <IDValue>Tytuł dodruku</IDValue>
+          <IDTypeName>Gildia.pl</IDTypeName>
+          <IDValue>Title of facsimile</IDValue>
         </ProductIdentifier>
         <ProductIdentifier>
           <!-- Zawsze ISBN-13 -->
@@ -299,7 +304,8 @@
         <ProductIdentifier>
           <!-- Zawsze 01 - symbol wydawcy -->
           <ProductIDType>01</ProductIDType>
-          <IDValue>Tytuł podobnej książki</IDValue>
+          <IDTypeName>PWN</IDTypeName>
+          <IDValue>Title of similar book</IDValue>
         </ProductIdentifier>
         <ProductIdentifier>
           <ProductIDType>15</ProductIDType>
@@ -389,7 +395,7 @@
           <StockQuantityCoded>
             <!-- Zawsze 01 - Proprietary -->
             <StockQuantityCodeType>01</StockQuantityCodeType>
-            <StockQuantityCode>mało</StockQuantityCode>
+            <StockQuantityCode>very few</StockQuantityCode>
           </StockQuantityCoded>
         </Stock>
         <!-- Ile produktów dostawca umieszcza w paczce -->
