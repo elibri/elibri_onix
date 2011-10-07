@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'roxml', '>= 3.1.5'
+gem 'roxml', '= 3.1.6'
 gem 'i18n'
 gem 'activesupport', '>= 3.1.0'
 

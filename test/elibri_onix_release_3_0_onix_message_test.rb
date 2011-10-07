@@ -1,6 +1,7 @@
 require 'helper'
 
 
+
 describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
 
@@ -8,6 +9,8 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", "all_possible_tags.xml")
     
     onix = Elibri::ONIX::Release_3_0::ONIXMessage.from_xml(xml_string)
+    assert_equal '3.0', onix.release
+    assert_equal '3.0.1', onix.elibri_dialect
     assert_equal 'Elibri.com.pl', onix.header.sender.sender_name
     assert_equal 'Tomasz Meka', onix.header.sender.contact_name
     assert_equal 'kontakt@elibri.com.pl', onix.header.sender.email_address
@@ -16,6 +19,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 1, onix.products.size 
 
     product = onix.products.first
+    assert_equal '3.0.1', product.elibri_dialect
 
     assert_equal 'miękka', product.cover_type 
     assert_equal 12.99, product.cover_price
@@ -171,8 +175,22 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     product.supply_details[1].tap do |supply_detail|
       assert_equal 'very few', supply_detail.quantity_code
     end
-
   end
 
+
+  it "should consider elibri_dialect attribute and ignore attributes unrecognized in specified dialect" do
+    xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", "old_dialect.xml")
+    
+    onix = Elibri::ONIX::Release_3_0::ONIXMessage.from_xml(xml_string)
+    assert_equal '3.0', onix.release
+    assert_equal '3.0.0', onix.elibri_dialect
+
+    product = onix.products.first
+    assert_equal '3.0.0', product.elibri_dialect
+    assert_nil product.cover_type 
+    assert_nil product.cover_price
+    assert_nil product.vat
+    assert_nil product.pkwiu
+  end
 
 end

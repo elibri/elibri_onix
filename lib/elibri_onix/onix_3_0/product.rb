@@ -5,16 +5,33 @@ module Elibri
 
       class Product
         include ROXML
+        attr_accessor :elibri_dialect
 
         xml_name 'Product'
         xml_accessor :record_reference, :from => 'RecordReference'
         xml_accessor :notification_type, :from => 'NotificationType', :as => Fixnum
         xml_accessor :deletion_text, :from => 'DeletionText'
 
-        xml_accessor :cover_type, :from => 'elibri:CoverType'
-        xml_accessor :cover_price, :from => 'elibri:CoverPrice', :as => BigDecimal
-        xml_accessor :vat, :from => 'elibri:Vat', :as => Fixnum
-        xml_accessor :pkwiu, :from => 'elibri:PKWiU'
+        # Load attributes specific for dialect 3.0.1
+        xml_accessor :cover_type_from_3_0_1, :from => 'elibri:CoverType'
+        xml_accessor :cover_price_from_3_0_1, :from => 'elibri:CoverPrice', :as => BigDecimal
+        xml_accessor :vat_from_3_0_1, :from => 'elibri:Vat', :as => Fixnum
+        xml_accessor :pkwiu_from_3_0_1, :from => 'elibri:PKWiU'
+
+        # Attributes in namespace elibri:* are specific for dialect >= 3.0.1.
+        # If dialect is less than 3.0.1, returns nil.
+        %w{cover_type cover_price vat pkwiu}.each do |method_name|
+          module_eval(<<-EVAL_END, __FILE__, __LINE__ + 1)
+            def #{method_name}                                      # def vat
+              if @elibri_dialect.to_s >= '3.0.1'                    #   if @elibri_dialect.to_s >= '3.0.1'
+                #{method_name}_from_3_0_1                           #     vat_from_3_0_1
+              else                                                  #   else
+                nil                                                 #     nil
+              end                                                   #   end
+            end                                                     # end
+          EVAL_END
+        end  
+
 
         xml_accessor :identifiers, :as => [ProductIdentifier]
         xml_accessor :related_products, :as => [RelatedProduct], :in => 'RelatedMaterial'

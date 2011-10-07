@@ -1,0 +1,19 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage release="3.0" elibri:dialect="3.0.0" xmlns:elibri="http://elibri.com.pl/ns/extensions" xmlns="http://www.editeur.org/onix/3.0/reference">
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20111005</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>fdb8fa072be774d97a97</RecordReference>
+    <elibri:CoverType>miękka</elibri:CoverType>
+    <elibri:CoverPrice>12.99</elibri:CoverPrice>
+    <elibri:Vat>5</elibri:Vat>
+    <elibri:PKWiU>58.11.1</elibri:PKWiU>
+  </Product>
+</ONIXMessage>

@@ -45,4 +45,4 @@ DEPENDENCIES
   mocha
   pry
   rcov
-  roxml (>= 3.1.5)
+  roxml (= 3.1.6)
