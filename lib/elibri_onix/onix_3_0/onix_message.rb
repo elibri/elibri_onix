@@ -8,7 +8,7 @@ module Elibri
         
         xml_name 'ONIXMessage'
         xml_accessor :release, :from => "@release"
-        xml_accessor :elibri_dialect, :from => "@elibri:dialect"
+        xml_accessor :elibri_dialect, :from => "elibri:Dialect"
 
         xml_accessor :products, :as => [Product]
         xml_accessor :header, :as => Header
