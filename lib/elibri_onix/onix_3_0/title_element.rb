@@ -15,7 +15,7 @@ module Elibri
 
 
         def full_title
-          String.new(self.title).tap do |_full_title|
+          String.new(self.title.to_s).tap do |_full_title|
             _full_title << ". " + self.subtitle if self.subtitle.present?
             _full_title << " (#{self.part_number})" if self.part_number.present?
           end
