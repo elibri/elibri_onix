@@ -13,10 +13,8 @@ module Elibri
         xml_accessor :audience, :from => 'ContentAudience', :as => Fixnum
         xml_accessor :mode, :from => 'ResourceMode', :as => Fixnum
 
-        with_options :in => 'ResourceVersion' do |version|
-          version.xml_accessor :form, :from => 'ResourceForm', :as => Fixnum
-          version.xml_accessor :link, :from => 'ResourceLink'
-        end
+        xml_accessor :form, :in => 'ResourceVersion', :from => 'ResourceForm', :as => Fixnum
+        xml_accessor :link, :in => 'ResourceVersion', :from => 'ResourceLink'
 
       end
 

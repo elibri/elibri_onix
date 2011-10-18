@@ -17,10 +17,8 @@ module Elibri
         xml_accessor :price, :as => Price
 
         
-        with_options :in => 'Stock' do |stock|
-          stock.xml_accessor :on_hand, :from => 'OnHand', :as => Fixnum
-          stock.xml_accessor :quantity_coded, :as => StockQuantityCoded
-        end
+        xml_accessor :on_hand, :in => 'Stock', :from => 'OnHand', :as => Fixnum
+        xml_accessor :quantity_coded, :in => 'Stock', :as => StockQuantityCoded
 
 
         def quantity_code

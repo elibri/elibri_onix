@@ -37,33 +37,27 @@ module Elibri
         xml_accessor :related_products, :as => [RelatedProduct], :in => 'RelatedMaterial'
         xml_accessor :supply_details, :as => [SupplyDetail], :in => 'ProductSupply'
 
-        with_options :in => 'DescriptiveDetail' do |descriptive_detail|
-          descriptive_detail.xml_accessor :product_composition, :from => 'ProductComposition', :as => Fixnum
-          descriptive_detail.xml_accessor :product_form, :from => 'ProductForm'
-          descriptive_detail.xml_accessor :measures, :as => [Measure]
-          descriptive_detail.xml_accessor :title_details, :as => [TitleDetail]
-          descriptive_detail.xml_accessor :collections, :as => [Collection]
-          descriptive_detail.xml_accessor :contributors, :as => [Contributor]
-          descriptive_detail.xml_accessor :languages, :as => [Language]
-          descriptive_detail.xml_accessor :extents, :as => [Extent]
-          descriptive_detail.xml_accessor :subjects, :as => [Subject]
-          descriptive_detail.xml_accessor :audience_ranges, :as => [AudienceRange]
-          descriptive_detail.xml_accessor :edition_statement, :from => 'EditionStatement'
-          descriptive_detail.xml_accessor :number_of_illustrations, :from => 'NumberOfIllustrations', :as => Fixnum
-        end
+        xml_accessor :product_composition, :in => 'DescriptiveDetail', :from => 'ProductComposition', :as => Fixnum
+        xml_accessor :product_form, :in => 'DescriptiveDetail', :from => 'ProductForm'
+        xml_accessor :measures, :in => 'DescriptiveDetail', :as => [Measure]
+        xml_accessor :title_details, :in => 'DescriptiveDetail', :as => [TitleDetail]
+        xml_accessor :collections, :in => 'DescriptiveDetail', :as => [Collection]
+        xml_accessor :contributors, :in => 'DescriptiveDetail', :as => [Contributor]
+        xml_accessor :languages, :in => 'DescriptiveDetail', :as => [Language]
+        xml_accessor :extents, :in => 'DescriptiveDetail', :as => [Extent]
+        xml_accessor :subjects, :in => 'DescriptiveDetail', :as => [Subject]
+        xml_accessor :audience_ranges, :in => 'DescriptiveDetail', :as => [AudienceRange]
+        xml_accessor :edition_statement, :in => 'DescriptiveDetail', :from => 'EditionStatement'
+        xml_accessor :number_of_illustrations, :in => 'DescriptiveDetail', :from => 'NumberOfIllustrations', :as => Fixnum
 
-        with_options :in => 'CollateralDetail' do |collateral_detail|
-          collateral_detail.xml_accessor :text_contents, :as => [TextContent]
-          collateral_detail.xml_accessor :supporting_resources, :as => [SupportingResource]
-        end
+        xml_accessor :text_contents, :in => 'CollateralDetail', :as => [TextContent]
+        xml_accessor :supporting_resources, :in => 'CollateralDetail', :as => [SupportingResource]
 
-        with_options :in => 'PublishingDetail' do |publishing_detail|
-          publishing_detail.xml_accessor :imprint, :as => Imprint
-          publishing_detail.xml_accessor :publisher, :as => Publisher
-          publishing_detail.xml_accessor :publishing_status, :from => 'PublishingStatus', :as => Fixnum
-          publishing_detail.xml_accessor :publishing_date, :as => PublishingDate
-          publishing_detail.xml_accessor :sales_restrictions, :as => [SalesRestriction]
-        end
+        xml_accessor :imprint, :in => 'PublishingDetail', :as => Imprint
+        xml_accessor :publisher, :in => 'PublishingDetail', :as => Publisher
+        xml_accessor :publishing_status, :in => 'PublishingDetail', :from => 'PublishingStatus', :as => Fixnum
+        xml_accessor :publishing_date, :in => 'PublishingDetail', :as => PublishingDate
+        xml_accessor :sales_restrictions, :in => 'PublishingDetail', :as => [SalesRestriction]
 
 
         def isbn13

@@ -1,6 +1,4 @@
 
-require 'active_support/core_ext/object/with_options'
-require 'active_support/core_ext/module/aliasing'
 require 'bigdecimal'
 require 'roxml'
 require 'elibri_onix/version'

@@ -18,10 +18,8 @@ module Elibri
         xml_accessor :printed_on_product, :from => 'PrintedOnProduct', :as => Fixnum
         xml_accessor :position_on_product, :from => 'PositionOnProduct', :as => Fixnum
 
-        with_options :in => 'Tax' do |tax|
-          tax.xml_accessor :tax_type, :from => 'TaxType', :as => Fixnum
-          tax.xml_accessor :tax_rate_percent, :from => 'TaxRatePercent', :as => BigDecimal
-        end
+        xml_accessor :tax_type, :in => 'Tax', :from => 'TaxType', :as => Fixnum
+        xml_accessor :tax_rate_percent, :in => 'Tax', :from => 'TaxRatePercent', :as => BigDecimal
 
 
         def printed_on_product?
