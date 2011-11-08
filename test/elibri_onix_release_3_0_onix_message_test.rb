@@ -27,11 +27,11 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal '58.11.1', product.pkwiu
 
     assert_equal 'fdb8fa072be774d97a97', product.record_reference
-    assert_equal 3, product.notification_type
+    assert_equal '03', product.notification_type
     assert_equal "Record had many errors", product.deletion_text 
 
     assert_equal '9788324799992', product.isbn13
-    assert_equal '9788324788882', product.ean13
+    assert_equal '9788324788882', product.ean
 
     assert_equal({"Gildia.pl" => "GILD-123", "PWN" => "pl.pwn.ksiegarnia.produkt.id.76734"}, product.proprietary_identifiers)
 

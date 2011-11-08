@@ -13,11 +13,11 @@ module Elibri
         xml_accessor :code, :from => 'LanguageCode'
 
         def role_name
-          Elibri::ONIX::Dict::Release_3_0::LanguageRole.find_by_onix_code("01").const_name.downcase
+          Elibri::ONIX::Dict::Release_3_0::LanguageRole.find_by_onix_code(self.role).const_name.downcase
         end
    
         def language
-          Elibri::ONIX::Dict::Release_3_0::LanguageCode.find_by_onix_code("pol").name(:en).downcase
+          Elibri::ONIX::Dict::Release_3_0::LanguageCode.find_by_onix_code(self.code).name(:en).downcase
         end
 
         def inspect_include_fields
