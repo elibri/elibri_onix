@@ -7,6 +7,7 @@ module Elibri
 
       class PublishingDate
         include ROXML
+        include Inspector
 
         xml_name 'PublishingDate'
 

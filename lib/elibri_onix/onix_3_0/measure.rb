@@ -6,11 +6,21 @@ module Elibri
 
       class Measure
         include ROXML
+        include Inspector
 
         xml_name 'Measure'
-        xml_accessor :type, :from => 'MeasureType', :as => Fixnum
-        xml_accessor :measurement, :from => 'Measurement', :as => BigDecimal
+        xml_accessor :type, :from => 'MeasureType'
+        xml_accessor :measurement, :from => 'Measurement', :as => Fixnum
         xml_accessor :unit, :from => 'MeasureUnitCode'
+
+        def type_name
+           Elibri::ONIX::Dict::Release_3_0::MeasureType.find_by_onix_code(type).const_name.downcase
+        end
+
+        def inspect_include_fields
+          [:type_name]
+        end
+
       end
 
     end

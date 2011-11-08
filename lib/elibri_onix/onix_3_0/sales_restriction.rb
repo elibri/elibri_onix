@@ -7,6 +7,7 @@ module Elibri
 
       class SalesRestriction
         include ROXML
+        include Inspector
 
         xml_name 'SalesRestriction'
 

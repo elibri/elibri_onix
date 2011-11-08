@@ -6,6 +6,7 @@ module Elibri
 
       class Header
         include ROXML
+        include Inspector
 
         xml_name 'Header'
         xml_accessor :sent_date_time, :as => Date, :from => 'SentDateTime'

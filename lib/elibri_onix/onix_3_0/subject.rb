@@ -6,6 +6,7 @@ module Elibri
 
       class Subject
         include ROXML
+        include Inspector
 
         xml_name 'Subject'
         xml_accessor :scheme_identifier, :from => 'SubjectSchemeIdentifier', :as => Fixnum

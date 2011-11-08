@@ -8,6 +8,7 @@ module Elibri
 
       class Price
         include ROXML
+        include Inspector
 
         xml_name 'Price'
 

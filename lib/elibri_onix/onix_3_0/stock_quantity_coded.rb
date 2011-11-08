@@ -8,6 +8,7 @@ module Elibri
 
       class StockQuantityCoded
         include ROXML
+        include Inspector
 
         xml_name 'StockQuantityCoded'
 

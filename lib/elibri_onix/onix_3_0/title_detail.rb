@@ -6,12 +6,20 @@ module Elibri
 
       class TitleDetail
         include ROXML
+        include Inspector
 
         xml_name 'TitleDetail'
 
-        xml_accessor :type, :from => 'TitleType', :as => Fixnum
+        xml_accessor :type, :from => 'TitleType'
         xml_accessor :elements, :as => [TitleElement]
 
+        def type_name
+          Elibri::ONIX::Dict::Release_3_0::TitleType.find_by_onix_code(self.type).const_name.downcase
+        end
+
+        def inspect_include_fields
+          [:type_name]
+        end
 
         def full_title
           String.new.tap do |_full_title|
