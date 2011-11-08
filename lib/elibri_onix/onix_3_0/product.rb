@@ -5,11 +5,12 @@ module Elibri
 
       class Product
         include ROXML
-        attr_accessor :elibri_dialect
+
+        attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13
 
         xml_name 'Product'
         xml_accessor :record_reference, :from => 'RecordReference'
-        xml_accessor :notification_type, :from => 'NotificationType', :as => Fixnum
+        xml_accessor :notification_type, :from => 'NotificationType'
         xml_accessor :deletion_text, :from => 'DeletionText'
 
         # Load attributes specific for dialect 3.0.1
@@ -59,37 +60,6 @@ module Elibri
         xml_accessor :publishing_date, :in => 'PublishingDetail', :as => PublishingDate
         xml_accessor :sales_restrictions, :in => 'PublishingDetail', :as => [SalesRestriction]
 
-
-        def isbn13
-          identifiers.find {|identifier| identifier.type == 15}.try(:value)
-        end
-
-
-        def ean13
-          identifiers.find {|identifier| identifier.type == 3}.try(:value)
-        end
-
-
-        %w{height width thickness weight}.each do |method_name|
-          define_method(method_name) do
-            send(method_name + '_measure').try(:measurement)
-          end
-
-          define_method(method_name + '_unit') do
-            send(method_name + '_measure').try(:unit)
-          end
-        end  
-
-
-        def proprietary_identifiers
-          Hash.new.tap do |hash|
-            identifiers.each do |identifier|
-              hash[identifier.type_name] = identifier.value if identifier.type == 1
-            end
-          end
-        end
-
-
         def full_title
           title_details.find {|title_detail| title_detail.type == 1}.try(:full_title)
         end
@@ -125,28 +95,38 @@ module Elibri
         def imprint_name
           imprint.try(:name)
         end
+ 
+        #I don't want to see roxml_references in output - it's faar to big output
+        def pretty_print_instance_variables
+          (instance_variables - ["@roxml_references", "@measures", "@identifiers"]).sort
+        end
 
+
+        def pretty_print(pp)
+          pp.object_address_group(self) {
+            pp.seplist(self.pretty_print_instance_variables, lambda { pp.text ',' }) {|v|
+              pp.breakable
+              v = v.to_s if Symbol === v
+              pp.text v
+              pp.text '='
+              pp.group(1) {
+                pp.breakable ''
+                pp.pp(self.instance_eval(v))
+              }
+            }
+          }
+        end
 
         private
 
-          def height_measure
-            measures.find {|measure| measure.type == 1}
+        def after_parse
+          %w{height width thickness weight}.each do |mn|
+            instance_variable_set("@#{mn}", measures.find { |m| m.type_name == mn }.try(:measurement))
           end
 
-
-          def width_measure
-            measures.find {|measure| measure.type == 2}
-          end
-
-
-          def thickness_measure
-            measures.find {|measure| measure.type == 3}
-          end
-
-
-          def weight_measure
-            measures.find {|measure| measure.type == 8}
-          end
+          @ean = identifiers.find { |identifier| identifier.identifier_type == "ean" }.try(:value)
+          @isbn13 = identifiers.find { |identifier| identifier.identifier_type == "isbn13" }.try(:value)
+        end
 
       end
 

@@ -7,6 +7,7 @@ module Elibri
 
       class SupplyDetail
         include ROXML
+        include Inspector
 
         xml_name 'SupplyDetail'
 

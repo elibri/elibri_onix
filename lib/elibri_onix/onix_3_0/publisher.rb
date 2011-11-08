@@ -7,6 +7,7 @@ module Elibri
 
       class Publisher
         include ROXML
+        include Inspector
 
         xml_name 'Publisher'
 

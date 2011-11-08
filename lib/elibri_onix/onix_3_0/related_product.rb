@@ -8,6 +8,7 @@ module Elibri
 
       class RelatedProduct
         include ROXML
+        include Inspector
 
         xml_name 'RelatedProduct'
 

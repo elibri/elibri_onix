@@ -5,6 +5,8 @@ module Elibri
 
       class Sender
         include ROXML
+        include Inspector
+
         xml_name 'Sender'
 
         xml_accessor :sender_name, :from => 'SenderName'

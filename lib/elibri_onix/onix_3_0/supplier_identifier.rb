@@ -8,6 +8,7 @@ module Elibri
 
       class SupplierIdentifier
         include ROXML
+        include Inspector
 
         xml_name 'SupplierIdentifier'
 

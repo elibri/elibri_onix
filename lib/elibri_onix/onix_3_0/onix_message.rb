@@ -5,7 +5,8 @@ module Elibri
 
       class ONIXMessage
         include ROXML
-        
+        #include Inspector
+
         xml_name 'ONIXMessage'
         xml_accessor :release, :from => "@release"
         xml_accessor :elibri_dialect, :from => "elibri:Dialect"

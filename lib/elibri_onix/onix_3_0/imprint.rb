@@ -6,6 +6,7 @@ module Elibri
 
       class Imprint
         include ROXML
+        include Inspector
 
         xml_name 'Imprint'
 

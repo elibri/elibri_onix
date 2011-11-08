@@ -5,10 +5,11 @@ module Elibri
 
       class TitleElement
         include ROXML
+        include Inspector
 
         xml_name 'TitleElement'
 
-        xml_accessor :level, :from => 'TitleElementLevel', :as => Fixnum
+        xml_accessor :level, :from => 'TitleElementLevel'
         xml_accessor :part_number, :from => 'PartNumber'
         xml_accessor :title, :from => 'TitleText'
         xml_accessor :subtitle, :from => 'Subtitle'

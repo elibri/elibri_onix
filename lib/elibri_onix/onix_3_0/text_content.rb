@@ -5,15 +5,28 @@ module Elibri
 
       class TextContent
         include ROXML
+        include Inspector
 
         xml_name 'TextContent'
 
-        xml_accessor :type, :from => 'TextType', :as => Fixnum
-        xml_accessor :audience, :from => 'ContentAudience', :as => Fixnum
+        xml_accessor :type, :from => 'TextType'
+        #xml_accessor :audience, :from => 'ContentAudience' - always unrestricted
         xml_accessor :author, :from => 'TextAuthor'
 
         xml_accessor :text, :from => 'Text', :cdata => true
 
+        #def audience_name
+        #  Elibri::ONIX::Dict::Release_3_0::ContentAudience.find_by_onix_code(audience).const_name.downcase
+        #end
+ 
+        def type_name
+          Elibri::ONIX::Dict::Release_3_0::OtherTextType.find_by_onix_code(type).const_name.downcase
+        end
+ 
+ 
+        def inspect_include_fields
+          [:type_name]
+        end
       end
 
     end

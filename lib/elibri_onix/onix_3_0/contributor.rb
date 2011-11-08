@@ -5,6 +5,7 @@ module Elibri
 
       class Contributor
         include ROXML
+        include Inspector
 
         xml_name 'Contributor'
 
@@ -20,6 +21,14 @@ module Elibri
         xml_accessor :biographical_note, :from => 'BiographicalNote'
 
         xml_accessor :unnamed_persons, :from => 'UnnamedPersons'
+
+        def role_name
+          Elibri::ONIX::Dict::Release_3_0::ContributorRole.find_by_onix_code(self.role).const_name.downcase
+        end
+
+        def inspect_include_fields
+          [:role_name]
+        end
       end
 
     end

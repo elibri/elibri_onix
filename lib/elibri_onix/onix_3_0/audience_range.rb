@@ -5,11 +5,12 @@ module Elibri
 
       class AudienceRange
         include ROXML
+        include Inspector
 
         xml_name 'AudienceRange'
 
-        xml_accessor :qualifier, :from => 'AudienceRangeQualifier', :as => Fixnum
-        xml_accessor :precision, :from => 'AudienceRangePrecision', :as => Fixnum
+        xml_accessor :qualifier, :from => 'AudienceRangeQualifier'
+        xml_accessor :precision, :from => 'AudienceRangePrecision'
         xml_accessor :value, :from => 'AudienceRangeValue'
 
 
