@@ -12,6 +12,16 @@
   </Header>
   <Product>
     <RecordReference>fdb8fa072be774d97a97</RecordReference>
+    <NotificationType>02</NotificationType>
+    <DescriptiveDetail>
+      <TitleDetail>
+        <TitleType>01</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Nielegalni</TitleText>
+        </TitleElement>
+      </TitleDetail>
+    </DescriptiveDetail>
     <elibri:CoverType>miękka</elibri:CoverType>
     <elibri:CoverPrice>12.99</elibri:CoverPrice>
     <elibri:Vat>5</elibri:Vat>

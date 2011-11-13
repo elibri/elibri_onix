@@ -6,7 +6,11 @@ module Elibri
       class Product
         include ROXML
 
-        attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13
+        attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
+                      :file_size, :publisher_name, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
+                      :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
+                      :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date
+
 
         xml_name 'Product'
         xml_accessor :record_reference, :from => 'RecordReference'
@@ -61,35 +65,8 @@ module Elibri
         xml_accessor :publishing_date, :in => 'PublishingDetail', :as => PublishingDate
         xml_accessor :sales_restrictions, :in => 'PublishingDetail', :as => [SalesRestriction]
 
-        def current_state
-          if notification_type == "01"
-            :announced
-          elsif notification_type == "02"
-            :preorder
-          else
-            if publishing_status == "04"
-              :published
-            elsif publishing_status == "07"
-              :out_of_print
-            else
-              raise "cannot determine the state of the product"
-            end
-          end
-        end
-
         def sales_restrictions?
           sales_restrictions.size > 0
-        end
-
-        def parsed_publishing_date
-          if sales_restrictions?
-            date = sales_restrictions[0].end_date
-            [date.year, date.month, date.day]
-          elsif publishing_date
-            publishing_date.parsed
-          else
-            []
-          end
         end
 
         def no_contributor?
@@ -104,109 +81,21 @@ module Elibri
           supporting_resources.find { |resource| resource.content_type_name == "front_cover" }.try(:link)
         end
 
-        def series
-          collections.map { |c| c.title_detail.elements[0] }
-        end
-
         def series_names
-          series.map(&:title)
+          series.map { |series| series[0] }
         end
  
-        def publisher_name
-          publisher.name if publisher
-        end
-
-        def imprint_name
-          imprint.name if imprint
-        end
-
-
-        def find_title(code)
-          title_details.find {|title_detail| title_detail.type == code}
-        end
-
-        def title
-          find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).product_level.try(:title)
-        end
-
-        def subtitle
-          find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).product_level.try(:subtitle)
-        end
-
-        def collection_title
-          find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).collection_level.try(:title)
-        end
-
-        def collection_part
-          find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).collection_level.try(:part_number)
-        end
-
-
-        def full_title
-          find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).try(:full_title)
-        end
-
-
-        def original_title
-          find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::ORIGINAL_TITLE).try(:full_title)
-        end
-
-
-        def trade_title
-          find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTRIBUTORS_TITLE).try(:full_title)
-        end
-
         def proprietary_identifiers 
           identifiers.find_all { |i| i.identifier_type == "proprietary" }.inject({}) { |res, ident| res[ident.type_name] = ident.value; res }
         end
 
-        def number_of_pages 
-          extents.find {|extent| extent.type_name == "page_count" }.try(:value)
-        end
-
-        def duration
-          extents.find {|extent| extent.type_name == "duration" }.try(:value)
-        end
-
-        def file_size
-          extents.find {|extent| extent.type_name == "file_size" }.try(:value)
-        end 
-
-        def reading_age_from
-          age_from = audience_ranges.find {|audience_range| (audience_range.qualifier == "18") && (audience_range.precision == "03")}.try(:value)
-          age_from.present? ? age_from.to_i : nil
-        end
-
-
-        def reading_age_to
-          age_to = audience_ranges.find {|audience_range| (audience_range.qualifier == "18") && (audience_range.precision == "04")}.try(:value)
-          age_to.present? ? age_to.to_i : nil
-        end
-
-
-        def imprint_name
-          imprint.try(:name)
-        end
-
-        def table_of_contents
-          text_contents.find { |t| t.type_name == "table_of_contents" }.try(:text)
-        end
-
-        def description
-          text_contents.find { |t| t.type_name == "main_description" }.try(:text)
-        end
-
-        def reviews
-          text_contents.find_all { |t| t.type_name == "review" }.map { |t| [t.text, t.author] }
-        end
-
-        def excerpts
-          text_contents.find_all { |t| t.type_name == "excerpt" }.map { |t| t.text }
-        end
- 
         #I don't want to see roxml_references in output - it's faar to big output
         def pretty_print_instance_variables
-          (instance_variables - ["@roxml_references", "@measures", "@identifiers"]).sort
+          (instance_variables - ["@roxml_references", "@measures", "@identifiers", "@notification_type", "@publishing_status",
+                                 "@elibri_dialect", "@product_composition", "@extents", "@publisher", "@imprint",
+                                 "@audience_ranges", "@text_contents", "@collections", "@title_details", "@publishing_date"]).find_all { |varname|
+              instance_variable_get(varname).present?
+          }.sort
         end
 
 
@@ -227,6 +116,22 @@ module Elibri
 
         private
 
+        def find_title(code)
+          title_details.find {|title_detail| title_detail.type == code}
+        end
+
+        def parse_publishing_date!
+          if sales_restrictions?
+            date = sales_restrictions[0].end_date
+            @parsed_publishing_date = [date.year, date.month, date.day]
+          elsif publishing_date
+            @parsed_publishing_date = publishing_date.parsed
+          else
+            @parsed_publishing_date = []
+          end
+        end
+
+
         def after_parse
           %w{height width thickness weight}.each do |mn|
             instance_variable_set("@#{mn}", measures.find { |m| m.type_name == mn }.try(:measurement))
@@ -234,8 +139,45 @@ module Elibri
 
           @ean = identifiers.find { |identifier| identifier.identifier_type == "ean" }.try(:value)
           @isbn13 = identifiers.find { |identifier| identifier.identifier_type == "isbn13" }.try(:value)
+          @number_of_pages = extents.find {|extent| extent.type_name == "page_count" }.try(:value)
+          @duration = extents.find {|extent| extent.type_name == "duration" }.try(:value)
+          @file_size = extents.find {|extent| extent.type_name == "file_size" }.try(:value)
+          @publisher_name = publisher.name if publisher
+          @imprint_name = imprint.name if imprint
+
+          @reading_age_from = audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "03")}.try(:value)
+          @reading_age_to = audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "04")}.try(:value)
+          @table_of_contents = text_contents.find { |t| t.type_name == "table_of_contents" }.try(:text)
+          @description = text_contents.find { |t| t.type_name == "main_description" }.try(:text)
+          @reviews = text_contents.find_all { |t| t.type_name == "review" }.map { |t| [t.text, t.author] }
+          @excerpts = text_contents.find_all { |t| t.type_name == "excerpt" }.map { |t| t.text }
+          @series = collections.map { |c| [c.title_detail.elements[0].title,  c.title_detail.elements[0].part_number] }
+          @title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).product_level.try(:title)
+          @subtitle = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).product_level.try(:subtitle)
+          @collection_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).collection_level.try(:title)
+          @collection_part = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).collection_level.try(:part_number)
+          @full_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).try(:full_title)
+          @original_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::ORIGINAL_TITLE).try(:full_title)
+          @trade_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTRIBUTORS_TITLE).try(:full_title)
+          compute_state!
+          parse_publishing_date!
         end
 
+        def compute_state!
+          if notification_type == "01"
+            @current_state = :announced
+          elsif notification_type == "02"
+            @current_state = :preorder
+          else
+            if publishing_status == "04"
+              @current_state = :published
+            elsif publishing_status == "07"
+              @current_state = :out_of_print
+            else
+              raise "cannot determine the state of the product"
+            end
+          end
+        end
       end
 
     end

@@ -11,7 +11,7 @@ module Elibri
 
         xml_accessor :qualifier, :from => 'AudienceRangeQualifier'
         xml_accessor :precision, :from => 'AudienceRangePrecision'
-        xml_accessor :value, :from => 'AudienceRangeValue'
+        xml_accessor :value, :from => 'AudienceRangeValue', :as => Fixnum
 
 
       end
