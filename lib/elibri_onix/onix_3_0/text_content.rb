@@ -15,18 +15,18 @@ module Elibri
 
         xml_accessor :text, :from => 'Text', :cdata => true
 
-        #def audience_name
-        #  Elibri::ONIX::Dict::Release_3_0::ContentAudience.find_by_onix_code(audience).const_name.downcase
-        #end
- 
         def type_name
           Elibri::ONIX::Dict::Release_3_0::OtherTextType.find_by_onix_code(type).const_name.downcase
         end
  
- 
         def inspect_include_fields
           [:type_name]
         end
+
+        private
+          def after_parse
+            @text = @text.strip if @text
+          end
       end
 
     end

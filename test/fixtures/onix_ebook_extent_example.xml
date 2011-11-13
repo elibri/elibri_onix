@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage release="3.0" xmlns:elibri="http://elibri.com.pl/ns/extensions" xmlns="http://www.editeur.org/onix/3.0/reference">
+  <elibri:Dialect>3.0.1</elibri:Dialect>
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20111112</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>fdb8fa072be774d97a97</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9788324799992</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <ProductComposition>00</ProductComposition>
+      <ProductForm>EA</ProductForm>
+      <TitleDetail>
+        <TitleType>01</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Nielegalni</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <Extent>
+        <ExtentType>22</ExtentType>
+        <ExtentValue>1.22</ExtentValue>
+        <ExtentUnit>19</ExtentUnit>
+      </Extent>
+      <Extent>
+        <ExtentType>00</ExtentType>
+        <ExtentValue>150</ExtentValue>
+        <ExtentUnit>03</ExtentUnit>
+      </Extent>
+      <NumberOfIllustrations>12</NumberOfIllustrations>
+    </DescriptiveDetail>
+    <PublishingDetail>
+      <PublishingStatus>04</PublishingStatus>
+    </PublishingDetail>
+  </Product>
+</ONIXMessage>

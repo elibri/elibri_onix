@@ -11,7 +11,8 @@ module Elibri
 
         xml_name 'Publisher'
 
-        xml_accessor :role, :from => 'PublishingRole', :as => Fixnum
+        #występuje w tej chwili tylko 01 - główny wydawca
+        xml_accessor :role, :from => 'PublishingRole'
         xml_accessor :name, :from => 'PublisherName'
 
       end

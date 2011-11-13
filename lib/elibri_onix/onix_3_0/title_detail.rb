@@ -31,17 +31,21 @@ module Elibri
           end
         end
 
+        def product_level_title
+          product_level.try(:full_title)
+        end
 
-        private
+        def product_level
+          elements.find {|element| element.level == "01"}
+        end
 
-          def product_level_title
-            elements.find {|element| element.level == 1}.try(:full_title)
-          end
+        def collection_level_title
+          collection_level.try(:full_title)
+        end
 
-
-          def collection_level_title
-            elements.find {|element| element.level == 2}.try(:full_title)
-          end
+        def collection_level
+          elements.find {|element| element.level == "02"}
+        end
 
       end
 

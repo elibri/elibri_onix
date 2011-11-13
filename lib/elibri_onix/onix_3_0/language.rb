@@ -17,7 +17,7 @@ module Elibri
         end
    
         def language
-          Elibri::ONIX::Dict::Release_3_0::LanguageCode.find_by_onix_code(self.code).name(:en).downcase
+          Elibri::ONIX::Dict::Release_3_0::LanguageCode.find_by_onix_code(self.code).name(:pl).downcase
         end
 
         def inspect_include_fields
