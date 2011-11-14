@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{elibri_onix}
-  s.version = "0.1.5"
+  s.version = "0.1.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Marcin Urbanski"]
-  s.date = %q{2011-10-18}
+  s.date = %q{2011-11-14}
   s.description = %q{EDItEUR ONIX format subset implementation used in Elibri publication system}
   s.email = %q{marcin@urbanski.vdl.pl}
   s.extra_rdoc_files = [
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "elibri_onix.gemspec",
     "lib/elibri_onix.rb",
+    "lib/elibri_onix/inspector.rb",
     "lib/elibri_onix/onix_3_0/audience_range.rb",
     "lib/elibri_onix/onix_3_0/collection.rb",
     "lib/elibri_onix/onix_3_0/contributor.rb",
@@ -54,10 +55,49 @@ Gem::Specification.new do |s|
     "lib/elibri_onix/onix_3_0/title_element.rb",
     "lib/elibri_onix/releases.rb",
     "lib/elibri_onix/version.rb",
+    "test/elibri_audience_range_test.rb",
+    "test/elibri_contributors_test.rb",
+    "test/elibri_edition_test.rb",
+    "test/elibri_extensions_test.rb",
+    "test/elibri_extent_test.rb",
+    "test/elibri_languages_test.rb",
+    "test/elibri_measurement_test.rb",
     "test/elibri_onix_release_3_0_onix_message_test.rb",
     "test/elibri_onix_test.rb",
+    "test/elibri_product_form_test.rb",
+    "test/elibri_publisher_info_test.rb",
+    "test/elibri_publishing_status_test.rb",
+    "test/elibri_record_identifiers_test.rb",
+    "test/elibri_sale_restrictions_test.rb",
+    "test/elibri_series_memberships_test.rb",
+    "test/elibri_supporting_resources_test.rb",
+    "test/elibri_texts_test.rb",
+    "test/elibri_titles_test.rb",
     "test/fixtures/all_possible_tags.xml",
     "test/fixtures/old_dialect.xml",
+    "test/fixtures/onix_announced_product_example.xml",
+    "test/fixtures/onix_audience_range_example.xml",
+    "test/fixtures/onix_audiobook_extent_example.xml",
+    "test/fixtures/onix_collective_work_example.xml",
+    "test/fixtures/onix_contributors_example.xml",
+    "test/fixtures/onix_ebook_extent_example.xml",
+    "test/fixtures/onix_edition_example.xml",
+    "test/fixtures/onix_elibri_extensions_example.xml",
+    "test/fixtures/onix_languages_example.xml",
+    "test/fixtures/onix_measurement_example.xml",
+    "test/fixtures/onix_no_contributors_example.xml",
+    "test/fixtures/onix_out_of_print_product_example.xml",
+    "test/fixtures/onix_preorder_product_example.xml",
+    "test/fixtures/onix_product_form_example.xml",
+    "test/fixtures/onix_published_product_example.xml",
+    "test/fixtures/onix_publisher_info_example.xml",
+    "test/fixtures/onix_record_identifiers_example.xml",
+    "test/fixtures/onix_sale_restrictions_example.xml",
+    "test/fixtures/onix_series_memberships_example.xml",
+    "test/fixtures/onix_supporting_resources_example.xml",
+    "test/fixtures/onix_texts_example.xml",
+    "test/fixtures/onix_title_with_collection_example.xml",
+    "test/fixtures/onix_titles_example.xml",
     "test/helper.rb"
   ]
   s.homepage = %q{http://github.com/elibri/elibri_onix}
@@ -73,20 +113,22 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<activesupport>, [">= 2.3.5"])
       s.add_runtime_dependency(%q<roxml>, ["= 3.1.3"])
       s.add_runtime_dependency(%q<i18n>, [">= 0"])
+      s.add_runtime_dependency(%q<elibri_onix_dict>, ["= 0.0.3"])
       s.add_development_dependency(%q<pry>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<minitest>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_development_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.2"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<activesupport>, [">= 2.3.5"])
       s.add_dependency(%q<roxml>, ["= 3.1.3"])
       s.add_dependency(%q<i18n>, [">= 0"])
+      s.add_dependency(%q<elibri_onix_dict>, ["= 0.0.3"])
       s.add_dependency(%q<pry>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<minitest>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+      s.add_dependency(%q<bundler>, [">= 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
@@ -94,10 +136,11 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<activesupport>, [">= 2.3.5"])
     s.add_dependency(%q<roxml>, ["= 3.1.3"])
     s.add_dependency(%q<i18n>, [">= 0"])
+    s.add_dependency(%q<elibri_onix_dict>, ["= 0.0.3"])
     s.add_dependency(%q<pry>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<minitest>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
+    s.add_dependency(%q<bundler>, [">= 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.2"])
     s.add_dependency(%q<rcov>, [">= 0"])
   end
