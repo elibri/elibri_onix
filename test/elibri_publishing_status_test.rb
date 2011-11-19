@@ -8,6 +8,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal "02", product.publishing_status
     assert_equal :announced, product.current_state
     assert_equal [2011], product.parsed_publishing_date
+    assert product.premiere.nil? #nieznana jest dokładna data premiery
     assert !product.sales_restrictions?
   end
 
@@ -17,6 +18,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal "02", product.publishing_status
     assert_equal :preorder, product.current_state
     assert_equal [2011, 2, 10], product.parsed_publishing_date
+    assert_equal Date.new(2011, 2, 10), product.premiere
     assert !product.sales_restrictions?
   end
 
@@ -26,6 +28,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal "04", product.publishing_status
     assert_equal :published, product.current_state
     assert_equal [2011, 2], product.parsed_publishing_date
+    assert product.premiere.nil?
     assert !product.sales_restrictions?
   end
 
@@ -35,6 +38,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal "07", product.publishing_status
     assert_equal :out_of_print, product.current_state
     assert_equal [], product.parsed_publishing_date
+    assert product.premiere.nil?
     assert !product.sales_restrictions?
   end
 

@@ -77,12 +77,34 @@ module Elibri
           contributors.size == 1 && contributors[0].unnamed_persons.present?
         end
 
+        def authors
+          unnamed_persons? ? ["praca zbiorowa"] : contributors.find_all { |c| c.role_name == "author" }.map(&:person_name)
+        end
+
+        [:ghostwriter, :scenarist, :originator, :illustrator, :photographer, :author_of_preface, :drawer, :cover_designer, 
+         :inked_or_colored_by, :editor, :revisor, :translator, :editor_in_chief, :read_by].each do |role|
+          define_method "#{role}s" do
+            contributors.find_all { |c| c.role_name == role.to_s }.map(&:person_name)
+          end
+        end
+
+        [:announced, :preorder, :published, :out_of_print].each do |state|
+          define_method "#{state}?" do
+            current_state == state
+          end
+        end
+
+
         def front_cover
           supporting_resources.find { |resource| resource.content_type_name == "front_cover" }.try(:link)
         end
 
         def series_names
           series.map { |series| series[0] }
+        end
+
+        def premiere
+          Date.new(*parsed_publishing_date) if parsed_publishing_date.size == 3
         end
  
         def proprietary_identifiers 
@@ -152,10 +174,13 @@ module Elibri
           @reviews = text_contents.find_all { |t| t.type_name == "review" }.map { |t| [t.text, t.author] }
           @excerpts = text_contents.find_all { |t| t.type_name == "excerpt" }.map { |t| t.text }
           @series = collections.map { |c| [c.title_detail.elements[0].title,  c.title_detail.elements[0].part_number] }
-          @title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).product_level.try(:title)
-          @subtitle = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).product_level.try(:subtitle)
-          @collection_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).collection_level.try(:title)
-          @collection_part = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).collection_level.try(:part_number)
+          distinctive_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE)
+          if distinctive_title
+            @title = distinctive_title.product_level.try(:title)
+            @subtitle = distinctive_title.product_level.try(:subtitle)
+            @collection_title = distinctive_title.collection_level.try(:title)
+            @collection_part = distinctive_title.collection_level.try(:part_number)
+          end
           @full_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).try(:full_title)
           @original_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::ORIGINAL_TITLE).try(:full_title)
           @trade_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTRIBUTORS_TITLE).try(:full_title)
@@ -174,7 +199,7 @@ module Elibri
             elsif publishing_status == "07"
               @current_state = :out_of_print
             else
-              raise "cannot determine the state of the product"
+              raise "cannot determine the state of the product #{record_reference}"
             end
           end
         end
