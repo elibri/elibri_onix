@@ -2,7 +2,7 @@ require 'helper'
 
 describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
-  it "should be able to parse measurement attributes supported in Elibri" do
+  it "should be able to parse titles" do
     product = load_fixture("onix_titles_example.xml")
  
     assert_equal "Nothing to Envy: Ordinary Lives in North Korea", product.original_title

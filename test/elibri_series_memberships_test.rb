@@ -2,7 +2,7 @@ require 'helper'
 
 describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
-  it "should be able to parse measurement attributes supported in Elibri" do
+  it "should be able to parse series info" do
     product = load_fixture("onix_series_memberships_example.xml")
     assert_equal ["Lektury szkolne", "Dla Bystrzaków"], product.series_names
 

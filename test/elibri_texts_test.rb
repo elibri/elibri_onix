@@ -2,7 +2,7 @@ require 'helper'
 
 describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
-  it "should be able to parse measurement attributes supported in Elibri" do
+  it "should be able to parse texts" do
     product = load_fixture("onix_texts_example.xml")
 
     assert_equal 4, product.text_contents.size
