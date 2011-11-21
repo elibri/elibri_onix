@@ -103,7 +103,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/elibri/elibri_onix}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.2}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{EDItEUR ONIX format subset implementation used in Elibri publication system}
 
   if s.respond_to? :specification_version then
