@@ -26,6 +26,8 @@ Gem::Specification.new do |s|
     "VERSION",
     "elibri_onix.gemspec",
     "lib/elibri_onix.rb",
+    "lib/elibri_onix/external_id.rb",
+    "lib/elibri_onix/external_timestamp.rb",
     "lib/elibri_onix/inspector.rb",
     "lib/elibri_onix/onix_3_0/audience_range.rb",
     "lib/elibri_onix/onix_3_0/collection.rb",
@@ -113,7 +115,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<activesupport>, [">= 2.3.5"])
       s.add_runtime_dependency(%q<roxml>, ["= 3.1.3"])
       s.add_runtime_dependency(%q<i18n>, [">= 0"])
-      s.add_runtime_dependency(%q<elibri_onix_dict>, ["= 0.0.5"])
+      s.add_runtime_dependency(%q<elibri_onix_dict>, [">= 0.0.5"])
       s.add_development_dependency(%q<pry>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<minitest>, [">= 0"])
@@ -124,7 +126,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<activesupport>, [">= 2.3.5"])
       s.add_dependency(%q<roxml>, ["= 3.1.3"])
       s.add_dependency(%q<i18n>, [">= 0"])
-      s.add_dependency(%q<elibri_onix_dict>, ["= 0.0.5"])
+      s.add_dependency(%q<elibri_onix_dict>, [">= 0.0.5"])
       s.add_dependency(%q<pry>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<minitest>, [">= 0"])
@@ -136,7 +138,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<activesupport>, [">= 2.3.5"])
     s.add_dependency(%q<roxml>, ["= 3.1.3"])
     s.add_dependency(%q<i18n>, [">= 0"])
-    s.add_dependency(%q<elibri_onix_dict>, ["= 0.0.5"])
+    s.add_dependency(%q<elibri_onix_dict>, [">= 0.0.5"])
     s.add_dependency(%q<pry>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<minitest>, [">= 0"])
