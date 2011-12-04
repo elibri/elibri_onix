@@ -38,7 +38,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport (>= 2.3.5)
   bundler (>= 1.0.0)
-  elibri_onix_dict (= 0.0.5)
+  elibri_onix_dict (>= 0.0.5)
   i18n
   jeweler (~> 1.6.2)
   minitest
