@@ -7,7 +7,7 @@ module Elibri
         include ROXML
 
         attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
-                      :file_size, :publisher_name, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
+                      :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
                       :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
                       :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date
 
@@ -165,6 +165,7 @@ module Elibri
           @duration = extents.find {|extent| extent.type_name == "duration" }.try(:value)
           @file_size = extents.find {|extent| extent.type_name == "file_size" }.try(:value)
           @publisher_name = publisher.name if publisher
+          @publisher_id = publisher.id if publisher
           @imprint_name = imprint.name if imprint
 
           @reading_age_from = audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "03")}.try(:value)
