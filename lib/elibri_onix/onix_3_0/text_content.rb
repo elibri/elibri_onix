@@ -6,6 +6,8 @@ module Elibri
       class TextContent
         include ROXML
         include Inspector
+        include ExternalId
+        include ExternalTimestamp
 
         xml_name 'TextContent'
 

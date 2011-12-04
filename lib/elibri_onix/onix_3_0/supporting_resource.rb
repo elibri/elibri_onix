@@ -7,6 +7,9 @@ module Elibri
       class SupportingResource
         include ROXML
         include Inspector
+        include ExternalId
+        include ExternalTimestamp
+
 
         xml_name 'SupportingResource'
 

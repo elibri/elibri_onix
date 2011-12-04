@@ -96,7 +96,7 @@ module Elibri
 
 
         def front_cover
-          supporting_resources.find { |resource| resource.content_type_name == "front_cover" }.try(:link)
+          supporting_resources.find { |resource| resource.content_type_name == "front_cover" }
         end
 
         def series_names
@@ -170,10 +170,10 @@ module Elibri
 
           @reading_age_from = audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "03")}.try(:value)
           @reading_age_to = audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "04")}.try(:value)
-          @table_of_contents = text_contents.find { |t| t.type_name == "table_of_contents" }.try(:text)
-          @description = text_contents.find { |t| t.type_name == "main_description" }.try(:text)
-          @reviews = text_contents.find_all { |t| t.type_name == "review" }.map { |t| [t.text, t.author] }
-          @excerpts = text_contents.find_all { |t| t.type_name == "excerpt" }.map { |t| t.text }
+          @table_of_contents = text_contents.find { |t| t.type_name == "table_of_contents" }
+          @description = text_contents.find { |t| t.type_name == "main_description" }
+          @reviews = text_contents.find_all { |t| t.type_name == "review" }
+          @excerpts = text_contents.find_all { |t| t.type_name == "excerpt" }
           @series = collections.map { |c| [c.title_detail.elements[0].title,  c.title_detail.elements[0].part_number] }
           distinctive_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE)
           if distinctive_title

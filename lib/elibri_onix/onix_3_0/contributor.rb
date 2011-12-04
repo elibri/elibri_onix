@@ -6,6 +6,8 @@ module Elibri
       class Contributor
         include ROXML
         include Inspector
+        include ExternalId
+        include ExternalTimestamp
 
         xml_name 'Contributor'
 
