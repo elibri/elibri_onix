@@ -15,6 +15,8 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     review = product.reviews.first
     assert_equal "Recenzja książki<br />[...]", review.text
     assert_equal "Jan Kowalski", review.author
+    assert_equal "nakanapie.pl", review.source_title
+    assert_equal "http://nakanapie.pl/books/420469/reviews/2892.odnalezc-swa-droge", review.source_url
     assert_equal Date.new(2011, 12, 4) + 12.hours + 18.minutes, review.datestamp
     assert_equal 134, review.id
 

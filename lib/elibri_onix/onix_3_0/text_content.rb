@@ -14,12 +14,15 @@ module Elibri
         xml_accessor :type, :from => 'TextType'
         #xml_accessor :audience, :from => 'ContentAudience' - always unrestricted
         xml_accessor :author, :from => 'TextAuthor'
+        xml_accessor :source_title, :from => 'SourceTitle'
 
         xml_accessor :text, :from => 'Text', :cdata => true
+        xml_accessor :source_url, :from => '@sourcename', :in => 'Text'
 
         def type_name
           Elibri::ONIX::Dict::Release_3_0::OtherTextType.find_by_onix_code(type).const_name.downcase
         end
+
  
         def inspect_include_fields
           [:type_name]
