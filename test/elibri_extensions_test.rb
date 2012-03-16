@@ -9,6 +9,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 12.99, product.cover_price
     assert_equal 5, product.vat
     assert_equal "58.11.1", product.pkwiu
+    assert product.preview_exists?
   end
 
 end

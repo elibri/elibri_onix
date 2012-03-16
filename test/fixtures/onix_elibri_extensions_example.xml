@@ -34,5 +34,6 @@
     <elibri:CoverPrice>12.99</elibri:CoverPrice>
     <elibri:Vat>5</elibri:Vat>
     <elibri:PKWiU>58.11.1</elibri:PKWiU>
+    <elibri:preview_exists>true</elibri:preview_exists>
   </Product>
 </ONIXMessage>

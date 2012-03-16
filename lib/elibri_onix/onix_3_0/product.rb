@@ -22,6 +22,8 @@ module Elibri
         xml_accessor :cover_price_from_3_0_1, :from => 'elibri:CoverPrice', :as => BigDecimal
         xml_accessor :vat_from_3_0_1, :from => 'elibri:Vat', :as => Fixnum
         xml_accessor :pkwiu_from_3_0_1, :from => 'elibri:PKWiU'
+        xml_accessor :preview_exists_from_3_0_1, :from => "elibri:preview_exists"
+
 
         # Attributes in namespace elibri:* are specific for dialect >= 3.0.1.
         # If dialect is less than 3.0.1, returns nil.
@@ -36,7 +38,6 @@ module Elibri
             end                                                     # end
           EVAL_END
         end  
-
 
         xml_accessor :identifiers, :as => [ProductIdentifier]
         xml_accessor :related_products, :as => [RelatedProduct], :in => 'RelatedMaterial'
@@ -94,6 +95,9 @@ module Elibri
           end
         end
 
+        def preview_exists?
+          preview_exists_from_3_0_1 == "true"
+        end
 
         def front_cover
           supporting_resources.find { |resource| resource.content_type_name == "front_cover" }
