@@ -1,5 +1,11 @@
 = elibri_onix
 
+== Build status
+
+{<img src="https://secure.travis-ci.org/elibri/elibri_onix.png?branch=master" alt="Build Status" />}[http://travis-ci.org/elibri/elibri_onix]
+
+== Description
+
 Description goes here.
 
 == Contributing to elibri_onix
