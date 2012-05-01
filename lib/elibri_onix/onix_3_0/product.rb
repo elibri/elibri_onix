@@ -10,7 +10,7 @@ module Elibri
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
                       :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
                       :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date,
-                      :elibri_product_category1_id, :elibri_product_category2_id
+                      :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists
 
 
         xml_name 'Product'
@@ -97,7 +97,7 @@ module Elibri
         end
 
         def preview_exists?
-          preview_exists_from_3_0_1 == "true"
+          @preview_exists
         end
 
         def front_cover
@@ -193,6 +193,8 @@ module Elibri
   
           @elibri_product_category1_id = subjects[0].code if subjects[0]
           @elibri_product_category2_id = subjects[1].code if subjects[1]
+          @preview_exists = (preview_exists_from_3_0_1 == "true")
+
           compute_state!
           parse_publishing_date!
         end
