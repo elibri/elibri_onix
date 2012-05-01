@@ -9,7 +9,8 @@ module Elibri
         attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
                       :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
-                      :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date
+                      :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date,
+                      :elibri_product_category1_id, :elibri_product_category2_id
 
 
         xml_name 'Product'
@@ -189,6 +190,9 @@ module Elibri
           @full_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).try(:full_title)
           @original_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::ORIGINAL_TITLE).try(:full_title)
           @trade_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTRIBUTORS_TITLE).try(:full_title)
+  
+          @elibri_product_category1_id = subjects[0].code if subjects[0]
+          @elibri_product_category2_id = subjects[1].code if subjects[1]
           compute_state!
           parse_publishing_date!
         end

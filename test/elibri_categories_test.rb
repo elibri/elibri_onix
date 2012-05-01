@@ -9,7 +9,10 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 2, product.subjects.size
 
     assert_equal "1110", product.subjects[0].code
+    assert_equal "1110", product.elibri_product_category1_id
     assert_equal "Historia / II Wojna Światowa / Ruch oporu", product.subjects[0].heading_text
+
+    assert_equal "491", product.elibri_product_category2_id
   end
 
 end
