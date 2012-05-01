@@ -1,3 +1,5 @@
+# coding: utf-8
+
 require 'helper'
 
 describe Elibri::ONIX::Release_3_0::ONIXMessage do
