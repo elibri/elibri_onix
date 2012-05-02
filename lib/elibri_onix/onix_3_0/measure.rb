@@ -21,6 +21,10 @@ module Elibri
           [:type_name]
         end
 
+        def id
+          type.to_i
+        end
+
       end
 
     end

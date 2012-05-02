@@ -9,7 +9,7 @@ module Elibri
         attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
                       :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
-                      :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date,
+                      :collection_part, :full_title, :original_title, :trade_title,
                       :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists
 
 
@@ -141,23 +141,23 @@ module Elibri
           }
         end
 
+        def parsed_publishing_date
+          if sales_restrictions?
+            date = sales_restrictions[0].end_date
+            [date.year, date.month, date.day]
+          elsif publishing_date
+            publishing_date.parsed
+          else
+            []
+          end
+        end
+
+
         private
 
         def find_title(code)
           title_details.find {|title_detail| title_detail.type == code}
         end
-
-        def parse_publishing_date!
-          if sales_restrictions?
-            date = sales_restrictions[0].end_date
-            @parsed_publishing_date = [date.year, date.month, date.day]
-          elsif publishing_date
-            @parsed_publishing_date = publishing_date.parsed
-          else
-            @parsed_publishing_date = []
-          end
-        end
-
 
         def after_parse
           %w{height width thickness weight}.each do |mn|
@@ -196,7 +196,6 @@ module Elibri
           @preview_exists = (preview_exists_from_3_0_1 == "true")
 
           compute_state!
-          parse_publishing_date!
         end
 
         def compute_state!
