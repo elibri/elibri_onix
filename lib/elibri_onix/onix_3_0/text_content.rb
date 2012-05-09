@@ -18,6 +18,14 @@ module Elibri
 
         xml_accessor :text, :from => 'Text', :cdata => true
         xml_accessor :source_url, :from => '@sourcename', :in => 'Text'
+        
+        ATTRIBUTES = [
+          :type, :author, :source_title, :text, :source_url, :type_name
+        ]
+        
+        RELATIONS = [
+          :inspect_include_fields
+        ]
 
         def type_name
           Elibri::ONIX::Dict::Release_3_0::OtherTextType.find_by_onix_code(type).const_name.downcase

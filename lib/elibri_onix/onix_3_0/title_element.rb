@@ -14,6 +14,11 @@ module Elibri
         xml_accessor :title, :from => 'TitleText'
         xml_accessor :subtitle, :from => 'Subtitle'
 
+        ATTRIBUTES = [
+          :level, :part_number, :title, :subtitle, :full_title
+        ]
+        
+        RELATIONS = []
 
         def full_title
           String.new(self.title.to_s.strip).tap do |_full_title|

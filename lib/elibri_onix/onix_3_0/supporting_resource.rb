@@ -19,6 +19,14 @@ module Elibri
 
         xml_accessor :form, :in => 'ResourceVersion', :from => 'ResourceForm'
         xml_accessor :link, :in => 'ResourceVersion', :from => 'ResourceLink'
+        
+        ATTRIBUTES = [
+          :content_type, :mode, :form, :link, :content_type_name, :mode_name, :form_name
+        ]
+        
+        RELATIONS = [
+          :inspect_include_fields
+        ]
 
         def content_type_name
           Elibri::ONIX::Dict::Release_3_0::ResourceContentType.find_by_onix_code(content_type).const_name.downcase

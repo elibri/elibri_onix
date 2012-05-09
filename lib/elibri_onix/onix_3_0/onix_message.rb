@@ -14,7 +14,13 @@ module Elibri
         xml_accessor :products, :as => [Product]
         xml_accessor :header, :as => Header
 
-
+        ATTRIBUTES = [
+          :release, :elibri_dialect, :header
+        ]
+        
+        RELATIONS = [
+          :products
+        ]
 
         def self.from_xml(data, *initialization_args)
           xml = XML::Node.from(data)

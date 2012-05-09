@@ -14,6 +14,12 @@ module Elibri
         xml_accessor :role, :from => 'PublishingDateRole'
         xml_accessor :format, :from => 'DateFormat'
         xml_accessor :date, :from => 'Date'
+        
+        ATTRIBUTES = [
+          :role, :format, :date, :parsed
+        ]
+        
+        RELATIONS = []
 
         def parsed
           case format

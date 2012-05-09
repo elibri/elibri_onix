@@ -8,6 +8,17 @@ module Elibri
         include Inspector
         include ExternalId
         include ExternalTimestamp
+        
+        ATTRIBUTES = 
+        [
+          :number, :role, :person_name, :from_language, :titles_before_names, :names_before_key, :prefix_to_key,
+          :key_names, :names_after_key, :biographical_note, :unnamed_persons, :role_name
+        ]
+        
+        RELATIONS =
+        [
+          :inspect_include_fields
+        ]
 
         xml_name 'Contributor'
 

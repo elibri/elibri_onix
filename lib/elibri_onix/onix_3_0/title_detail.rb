@@ -12,6 +12,15 @@ module Elibri
 
         xml_accessor :type, :from => 'TitleType'
         xml_accessor :elements, :as => [TitleElement]
+        
+        ATTRIBUTES = [
+          :type, :type_name, :full_title, :product_level_title, :product_level, :collection_level_title,
+          :collection_level
+        ]
+        
+        RELATIONS = [
+          :elements, :inspect_include_fields
+        ]
 
         def type_name
           Elibri::ONIX::Dict::Release_3_0::TitleType.find_by_onix_code(self.type).const_name.downcase

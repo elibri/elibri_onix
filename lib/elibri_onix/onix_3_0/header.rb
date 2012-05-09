@@ -12,6 +12,13 @@ module Elibri
         xml_accessor :sent_date_time, :as => Date, :from => 'SentDateTime'
 
         xml_accessor :sender, :as => Sender
+        
+        ATTRIBUTES = [
+          :sent_date_time, :sender
+        ]
+        
+        RELATIONS = []
+        
       end
 
     end

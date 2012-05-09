@@ -16,7 +16,12 @@ module Elibri
         xml_accessor :heading_text, :from => 'SubjectHeadingText'
 
         xml_accessor :main_subject, :from => 'MainSubject'
-
+        
+        ATTRIBUTES = [
+          :scheme_identifier, :scheme_name, :scheme_version, :code, :heading_text, :main_subject
+        ]
+        
+        RELATIONS = []
 
         def main_subject?
           main_subject == ''

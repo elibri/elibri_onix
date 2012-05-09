@@ -14,6 +14,15 @@ module Elibri
 
         xml_accessor :relation_code, :from => 'ProductRelationCode', :as => Fixnum
         xml_accessor :identifiers, :as => [ProductIdentifier]
+        
+        ATTRIBUTES = [
+          :relation_code, :isbn13, :proprietary_identifiers
+        ]
+        
+        RELATIONS = [
+          :identifiers
+        ]
+        
 
 
         def isbn13

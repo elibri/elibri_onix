@@ -14,6 +14,12 @@ module Elibri
         xml_accessor :type, :from => 'SalesRestrictionType', :as => Fixnum
         xml_accessor :outlet_name, :from => 'SalesOutletName', :in => 'SalesOutlet'
         xml_accessor :end_date, :from => 'EndDate', :as => Date
+        
+        ATTRIBUTES = [
+          :type, :outlet_name, :end_date
+        ]
+        
+        RELATIONS = []
 
       end
 

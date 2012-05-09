@@ -8,6 +8,12 @@ module Elibri
         include Inspector
 
         xml_name 'AudienceRange'
+        
+        ATTRIBUTES = [
+          :qualifier, :precision, :value
+        ]
+        
+        RELATIONS = []
 
         xml_accessor :qualifier, :from => 'AudienceRangeQualifier'
         xml_accessor :precision, :from => 'AudienceRangePrecision'

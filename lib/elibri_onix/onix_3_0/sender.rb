@@ -12,6 +12,13 @@ module Elibri
         xml_accessor :sender_name, :from => 'SenderName'
         xml_accessor :contact_name, :from => 'ContactName'
         xml_accessor :email_address, :from => 'EmailAddress'
+        
+        ATTRIBUTES = [
+          :sender_name, :contact_name, :email_address
+        ]
+        
+        RELATIONS = []
+        
       end
 
     end

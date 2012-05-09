@@ -8,6 +8,14 @@ module Elibri
         include Inspector
 
         xml_name 'Collection'
+        
+        ATTRIBUTES = [
+          :type, :title_detail, :full_title, :type_name
+        ]
+        
+        RELATIONS = [
+          :elements, :inspect_include_fields
+        ]
 
         xml_accessor :type, :from => 'CollectionType'
         xml_accessor :elements, :as => [TitleElement]

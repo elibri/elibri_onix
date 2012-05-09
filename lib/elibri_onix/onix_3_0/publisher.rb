@@ -10,6 +10,12 @@ module Elibri
         include Inspector
 
         xml_name 'Publisher'
+        
+        ATTRIBUTES = [
+          :role, :name, :id
+        ]
+        
+        RELATIONS = []
 
         #występuje w tej chwili tylko 01 - główny wydawca
         xml_accessor :role, :from => 'PublishingRole'

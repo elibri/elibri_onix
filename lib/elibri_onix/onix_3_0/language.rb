@@ -11,6 +11,14 @@ module Elibri
 
         xml_accessor :role, :from => 'LanguageRole'
         xml_accessor :code, :from => 'LanguageCode'
+        
+        ATTRIBUTES = [
+          :role, :code, :role_name, :language
+        ]
+        
+        RELATIONS = [
+          :inspect_include_fields
+        ]
 
         def role_name
           Elibri::ONIX::Dict::Release_3_0::LanguageRole.find_by_onix_code(self.role).const_name.downcase

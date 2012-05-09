@@ -16,6 +16,11 @@ module Elibri
         xml_accessor :type_name, :from => 'IDTypeName'
         xml_accessor :value, :from => 'IDValue'
 
+        ATTRIBUTES = [
+          :type, :type_name, :value
+        ]
+        
+        RELATIONS = []
 
       end
     end

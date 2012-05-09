@@ -21,6 +21,11 @@ module Elibri
         xml_accessor :on_hand, :in => 'Stock', :from => 'OnHand', :as => Fixnum
         xml_accessor :quantity_coded, :in => 'Stock', :as => StockQuantityCoded
 
+        ATTRIBUTES = [
+          :relation_code, :supplier, :product_availability, :pack_quantity, :price, :on_hand, :quantity_coded, :quantity_code
+        ]
+
+        RELATIONS = []
 
         def quantity_code
           quantity_coded.try(:code)

@@ -4,7 +4,36 @@ module Elibri
     module Release_3_0
 
       class Product
+        
+        
+        ATTRIBUTES =
+        [
+          :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
+          :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
+          :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
+          :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date, :record_reference,
+          :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :product_composition, :product_form, :imprint,
+          :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
+          :publishing_date, :premiere, :front_cover, :series_names
+        ]
+        
+        
+        RELATIONS =
+        [
+          :contributors, #IMPORTANT
+          :related_products, :languages, :measures, :supply_details, :measures, :title_details,
+          :collections, :extents, :subjects, :audience_ranges,
+          :text_contents, #IMPORTANT
+          :supporting_resources, #for example: cover
+          :sales_restrictions, :authors,
+          :ghostwriters, :scenarists, :originators, :illustrators, :photographers, :author_of_prefaces, :drawers,
+          :cover_designers, :inked_or_colored_bys, :editors, :revisors, :translators, :editor_in_chiefs, :read_bys
+        ]
+               
+        
         include ROXML
+
+        
 
         attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
@@ -140,7 +169,7 @@ module Elibri
           }
         end
 
-        private
+private
 
         def find_title(code)
           title_details.find {|title_detail| title_detail.type == code}

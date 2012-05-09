@@ -9,6 +9,12 @@ module Elibri
         include Inspector
 
         xml_name 'Imprint'
+        
+        ATTRIBUTES = [
+          :name
+        ]
+        
+        RELATIONS = []
 
         xml_accessor :name, :from => 'ImprintName'
 

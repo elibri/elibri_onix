@@ -11,6 +11,13 @@ module Elibri
         include Inspector
 
         xml_name 'Price'
+        
+        ATTRIBUTES = [
+          :type, :minimum_order_quantity, :amount, :currency_code, :printed_on_product,
+          :position_on_product, :tax_type, :tax_rate_percent, :vat
+        ]
+        
+        RELATIONS = []
 
         xml_accessor :type, :from => 'PriceType', :as => Fixnum
         xml_accessor :minimum_order_quantity, :from => 'MinimumOrderQuantity', :as => Fixnum

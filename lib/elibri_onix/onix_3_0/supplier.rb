@@ -18,6 +18,13 @@ module Elibri
         xml_accessor :email_address, :from => 'EmailAddress'
         xml_accessor :website, :from => 'WebsiteLink', :in => 'Website'
 
+        ATTRIBUTES = [
+          :role, :name, :telephone_number, :email_address, :website, :nip
+        ]
+        
+        RELATIONS = [
+          :identifiers
+        ]
 
         def nip
           identifiers.find {|identifier| (identifier.type == 2) && (identifier.type_name == 'NIP')}.try(:value)
