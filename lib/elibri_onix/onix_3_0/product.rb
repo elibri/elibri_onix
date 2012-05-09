@@ -14,7 +14,8 @@ module Elibri
           :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date, :record_reference,
           :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :product_composition, :product_form, :imprint,
           :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
-          :publishing_date, :premiere, :front_cover, :series_names
+          :publishing_date, :premiere, :front_cover, :series_names,
+          :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description
         ]
         
         
