@@ -32,6 +32,10 @@ module Elibri
            [:role_name, :language]
         end
 
+        def id
+          "#{role}-#{code}"
+        end
+
       end
 
     end

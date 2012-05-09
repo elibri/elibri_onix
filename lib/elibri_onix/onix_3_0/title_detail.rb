@@ -22,8 +22,12 @@ module Elibri
           :elements, :inspect_include_fields
         ]
 
+        def id
+          type.to_i
+        end 
+
         def type_name
-          Elibri::ONIX::Dict::Release_3_0::TitleType.find_by_onix_code(self.type).const_name.downcase
+           Elibri::ONIX::Dict::Release_3_0::TitleType.find_by_onix_code(self.type).const_name.downcase
         end
 
         def inspect_include_fields

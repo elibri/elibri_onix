@@ -27,6 +27,10 @@ module Elibri
           main_subject == ''
         end
 
+        def id
+          code
+        end
+
       end
 
     end

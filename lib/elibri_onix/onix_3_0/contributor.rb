@@ -42,6 +42,7 @@ module Elibri
         def inspect_include_fields
           [:role_name]
         end
+         
       end
 
     end

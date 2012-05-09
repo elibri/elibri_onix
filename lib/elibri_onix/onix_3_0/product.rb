@@ -38,7 +38,8 @@ module Elibri
         attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
                       :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
-                      :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date
+                      :collection_part, :full_title, :original_title, :trade_title, :short_description,
+                      :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists
 
 
         xml_name 'Product'
@@ -125,7 +126,7 @@ module Elibri
         end
 
         def preview_exists?
-          preview_exists_from_3_0_1 == "true"
+          @preview_exists
         end
 
         def front_cover
@@ -169,23 +170,23 @@ module Elibri
           }
         end
 
+        def parsed_publishing_date
+          if sales_restrictions?
+            date = sales_restrictions[0].end_date
+            [date.year, date.month, date.day]
+          elsif publishing_date
+            publishing_date.parsed
+          else
+            []
+          end
+        end
+
+
 private
 
         def find_title(code)
           title_details.find {|title_detail| title_detail.type == code}
         end
-
-        def parse_publishing_date!
-          if sales_restrictions?
-            date = sales_restrictions[0].end_date
-            @parsed_publishing_date = [date.year, date.month, date.day]
-          elsif publishing_date
-            @parsed_publishing_date = publishing_date.parsed
-          else
-            @parsed_publishing_date = []
-          end
-        end
-
 
         def after_parse
           %w{height width thickness weight}.each do |mn|
@@ -205,6 +206,7 @@ private
           @reading_age_to = audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "04")}.try(:value)
           @table_of_contents = text_contents.find { |t| t.type_name == "table_of_contents" }
           @description = text_contents.find { |t| t.type_name == "main_description" }
+          @short_description = text_contents.find { |t| t.type_name == "short_description" }
           @reviews = text_contents.find_all { |t| t.type_name == "review" }
           @excerpts = text_contents.find_all { |t| t.type_name == "excerpt" }
           @series = collections.map { |c| [c.title_detail.elements[0].title,  c.title_detail.elements[0].part_number] }
@@ -218,8 +220,12 @@ private
           @full_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).try(:full_title)
           @original_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::ORIGINAL_TITLE).try(:full_title)
           @trade_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTRIBUTORS_TITLE).try(:full_title)
+  
+          @elibri_product_category1_id = subjects[0].code if subjects[0]
+          @elibri_product_category2_id = subjects[1].code if subjects[1]
+          @preview_exists = (preview_exists_from_3_0_1 == "true")
+
           compute_state!
-          parse_publishing_date!
         end
 
         def compute_state!

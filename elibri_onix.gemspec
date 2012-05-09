@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{elibri_onix}
-  s.version = "0.1.12"
+  s.version = "0.1.16"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Marcin Urbanski"]
-  s.date = %q{2012-03-16}
+  s.date = %q{2012-05-09}
   s.description = %q{EDItEUR ONIX format subset implementation used in Elibri publication system}
   s.email = %q{marcin@urbanski.vdl.pl}
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".travis.yml",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -58,6 +59,7 @@ Gem::Specification.new do |s|
     "lib/elibri_onix/releases.rb",
     "lib/elibri_onix/version.rb",
     "test/elibri_audience_range_test.rb",
+    "test/elibri_categories_test.rb",
     "test/elibri_contributors_test.rb",
     "test/elibri_edition_test.rb",
     "test/elibri_extensions_test.rb",
@@ -80,6 +82,7 @@ Gem::Specification.new do |s|
     "test/fixtures/onix_announced_product_example.xml",
     "test/fixtures/onix_audience_range_example.xml",
     "test/fixtures/onix_audiobook_extent_example.xml",
+    "test/fixtures/onix_categories_example.xml",
     "test/fixtures/onix_collective_work_example.xml",
     "test/fixtures/onix_contributors_example.xml",
     "test/fixtures/onix_ebook_extent_example.xml",
