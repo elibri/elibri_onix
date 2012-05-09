@@ -9,7 +9,7 @@ module Elibri
         attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
                       :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
-                      :collection_part, :full_title, :original_title, :trade_title,
+                      :collection_part, :full_title, :original_title, :trade_title, :short_description,
                       :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists
 
 
@@ -177,6 +177,7 @@ module Elibri
           @reading_age_to = audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "04")}.try(:value)
           @table_of_contents = text_contents.find { |t| t.type_name == "table_of_contents" }
           @description = text_contents.find { |t| t.type_name == "main_description" }
+          @short_description = text_contents.find { |t| t.type_name == "short_description" }
           @reviews = text_contents.find_all { |t| t.type_name == "review" }
           @excerpts = text_contents.find_all { |t| t.type_name == "excerpt" }
           @series = collections.map { |c| [c.title_detail.elements[0].title,  c.title_detail.elements[0].part_number] }
