@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["marcin@urbanski.vdl.pl"]
   gem.description   = %q{EDItEUR ONIX format subset implementation used in Elibri publication system}
   gem.summary       = %q{EDItEUR ONIX format subset implementation used in Elibri publication system}
-  gem.homepage      = ""
+  gem.homepage      = "http://github.com/elibri/elibri_onix"
   
   gem.licenses = ["MIT"]
 
