@@ -1,0 +1,145 @@
+# List of attributes in Elibri_Onix classes
+
+## AudienceRange
+### Attributes
+qualifier, precision, value
+
+
+## Collection
+### Attributes
+type, title_detail, full_title, type_name
+### Relations
+elements, inspect_include_fields
+
+## Contributor
+### Attributes
+number, role, person_name, from_language, titles_before_names, names_before_key, prefix_to_key, key_names, names_after_key, biographical_note, unnamed_persons, role_name
+### Relations
+inspect_include_fields
+
+## Extent
+### Attributes
+type, value, unit, type_name, unit_name
+### Relations
+inspect_include_fields
+
+## Header
+### Attributes
+sent_date_time, sender
+
+
+## Imprint
+### Attributes
+name
+
+
+## Language
+### Attributes
+role, code, role_name, language
+### Relations
+inspect_include_fields
+
+## Measure
+### Attributes
+type, from, measurement, unit, type_name
+### Relations
+inspect_include_fields
+
+## ONIXMessage
+### Attributes
+release, elibri_dialect, header
+### Relations
+products
+
+## Price
+### Attributes
+type, minimum_order_quantity, amount, currency_code, printed_on_product, position_on_product, tax_type, tax_rate_percent, vat
+
+
+## Product
+### Attributes
+elibri_dialect, height, width, thickness, weight, ean, isbn13, number_of_pages, duration, file_size, publisher_name, publisher_id, imprint_name, current_state, reading_age_from, reading_age_to, table_of_contents, description, reviews, excerpts, series, title, subtitle, collection_title, collection_part, full_title, original_title, trade_title, parsed_publishing_date, record_reference, deletion_text, cover_type, cover_price, vat, pkwiu, product_composition, product_form, imprint, publisher, product_form, no_contributor, edition_statement, number_of_illustrations, publishing_status, publishing_date, premiere, front_cover, series_names, elibri_product_category1_id, elibri_product_category2_id, preview_exists, short_description
+### Relations
+contributors, related_products, languages, measures, supply_details, measures, title_details, collections, extents, subjects, audience_ranges, text_contents, supporting_resources, sales_restrictions, authors, ghostwriters, scenarists, originators, illustrators, photographers, author_of_prefaces, drawers, cover_designers, inked_or_colored_bys, editors, revisors, translators, editor_in_chiefs, read_bys
+
+## ProductIdentifier
+### Attributes
+type, type_name, value, identifier_type
+### Relations
+inspect_include_fields
+
+## Publisher
+### Attributes
+role, name, id
+
+
+## PublishingDate
+### Attributes
+role, format, date, parsed
+
+
+## RelatedProduct
+### Attributes
+relation_code, isbn13, proprietary_identifiers
+### Relations
+identifiers
+
+## SalesRestriction
+### Attributes
+type, outlet_name, end_date
+
+
+## Sender
+### Attributes
+sender_name, contact_name, email_address
+
+
+## StockQuantityCoded
+### Attributes
+code_type, code
+
+
+## Subject
+### Attributes
+scheme_identifier, scheme_name, scheme_version, code, heading_text, main_subject
+
+
+## Supplier
+### Attributes
+role, name, telephone_number, email_address, website, nip
+### Relations
+identifiers
+
+## SupplierIdentifier
+### Attributes
+type, type_name, value
+
+
+## SupplyDetail
+### Attributes
+relation_code, supplier, product_availability, pack_quantity, price, on_hand, quantity_coded, quantity_code
+
+
+## SupportingResource
+### Attributes
+content_type, mode, form, link, content_type_name, mode_name, form_name
+### Relations
+inspect_include_fields
+
+## TextContent
+### Attributes
+type, author, source_title, text, source_url, type_name
+### Relations
+inspect_include_fields
+
+## TitleDetail
+### Attributes
+type, type_name, full_title, product_level_title, product_level, collection_level_title, collection_level
+### Relations
+elements, inspect_include_fields
+
+## TitleElement
+### Attributes
+level, part_number, title, subtitle, full_title
+
+
