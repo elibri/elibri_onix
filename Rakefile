@@ -9,6 +9,7 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
+=begin
 require 'rcov/rcovtask'
 Rcov::RcovTask.new do |test|
   test.libs << 'test'
@@ -16,6 +17,7 @@ Rcov::RcovTask.new do |test|
   test.verbose = true
   test.rcov_opts << '--exclude "gems/*"'
 end
+=end
 
 task :default => :test
 
