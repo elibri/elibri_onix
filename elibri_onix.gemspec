@@ -17,6 +17,12 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Elibri::ONIX::VERSION
   
+  gem.extra_rdoc_files = [
+    "LICENSE.txt",
+    "README.rdoc",
+    "FIELDS.rdoc"
+  ]
+  
   gem.add_runtime_dependency 'activesupport', '>= 2.3.5'
   gem.add_runtime_dependency 'roxml', '= 3.1.3'
   gem.add_runtime_dependency 'i18n'
