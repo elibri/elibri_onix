@@ -2,9 +2,7 @@
 require 'helper'
 
 
-
 describe Elibri::ONIX::Release_3_0::ONIXMessage do
-
 
   it "should be able to parse all attributes supported in Elibri" do
     xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", "all_possible_tags.xml")
