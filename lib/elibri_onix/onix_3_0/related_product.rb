@@ -12,7 +12,7 @@ module Elibri
 
         xml_name 'RelatedProduct'
 
-        xml_accessor :relation_code, :from => 'ProductRelationCode', :as => Fixnum
+        xml_accessor :relation_code, :from => 'ProductRelationCode'
         xml_accessor :identifiers, :as => [ProductIdentifier]
         
         ATTRIBUTES = [
