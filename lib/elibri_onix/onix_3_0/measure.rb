@@ -14,7 +14,7 @@ module Elibri
         xml_accessor :unit, :from => 'MeasureUnitCode'
         
         ATTRIBUTES = [
-          :type, :from, :measurement, :unit, :type_name
+          :type, :measurement, :unit, :type_name
         ]
         
         RELATIONS = [
