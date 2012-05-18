@@ -80,7 +80,7 @@ role, format, date, parsed
 
 == RelatedProduct
 === Attributes
-relation_code, isbn13, proprietary_identifiers
+relation_code, isbn13, proprietary_identifiers, record_reference
 === Relations
 identifiers
 

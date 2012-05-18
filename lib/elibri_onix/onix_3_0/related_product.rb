@@ -31,7 +31,7 @@ module Elibri
 
         
         def record_reference
-          identifiers.find {|identifier| identifier.type == 01 && identifier.name == elibri}.try(:value)          
+          identifiers.find {|identifier| identifier.type.to_s == '01' && identifier.type_name == 'elibri' }.try(:value)          
         end
 
 

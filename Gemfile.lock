@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    elibri_onix (0.1.22)
+    elibri_onix (0.1.23)
       activesupport (>= 2.3.5)
       elibri_onix_dict (>= 0.0.5)
       i18n
