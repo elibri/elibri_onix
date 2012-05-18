@@ -41,7 +41,7 @@ inspect_include_fields
 
 == Measure
 === Attributes
-type, from, measurement, unit, type_name
+type, measurement, unit, type_name
 === Relations
 inspect_include_fields
 

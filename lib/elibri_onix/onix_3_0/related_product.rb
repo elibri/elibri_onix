@@ -16,7 +16,7 @@ module Elibri
         xml_accessor :identifiers, :as => [ProductIdentifier]
         
         ATTRIBUTES = [
-          :relation_code, :isbn13, :proprietary_identifiers
+          :relation_code, :isbn13, :proprietary_identifiers, :record_reference
         ]
         
         RELATIONS = [
@@ -27,6 +27,11 @@ module Elibri
 
         def isbn13
           identifiers.find {|identifier| identifier.type == 15}.try(:value)
+        end
+
+        
+        def record_reference
+          identifiers.find {|identifier| identifier.type == 01 && identifier.name == elibri}.try(:value)          
         end
 
 
