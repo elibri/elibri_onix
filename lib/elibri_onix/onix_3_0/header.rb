@@ -5,19 +5,27 @@ module Elibri
     module Release_3_0
 
       class Header
-        include ROXML
-        include Inspector
+#        include ROXML
+#        include Inspector
 
-        xml_name 'Header'
-        xml_accessor :sent_date_time, :as => Date, :from => 'SentDateTime'
+#        xml_name 'Header'
+#        xml_accessor :sent_date_time, :as => Date, :from => 'SentDateTime'
 
-        xml_accessor :sender, :as => Sender
+#        xml_accessor :sender, :as => Sender
+
+        attr_accessor :sent_date_time, :sender
         
         ATTRIBUTES = [
           :sent_date_time, :sender
         ]
         
         RELATIONS = []
+        
+        def initialize(data)
+          @sent_date_time = Date.parse(data.xpath('//xmlns:SentDateTime').text)
+          @sender = Elibri::ONIX::Release_3_0::Sender.new(data.xpath('//xmlns:Sender'))
+        end
+        
         
       end
 

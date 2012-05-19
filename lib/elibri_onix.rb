@@ -1,5 +1,6 @@
 
 require 'bigdecimal'
+require 'date'
 # Old ActiveSupport needs 'thread' to see Mutex:
 require 'thread'
 require 'active_support'

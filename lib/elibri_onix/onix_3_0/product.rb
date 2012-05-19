@@ -40,9 +40,19 @@ module Elibri
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
                       :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
                       :collection_part, :full_title, :original_title, :trade_title, :short_description,
-                      :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists
+                      :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists,
+                      #from xml_accessor
+       #               :record_reference, :notification_type, :deletion_text,
+                      # Load attributes specific for dialect 3.0.1
+        #              :cover_type_from_3_0_1, :cover_price_from_3_0_1, :vat_from_3_0_1, :pkwiu_from_3_0_1, :preview_exists_from_3_0_1
 
 
+#        def initialize(data)
+          
+          
+#        end
+
+#=begin
         xml_name 'Product'
         xml_accessor :record_reference, :from => 'RecordReference'
         xml_accessor :notification_type, :from => 'NotificationType'
@@ -54,7 +64,7 @@ module Elibri
         xml_accessor :vat_from_3_0_1, :from => 'elibri:Vat', :as => Fixnum
         xml_accessor :pkwiu_from_3_0_1, :from => 'elibri:PKWiU'
         xml_accessor :preview_exists_from_3_0_1, :from => "elibri:preview_exists"
-
+#=end
 
         # Attributes in namespace elibri:* are specific for dialect >= 3.0.1.
         # If dialect is less than 3.0.1, returns nil.
