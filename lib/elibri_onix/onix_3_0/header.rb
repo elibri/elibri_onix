@@ -23,7 +23,7 @@ module Elibri
         
         def initialize(data)
           @sent_date_time = Date.parse(data.xpath('//xmlns:SentDateTime').text)
-          @sender = Elibri::ONIX::Release_3_0::Sender.new(data.xpath('//xmlns:Sender'))
+          @sender = Sender.new(data.at_xpath('//xmlns:Sender'))
         end
         
         

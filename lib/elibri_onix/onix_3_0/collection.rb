@@ -4,10 +4,10 @@ module Elibri
     module Release_3_0
 
       class Collection
-        include ROXML
-        include Inspector
+#        include ROXML
+#        include Inspector
 
-        xml_name 'Collection'
+#        xml_name 'Collection'
         
         ATTRIBUTES = [
           :type, :title_detail, :full_title, :type_name
@@ -17,9 +17,17 @@ module Elibri
           :elements, :inspect_include_fields
         ]
 
-        xml_accessor :type, :from => 'CollectionType'
-        xml_accessor :elements, :as => [TitleElement]
-        xml_accessor :title_detail, :as => TitleDetail
+#        xml_accessor :type, :from => 'CollectionType'
+#        xml_accessor :elements, :as => [TitleElement]
+#        xml_accessor :title_detail, :as => TitleDetail
+        
+        attr_accessor :type, :elements, :title_detail
+        
+        def initialize(data)
+          @type = data.at_xpath('xmlns:CollectionType').try(:text)
+          @elements = data.xpath('xmlns:TitleElement').map { |element_data| TitleElement.new(element_data) }
+          @title_detail = TitleDetail.new(data.at_xpath('xmlns:TitleDetail'))
+        end
 
         def full_title
           title_detail.try(:full_title)

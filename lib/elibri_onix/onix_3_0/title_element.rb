@@ -4,21 +4,30 @@ module Elibri
     module Release_3_0
 
       class TitleElement
-        include ROXML
-        include Inspector
+#        include ROXML
+#        include Inspector
 
-        xml_name 'TitleElement'
+#        xml_name 'TitleElement'
 
-        xml_accessor :level, :from => 'TitleElementLevel'
-        xml_accessor :part_number, :from => 'PartNumber'
-        xml_accessor :title, :from => 'TitleText'
-        xml_accessor :subtitle, :from => 'Subtitle'
+#        xml_accessor :level, :from => 'TitleElementLevel'
+#        xml_accessor :part_number, :from => 'PartNumber'
+#        xml_accessor :title, :from => 'TitleText'
+#        xml_accessor :subtitle, :from => 'Subtitle'
 
         ATTRIBUTES = [
           :level, :part_number, :title, :subtitle, :full_title
         ]
         
         RELATIONS = []
+        
+        attr_accessor :level, :part_number, :title, :subtitle
+        
+        def initialize(data)
+          @level = data.at_xpath('xmlns:TitleElementLevel').try(:text)
+          @part_number = data.at_xpath('xmlns:PartNumber').try(:text)
+          @title = data.at_xpath('xmlns:TitleText').try(:text)
+          @subtitle = data.at_xpath('xmlns:Subtitle').try(:text)
+        end
 
         def full_title
           String.new(self.title.to_s.strip).tap do |_full_title|

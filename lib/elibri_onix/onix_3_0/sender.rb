@@ -22,9 +22,9 @@ module Elibri
         RELATIONS = []
         
         def initialize(data)
-          @sender_name = data.xpath('//xmlns:SenderName').text
-          @contact_name = data.xpath('//xmlns:ContactName').text
-          @email_address = data.xpath('//xmlns:EmailAddress').text
+          @sender_name = data.at_xpath('//xmlns:SenderName').text
+          @contact_name = data.at_xpath('//xmlns:ContactName').text
+          @email_address = data.at_xpath('//xmlns:EmailAddress').text
         end
         
       end
