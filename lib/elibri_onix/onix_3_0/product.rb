@@ -78,7 +78,7 @@ module Elibri
           @notification_type = data.at_xpath('xmlns:NotificationType').try(:text)
           @deletion_text = data.at_xpath('xmlns:DeletionText').try(:text)
           @cover_type_from_3_0_1 = data.at_xpath('elibri:CoverType').try(:text)
-          @cover_price_from_3_0_1 = BigDecimal.new(data.at_xpath('elibri:CoverPrice').try(:text))
+          @cover_price_from_3_0_1 = BigDecimal.new(data.at_xpath('elibri:CoverPrice').try(:text)) if data.at_xpath('elibri:CoverPrice')
           @vat_from_3_0_1 = data.at_xpath('elibri:Vat').try(:text).try(:to_i)
           @pkwiu_from_3_0_1 = data.at_xpath('elibri:PKWiU').try(:text)
           @preview_exists_from_3_0_1 = data.at_xpath('elibri:preview_exists').try(:text)
@@ -121,10 +121,10 @@ module Elibri
         end
         
         def publishing_details_setup(data)
-          @imprint = Elibri::ONIX::Release_3_0::Imprint.new(data.at_xpath('xmlns:Imprint'))
-          @publisher = Elibri::ONIX::Release_3_0::Publisher.new(data.at_xpath('xmlns:Publisher'))
+          @imprint = Imprint.new(data.at_xpath('xmlns:Imprint')) if data.at_xpath('xmlns:Imprint')
+          @publisher = Publisher.new(data.at_xpath('xmlns:Publisher')) if data.at_xpath('xmlns:Publisher')
           @publishing_status = data.at_xpath('xmlns:PublishingStatus').try(:text)
-          @publishing_date = Elibri::ONIX::Release_3_0::PublishingDate.new(data.at_xpath('xmlns:PublishingDate'))
+          @publishing_date = PublishingDate.new(data.at_xpath('xmlns:PublishingDate')) if data.at_xpath('xmlns:PublishingDate')
           @sales_restrictions = data.xpath('xmlns:SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }      
         end
 

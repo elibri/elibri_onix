@@ -34,8 +34,8 @@ module Elibri
           onix_message = xml.children.first
           @release = onix_message['release']
           @elibri_dialect = onix_message.at_xpath('//elibri:Dialect').text
-          @header = Elibri::ONIX::Release_3_0::Header.new(onix_message.at_xpath('xmlns:Header'))
-          @products = onix_message.xpath('xmlns:Product').map { |product_node| Elibri::ONIX::Release_3_0::Product.new(product_node) }
+          @header = Header.new(onix_message.at_xpath('xmlns:Header'))
+          @products = onix_message.xpath('xmlns:Product').map { |product_node| Product.new(product_node) }
   #       @products = Elibri::ONIX::Release_3_0::Product.new(onix_message.xpath('//xmlns:Product'))
 =begin
           xml = XML::Node.from(data)
