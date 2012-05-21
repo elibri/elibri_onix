@@ -67,13 +67,13 @@ module Elibri
           @identifiers = data.xpath('xmlns:ProductIdentifier').map { |ident_data| ProductIdentifier.new(ident_data) }
           begin
             @related_products = data.at_xpath('xmlns:RelatedMaterial').xpath('xmlns:RelatedProduct').map { |related_data| RelatedProduct.new(related_data) }
-          rescue
-            @related_products = []
+  #        rescue
+  #          @related_products = []
           end
           begin
             @supply_details = data.at_xpath('xmlns:ProductSupply').xpath('xmlns:SupplyDetail').map { |supply_data| SupplyDetail.new(supply_data) }
-          rescue
-            @supply_details = []
+  #        rescue
+  #          @supply_details = []
           end
           descriptive_details_setup(data.at_xpath('xmlns:DescriptiveDetail')) if data.at_xpath('xmlns:DescriptiveDetail')
           collateral_details_setup(data.at_xpath('xmlns:CollateralDetail')) if data.at_xpath('xmlns:CollateralDetail')
@@ -99,15 +99,15 @@ module Elibri
         
         def collateral_details_setup(data)
           @text_contents = data.xpath('xmlns:TextContent').map { |text_detail| TextContent.new(text_detail) }
-          @supporting_resources = [] #data.xpath('xmlns:SupportingResource').map { |supporting_data| }          
+          @supporting_resources = data.xpath('xmlns:SupportingResource').map { |supporting_data| SupportingResource.new(supporting_data) }          
         end
         
         def publishing_details_setup(data)
-#          @imprint = Elibri::ONIX data.at_xpath('xmlns:Imprint')
-#          @publisher = Elibri::ONIX:: data.at_xpath('xmlns:Publisher')
+          @imprint = Elibri::ONIX::Release_3_0::Imprint.new(data.at_xpath('xmlns:Imprint'))
+          @publisher = Elibri::ONIX::Release_3_0::Publisher.new(data.at_xpath('xmlns:Publisher'))
           @publishing_status = data.at_xpath('xmlns:PublishingStatus').try(:text)
-# =>       @publishing_date = Elibri::ONIX:: data.at_xpath('xmlns:PublishingDate')
-          @sales_restrictions = [] #data.xpath('xmlns:SalesRestriction').map { |restriction_data| }
+          @publishing_date = Elibri::ONIX::Release_3_0::PublishingDate.new(data.at_xpath('xmlns:PublishingDate'))
+          @sales_restrictions = data.xpath('xmlns:SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }
           
         end
 

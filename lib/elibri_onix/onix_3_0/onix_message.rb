@@ -14,7 +14,7 @@ module Elibri
 #        xml_accessor :products, :as => [Product]
 #        xml_accessor :header, :as => Header
         
-        attr_accessor :release, :elibri_dialect, :products, :header
+        attr_accessor :release, :elibri_dialect, :products, :header, :to_xml
 
         ATTRIBUTES = [
           :release, :elibri_dialect, :header
@@ -29,6 +29,7 @@ module Elibri
         end
 
         def initialize(data, *initialization_args)
+          @to_xml = data
           xml = Nokogiri::XML(data)
           onix_message = xml.children.first
           @release = onix_message['release']
@@ -56,8 +57,8 @@ module Elibri
             inst.send(:after_parse) if inst.respond_to?(:after_parse, true)
           end
 =end
-        rescue ArgumentError => e
-          raise e, e.message + " for class #{self}"
+#        rescue ArgumentError => e
+#          raise e, e.message + " for class #{self}"
         end
 
 

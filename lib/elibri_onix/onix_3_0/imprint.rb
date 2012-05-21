@@ -5,10 +5,10 @@ module Elibri
     module Release_3_0
 
       class Imprint
-        include ROXML
-        include Inspector
-
-        xml_name 'Imprint'
+#        include ROXML
+#        include Inspector
+#
+#        xml_name 'Imprint'
         
         ATTRIBUTES = [
           :name
@@ -16,7 +16,13 @@ module Elibri
         
         RELATIONS = []
 
-        xml_accessor :name, :from => 'ImprintName'
+#        xml_accessor :name, :from => 'ImprintName'
+
+        attr_accessor :name
+        
+        def initialize(data)
+          @name = data.at_xpath('xmlns:ImprintName').try(:text)
+        end
 
       end
 
