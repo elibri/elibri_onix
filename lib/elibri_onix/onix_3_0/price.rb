@@ -28,7 +28,7 @@ module Elibri
           @position_on_product = data.at_xpath('xmlns:PositionOnProduct').try(:text).try(:to_i)
           if data.at_xpath('xmlns:Tax')
             @tax_type = data.at_xpath('xmlns:Tax').at_xpath('xmlns:TaxType').try(:text).try(:to_i)
-            @tax_rate_percent = BigDecimal.new(data.at_xpath('xmlns:Tax').at_xpath('xmlns:TaxRatePercent').try(:text))
+            @tax_rate_percent = BigDecimal.new(data.at_xpath('xmlns:Tax').at_xpath('xmlns:TaxRatePercent').try(:text)) if data.at_xpath('xmlns:Tax').at_xpath('xmlns:TaxRatePercent')
           end
         end
 

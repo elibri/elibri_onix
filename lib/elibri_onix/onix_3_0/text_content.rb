@@ -24,8 +24,8 @@ module Elibri
           @source_title = data.at_xpath('xmlns:SourceTitle').try(:text)
           if data.at_xpath('xmlns:Text')
             @text = data.at_xpath('xmlns:Text').children.find { |x| x.cdata? }.try(:text) #cdata => true ?
+            @source_url =  data.at_xpath('xmlns:Text').attribute('sourcename').try(:text)
           end
-          @source_url =  data.at_xpath('xmlns:Text').attribute('sourcename').try(:text)
           set_eid(data)
           set_datestamp(data)
         end

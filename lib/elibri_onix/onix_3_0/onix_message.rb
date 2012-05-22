@@ -21,10 +21,10 @@ module Elibri
 
         def initialize(data, *initialization_args)
           @to_xml = data.to_s
-          xml = Nokogiri::XML(data)
+          xml = Nokogiri::XML(data) unless xml.is_a?(Nokogiri::XML::Document)
           onix_message = xml.children.first
           @release = onix_message['release']
-          @elibri_dialect = onix_message.at_xpath('elibri:Dialect').text
+          @elibri_dialect = onix_message.at_xpath('elibri:Dialect').try(:text)
           @header = Header.new(onix_message.at_xpath('xmlns:Header')) if onix_message.at_xpath('xmlns:Header')
           @products = onix_message.xpath('xmlns:Product').map { |product_node| Product.new(product_node) }
         end

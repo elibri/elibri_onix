@@ -6,7 +6,7 @@ module Nokogiri
       def xpath *paths
         unless Nokogiri.uses_libxml?
           paths.each do |path|
-            path.gsub!(/xmlns:/, ' :')
+            path.gsub!(/xmlns:/, ' :') if path.is_a?(String)
           end
         end
         orig_xpath *paths

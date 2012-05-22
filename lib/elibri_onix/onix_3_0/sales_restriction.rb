@@ -21,7 +21,7 @@ module Elibri
           if data.at_xpath('xmlns:SalesOutlet')
             @outlet_name = data.at_xpath('xmlns:SalesOutlet').at_xpath('xmlns:SalesOutletName').try(:text)
           end
-          @end_date = Date.parse(data.at_xpath('xmlns:EndDate').try(:text))
+          @end_date = Date.parse(data.at_xpath('xmlns:EndDate').try(:text)) if data.at_xpath('xmlns:EndDate')
         end
 
       end
