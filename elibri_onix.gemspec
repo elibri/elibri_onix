@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   ]
   
   gem.add_runtime_dependency 'activesupport', '>= 2.3.5'
-  gem.add_runtime_dependency 'roxml', '= 3.1.3'
+  gem.add_runtime_dependency 'nokogiri'
   gem.add_runtime_dependency 'i18n'
   gem.add_runtime_dependency 'elibri_onix_dict', '>= 0.0.5'
 
