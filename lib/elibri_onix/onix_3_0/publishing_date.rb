@@ -6,14 +6,6 @@ module Elibri
     module Release_3_0
 
       class PublishingDate
-#        include ROXML
-#        include Inspector
-
-#        xml_name 'PublishingDate'
-
-#        xml_accessor :role, :from => 'PublishingDateRole'
-#        xml_accessor :format, :from => 'DateFormat'
-#        xml_accessor :date, :from => 'Date'
         
         ATTRIBUTES = [
           :role, :format, :date, :parsed
@@ -21,9 +13,10 @@ module Elibri
         
         RELATIONS = []
         
-        attr_accessor :role, :format, :date
+        attr_accessor :role, :format, :date, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @role = data.at_xpath('xmlns:PublishingDateRole').try(:text)
           @format = data.at_xpath('xmlns:DateFormat').try(:text)
           @date = data.at_xpath('xmlns:Date').try(:text)

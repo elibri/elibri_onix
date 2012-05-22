@@ -5,20 +5,8 @@ module Elibri
     module Release_3_0
 
       class SupportingResource
-#        include ROXML
-#        include Inspector
-#        include ExternalId
-#        include ExternalTimestamp
-#
-#
-#        xml_name 'SupportingResource'
-#
-#        xml_accessor :content_type, :from => 'ResourceContentType'
-#        #xml_accessor :audience, :from => 'ContentAudience' - always unrestricted
-#        xml_accessor :mode, :from => 'ResourceMode'
-#
-#        xml_accessor :form, :in => 'ResourceVersion', :from => 'ResourceForm'
-#        xml_accessor :link, :in => 'ResourceVersion', :from => 'ResourceLink'
+        include ExternalId
+        include ExternalTimestamp
         
         ATTRIBUTES = [
           :content_type, :mode, :form, :link, :content_type_name, :mode_name, :form_name
@@ -28,13 +16,16 @@ module Elibri
           :inspect_include_fields
         ]
         
-        attr_accessor :content_type, :mode, :form, :link
+        attr_accessor :content_type, :mode, :form, :link, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @content_type = data.at_xpath('xmlns:ResourceContentType').try(:text)
           @mode = data.at_xpath('xmlns:ResourceMode').try(:text)
           @form = data.at_xpath('xmlns:ResourceVersion').at_xpath('xmlns:ResourceForm').try(:text)
           @link = data.at_xpath('xmlns:ResourceVersion').at_xpath('xmlns:ResourceLink').try(:text)
+          set_eid(data)
+          set_datestamp(data)
         end
 
         def content_type_name

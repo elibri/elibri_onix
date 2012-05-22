@@ -15,6 +15,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
     assert_equal "http://elibri.com.pl/sciezka/do/pliku.png", product.front_cover.link
     assert_equal Date.new(2011, 12, 1) + 18.hours + 5.minutes, product.front_cover.datestamp
+    assert_equal 667, product.front_cover.eid
     assert_equal 667, product.front_cover.id
 
     assert_equal "sample_content", product.supporting_resources[1].content_type_name

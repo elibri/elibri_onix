@@ -4,15 +4,8 @@ module Elibri
     module Release_3_0
 
       class ProductIdentifier
-#        include ROXML
-#        include Inspector
 
-#        xml_name 'ProductIdentifier'
-#        xml_accessor :type, :from => 'ProductIDType'
-#        xml_accessor :type_name, :from => 'IDTypeName'
-#        xml_accessor :value, :from => 'IDValue'
-
-        attr_accessor :type, :type_name, :value
+        attr_accessor :type, :type_name, :value, :to_xml
         
         ATTRIBUTES = [
           :type, :type_name, :value, :identifier_type
@@ -23,6 +16,7 @@ module Elibri
         ]
         
         def initialize(data)
+          @to_xml = data.to_s
           @type = data.at_xpath('xmlns:ProductIDType').try(:text)
           @type_name = data.at_xpath('xmlns:IDTypeName').try(:text)
           @value = data.at_xpath('xmlns:IDValue').try(:text)

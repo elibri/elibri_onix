@@ -5,13 +5,6 @@ module Elibri
     module Release_3_0
 
       class TitleDetail
-#        include ROXML
-#        include Inspector
-
-#        xml_name 'TitleDetail'
-
-#        xml_accessor :type, :from => 'TitleType'
-#        xml_accessor :elements, :as => [TitleElement]
         
         ATTRIBUTES = [
           :type, :type_name, :full_title, :product_level_title, :product_level, :collection_level_title,
@@ -22,16 +15,22 @@ module Elibri
           :elements, :inspect_include_fields
         ]
         
-        attr_accessor :type, :elements
+        attr_accessor :type, :elements, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @type = data.at_xpath('xmlns:TitleType').try(:text)
           @elements = data.xpath('xmlns:TitleElement').map { |element_data| TitleElement.new(element_data) }
         end
 
-        def id
+        def eid
           type.to_i
         end 
+        
+        def id
+          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
+          eid
+        end
 
         def type_name
            Elibri::ONIX::Dict::Release_3_0::TitleType.find_by_onix_code(self.type).const_name.downcase

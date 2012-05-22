@@ -6,17 +6,6 @@ module Elibri
     module Release_3_0
 
       class Supplier
-#        include ROXML
-#        include Inspector
-
-#        xml_name 'Supplier'
-
-#        xml_accessor :role, :from => 'SupplierRole', :as => Fixnum
-#        xml_accessor :identifiers, :as => [SupplierIdentifier]
-#        xml_accessor :name, :from => 'SupplierName'
-#        xml_accessor :telephone_number, :from => 'TelephoneNumber'
-#        xml_accessor :email_address, :from => 'EmailAddress'
-#        xml_accessor :website, :from => 'WebsiteLink', :in => 'Website'
 
         ATTRIBUTES = [
           :role, :name, :telephone_number, :email_address, :website, :nip
@@ -26,9 +15,10 @@ module Elibri
           :identifiers
         ]
         
-        attr_accessor :role, :identifiers, :name, :telephone_number, :email_address, :website
+        attr_accessor :role, :identifiers, :name, :telephone_number, :email_address, :website, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @role = data.at_xpath('xmlns:SupplierRole').try(:text).try(:to_i)
           @identifiers = data.xpath('xmlns:SupplierIdentifier').map { |identifier_data| SupplierIdentifier.new(identifier_data) }
           @name = data.at_xpath('xmlns:SupplierName').try(:text)

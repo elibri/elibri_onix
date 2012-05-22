@@ -30,11 +30,6 @@ module Elibri
           :ghostwriters, :scenarists, :originators, :illustrators, :photographers, :author_of_prefaces, :drawers,
           :cover_designers, :inked_or_colored_bys, :editors, :revisors, :translators, :editor_in_chiefs, :read_bys
         ]
-               
-        
-#        include ROXML
-
-        
 
         attr_accessor :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
@@ -51,10 +46,11 @@ module Elibri
                       :product_composition, :product_form, :measures, :title_details, :collections, :contributors, :no_contributor,
                       :languages, :extents, :subjects, :audience_ranges, :edition_statement, :number_of_illustrations, :text_contents,
                       :supporting_resources, :imprint, :publisher, :publishing_status, :publishing_date, :sales_restrictions,
-                      :identifiers, :related_products, :supply_details
+                      :identifiers, :related_products, :supply_details, :to_xml
 
 
         def initialize(data)
+          @to_xml = data.to_s
           #initialize variables that need to be array
           ##descriptive_details
           @text_contents = []
@@ -128,19 +124,6 @@ module Elibri
           @sales_restrictions = data.xpath('xmlns:SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }      
         end
 
-=begin
-        xml_name 'Product'
-        xml_accessor :record_reference, :from => 'RecordReference'
-        xml_accessor :notification_type, :from => 'NotificationType'
-        xml_accessor :deletion_text, :from => 'DeletionText'
-
-        # Load attributes specific for dialect 3.0.1
-        xml_accessor :cover_type_from_3_0_1, :from => 'elibri:CoverType'
-        xml_accessor :cover_price_from_3_0_1, :from => 'elibri:CoverPrice', :as => BigDecimal
-        xml_accessor :vat_from_3_0_1, :from => 'elibri:Vat', :as => Fixnum
-        xml_accessor :pkwiu_from_3_0_1, :from => 'elibri:PKWiU'
-        xml_accessor :preview_exists_from_3_0_1, :from => "elibri:preview_exists"
-=end
         # Attributes in namespace elibri:* are specific for dialect >= 3.0.1.
         # If dialect is less than 3.0.1, returns nil.
         %w{cover_type cover_price vat pkwiu}.each do |method_name|
@@ -154,32 +137,6 @@ module Elibri
             end                                                     # end
           EVAL_END
         end  
-#        xml_accessor :identifiers, :as => [ProductIdentifier]
-#        xml_accessor :related_products, :as => [RelatedProduct], :in => 'RelatedMaterial'
-#        xml_accessor :supply_details, :as => [SupplyDetail], :in => 'ProductSupply'
-
-#        xml_accessor :product_composition, :in => 'DescriptiveDetail', :from => 'ProductComposition'
-#        xml_accessor :product_form, :in => 'DescriptiveDetail', :from => 'ProductForm'
-#        xml_accessor :measures, :in => 'DescriptiveDetail', :as => [Measure]
-#        xml_accessor :title_details, :in => 'DescriptiveDetail', :as => [TitleDetail]
-#        xml_accessor :collections, :in => 'DescriptiveDetail', :as => [Collection]
-#        xml_accessor :contributors, :in => 'DescriptiveDetail', :as => [Contributor]
-#        xml_accessor :no_contributor, :in => 'DescriptiveDetail', :from => 'NoContributor'
-#        xml_accessor :languages, :in => 'DescriptiveDetail', :as => [Language]
-#        xml_accessor :extents, :in => 'DescriptiveDetail', :as => [Extent]
-#        xml_accessor :subjects, :in => 'DescriptiveDetail', :as => [Subject]
-#        xml_accessor :audience_ranges, :in => 'DescriptiveDetail', :as => [AudienceRange]
-#        xml_accessor :edition_statement, :in => 'DescriptiveDetail', :from => 'EditionStatement'
-#        xml_accessor :number_of_illustrations, :in => 'DescriptiveDetail', :from => 'NumberOfIllustrations', :as => Fixnum
-
-#        xml_accessor :text_contents, :in => 'CollateralDetail', :as => [TextContent]
-#        xml_accessor :supporting_resources, :in => 'CollateralDetail', :as => [SupportingResource]
-
-#        xml_accessor :imprint, :in => 'PublishingDetail', :as => Imprint
-#        xml_accessor :publisher, :in => 'PublishingDetail', :as => Publisher
-#        xml_accessor :publishing_status, :in => 'PublishingDetail', :from => 'PublishingStatus'
-#        xml_accessor :publishing_date, :in => 'PublishingDetail', :as => PublishingDate
- #       xml_accessor :sales_restrictions, :in => 'PublishingDetail', :as => [SalesRestriction]
 
         def sales_restrictions?
           sales_restrictions.size > 0
@@ -284,7 +241,7 @@ private
           @duration = @extents.find {|extent| extent.type_name == "duration" }.try(:value)
           @file_size = @extents.find {|extent| extent.type_name == "file_size" }.try(:value)
           @publisher_name = @publisher.name if publisher
-          @publisher_id = @publisher.id if publisher
+          @publisher_id = @publisher.eid if publisher
           @imprint_name = @imprint.name if imprint
           @isbn13 = @identifiers.find { |identifier| identifier.identifier_type == "isbn13" }.try(:value)
           @reading_age_from = @audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "03")}.try(:value)

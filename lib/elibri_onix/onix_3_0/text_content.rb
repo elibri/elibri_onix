@@ -4,20 +4,8 @@ module Elibri
     module Release_3_0
 
       class TextContent
-#        include ROXML
-#        include Inspector
-#        include ExternalId
-#        include ExternalTimestamp
-#
-#        xml_name 'TextContent'
-#
-#        xml_accessor :type, :from => 'TextType'
-#        #xml_accessor :audience, :from => 'ContentAudience' - always unrestricted
-#        xml_accessor :author, :from => 'TextAuthor'
-#        xml_accessor :source_title, :from => 'SourceTitle'
-#
-#        xml_accessor :text, :from => 'Text', :cdata => true
-#        xml_accessor :source_url, :from => '@sourcename', :in => 'Text'
+         include ExternalId
+         include ExternalTimestamp
         
         ATTRIBUTES = [
           :type, :author, :source_title, :text, :source_url, :type_name
@@ -27,14 +15,19 @@ module Elibri
           :inspect_include_fields
         ]
         
-        attr_accessor :type, :author, :source_title, :text, :source_url
+        attr_accessor :type, :author, :source_title, :text, :source_url, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @type = data.at_xpath('xmlns:TextType').try(:text)
           @author = data.at_xpath('xmlns:TextAuthor').try(:text)
           @source_title = data.at_xpath('xmlns:SourceTitle').try(:text)
-          @text = data.at_xpath('xmlns:Text').try(:text) #cdata => true ?
-          @source_url =  data.at_xpath('xmlns:Text').attribute('sourcename')
+          if data.at_xpath('xmlns:Text')
+            @text = data.at_xpath('xmlns:Text').children.find { |x| x.cdata? }.try(:text) #cdata => true ?
+          end
+          @source_url =  data.at_xpath('xmlns:Text').attribute('sourcename').try(:text)
+          set_eid(data)
+          set_datestamp(data)
         end
 
         def type_name

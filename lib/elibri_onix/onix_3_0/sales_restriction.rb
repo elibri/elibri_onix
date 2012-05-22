@@ -6,14 +6,6 @@ module Elibri
     module Release_3_0
 
       class SalesRestriction
-        include ROXML
-        include Inspector
-
-        xml_name 'SalesRestriction'
-
-        xml_accessor :type, :from => 'SalesRestrictionType', :as => Fixnum
-        xml_accessor :outlet_name, :from => 'SalesOutletName', :in => 'SalesOutlet'
-        xml_accessor :end_date, :from => 'EndDate', :as => Date
         
         ATTRIBUTES = [
           :type, :outlet_name, :end_date
@@ -21,9 +13,10 @@ module Elibri
         
         RELATIONS = []
         
-        attr_accessor :type, :outlet_name, :end_date
+        attr_accessor :type, :outlet_name, :end_date, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @type = data.at_xpath('xmlns:SalesRestrictionType').try(:text).try(:to_i)
           if data.at_xpath('xmlns:SalesOutlet')
             @outlet_name = data.at_xpath('xmlns:SalesOutlet').at_xpath('xmlns:SalesOutletName').try(:text)

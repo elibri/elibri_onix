@@ -7,13 +7,6 @@ module Elibri
     module Release_3_0
 
       class RelatedProduct
-#        include ROXML
-#        include Inspector
-
-#        xml_name 'RelatedProduct'
-
-#        xml_accessor :relation_code, :from => 'ProductRelationCode'
-#        xml_accessor :identifiers, :as => [ProductIdentifier]
         
         ATTRIBUTES = [
           :relation_code, :proprietary_identifiers, :record_reference
@@ -23,9 +16,10 @@ module Elibri
           :identifiers
         ]
         
-        attr_accessor :relation_code, :identifiers
+        attr_accessor :relation_code, :identifiers, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @relation_code = data.at_xpath('//ProductRelationCode').try(:text)
           @identifiers = data.xpath('//ProductIdentifier').map { |identifier_data| ProductIdentifier.new(identifier_data) }
         end

@@ -13,7 +13,7 @@ module Elibri
 
 #        xml_accessor :sender, :as => Sender
 
-        attr_accessor :sent_date_time, :sender
+        attr_accessor :sent_date_time, :sender, :to_xml
         
         ATTRIBUTES = [
           :sent_date_time, :sender
@@ -22,8 +22,14 @@ module Elibri
         RELATIONS = []
         
         def initialize(data)
+          @to_xml = data.to_s
           @sent_date_time = Date.parse(data.xpath('//xmlns:SentDateTime').text)
           @sender = Sender.new(data.at_xpath('//xmlns:Sender'))
+        end
+        
+        def id
+          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
+          eid
         end
         
         

@@ -1,7 +1,11 @@
 module ExternalTimestamp
 
   def self.included(base)
-    base.xml_accessor :datestamp_before_type_cast, :from => "@datestamp"
+    base.send(:attr_accessor, :datestamp_before_type_cast) #, :from => "@datestamp"
+  end
+  
+  def set_datestamp(data)
+    @datestamp_before_type_cast = data.attr('datestamp')
   end
 
   def datestamp

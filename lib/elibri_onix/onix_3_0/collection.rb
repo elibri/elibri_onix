@@ -21,9 +21,10 @@ module Elibri
 #        xml_accessor :elements, :as => [TitleElement]
 #        xml_accessor :title_detail, :as => TitleDetail
         
-        attr_accessor :type, :elements, :title_detail
+        attr_accessor :type, :elements, :title_detail, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @type = data.at_xpath('xmlns:CollectionType').try(:text)
           @elements = data.xpath('xmlns:TitleElement').map { |element_data| TitleElement.new(element_data) }
           @title_detail = TitleDetail.new(data.at_xpath('xmlns:TitleDetail'))

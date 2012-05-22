@@ -11,7 +11,7 @@ require 'elibri_onix/inspector'
 require 'elibri_onix/external_id'
 require 'elibri_onix/external_timestamp'
 require 'elibri_onix/releases'
-
+require 'elibri_onix/nokogiri_patch'
 require 'elibri_onix_dict'
 
 $KCODE = "UTF-8"

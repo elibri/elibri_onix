@@ -6,8 +6,8 @@ module Elibri
       class Contributor
 #        include ROXML
 #        include Inspector
-#        include ExternalId
-#        include ExternalTimestamp
+        include ExternalId
+        include ExternalTimestamp
         
         ATTRIBUTES = 
         [
@@ -36,9 +36,10 @@ module Elibri
 #        xml_accessor :unnamed_persons, :from => 'UnnamedPersons'
         
         attr_accessor :number, :role, :person_name, :from_language, :titles_before_names, :names_before_key, :prefix_to_key,
-          :key_names, :names_after_key, :biographical_note, :biographical_note
+          :key_names, :names_after_key, :biographical_note, :unnamed_persons, :to_xml
           
         def initialize(data)
+          @to_xml = data.to_s
           @number = data.at_xpath('xmlns:SequenceNumber').try(:text).try(:to_i)
           @role = data.at_xpath('xmlns:ContributorRole').try(:text)
           @person_name = data.at_xpath('xmlns:PersonName').try(:text)
@@ -50,6 +51,8 @@ module Elibri
           @names_after_key = data.at_xpath('xmlns:NamesAfterKey').try(:text)
           @biographical_note = data.at_xpath('xmlns:BiographicalNote').try(:text)
           @unnamed_persons = data.at_xpath('xmlns:UnnamedPersons').try(:text)
+          set_eid(data)
+          set_datestamp(data)
         end
 
         def role_name

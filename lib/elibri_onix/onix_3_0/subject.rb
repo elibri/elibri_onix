@@ -5,27 +5,17 @@ module Elibri
     module Release_3_0
 
       class Subject
-#        include ROXML
-#        include Inspector
-#
-#        xml_name 'Subject'
-#        xml_accessor :scheme_identifier, :from => 'SubjectSchemeIdentifier', :as => Fixnum
-#        xml_accessor :scheme_name, :from => 'SubjectSchemeName'
-#        xml_accessor :scheme_version, :from => 'SubjectSchemeVersion'
-#        xml_accessor :code, :from => 'SubjectCode'
-#        xml_accessor :heading_text, :from => 'SubjectHeadingText'
-#
-#        xml_accessor :main_subject, :from => 'MainSubject'
         
         ATTRIBUTES = [
           :scheme_identifier, :scheme_name, :scheme_version, :code, :heading_text, :main_subject
         ]
         
-        attr_accessor :scheme_identifier, :scheme_name, :scheme_version, :code, :heading_text, :main_subject
+        attr_accessor :scheme_identifier, :scheme_name, :scheme_version, :code, :heading_text, :main_subject, :to_xml
         
         RELATIONS = []
         
         def initialize(data)
+          @to_xml = data.to_s
           @scheme_identifier = data.xpath('xmlns:SubjectSchemeIdentifier').try(:text).try(:to_i)
           @scheme_name = data.xpath('xmlns:SubjectSchemeName').try(:text)
           @scheme_version = data.xpath('xmlns:SubjectSchemeVersion').try(:text)
@@ -38,8 +28,13 @@ module Elibri
           @main_subject == ''
         end
 
-        def id
+        def eid
           @code
+        end
+        
+        def id
+          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
+          eid
         end
 
       end

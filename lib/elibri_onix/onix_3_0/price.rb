@@ -7,10 +7,6 @@ module Elibri
     module Release_3_0
 
       class Price
-#        include ROXML
-#        include Inspector
-
-#        xml_name 'Price'
         
         ATTRIBUTES = [
           :type, :minimum_order_quantity, :amount, :currency_code, :printed_on_product,
@@ -18,21 +14,12 @@ module Elibri
         ]
         
         RELATIONS = []
-
-#        xml_accessor :type, :from => 'PriceType', :as => Fixnum
-#        xml_accessor :minimum_order_quantity, :from => 'MinimumOrderQuantity', :as => Fixnum
-#        xml_accessor :amount, :from => 'PriceAmount', :as => BigDecimal
-#        xml_accessor :currency_code, :from => 'CurrencyCode'
-#        xml_accessor :printed_on_product, :from => 'PrintedOnProduct', :as => Fixnum
-#        xml_accessor :position_on_product, :from => 'PositionOnProduct', :as => Fixnum
-
-#        xml_accessor :tax_type, :in => 'Tax', :from => 'TaxType', :as => Fixnum
-#        xml_accessor :tax_rate_percent, :in => 'Tax', :from => 'TaxRatePercent', :as => BigDecimal
         
         attr_accessor :type, :minimum_order_quantity, :amount, :currency_code, :printed_on_product,
-          :position_on_product, :tax_type, :tax_rate_percent
+          :position_on_product, :tax_type, :tax_rate_percent, :to_xml
 
         def initialize(data)
+          @to_xml = data.to_s
           @type = data.at_xpath('xmlns:PriceType').try(:text).try(:to_i)
           @minimum_order_quantity = data.at_xpath('xmlns:MinimumOrderQuantity').try(:text).try(:to_i)
           @amount = BigDecimal.new(data.at_xpath('xmlns:PriceAmount').try(:text))

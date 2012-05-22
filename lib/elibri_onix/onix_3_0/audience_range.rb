@@ -19,16 +19,22 @@ module Elibri
 #        xml_accessor :precision, :from => 'AudienceRangePrecision'
 #        xml_accessor :value, :from => 'AudienceRangeValue', :as => Fixnum
         
-        attr_accessor :qualifier, :precision, :value
+        attr_accessor :qualifier, :precision, :value, :to_xml
 
         def initialize(data)
+          @old_xml = data.to_s
           @qualifier = data.at_xpath('xmlns:AudienceRangeQualifier').try(:text)
           @precision = data.at_xpath('xmlns:AudienceRangePrecision').try(:text)
           @value = data.at_xpath('xmlns:AudienceRangeValue').try(:text).try(:to_i)
         end
 
-        def id
+        def eid
           "#{qualifier}-#{precision}-#{value}"
+        end
+        
+        def id
+          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
+          eid
         end
 
       end

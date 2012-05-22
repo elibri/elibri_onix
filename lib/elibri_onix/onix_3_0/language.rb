@@ -20,9 +20,10 @@ module Elibri
           :inspect_include_fields
         ]
         
-        attr_accessor :role, :code
+        attr_accessor :role, :code, :to_xml
         
         def initialize(data)
+          @to_xml = data.to_s
           @role = data.at_xpath('xmlns:LanguageRole').try(:text)
           @code = data.at_xpath('xmlns:LanguageCode').try(:text)
         end
@@ -39,8 +40,13 @@ module Elibri
            [:role_name, :language]
         end
 
-        def id
+        def eid
           "#{role}-#{code}"
+        end
+        
+        def id
+          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
+          eid
         end
 
       end
