@@ -139,25 +139,25 @@ module Elibri
         end  
 
         def sales_restrictions?
-          sales_restrictions.size > 0
+          @sales_restrictions.size > 0
         end
 
         def no_contributor?
-          no_contributor == ""
+          @no_contributor == ""
         end
 
         def unnamed_persons?
-          contributors.size == 1 && contributors[0].unnamed_persons.present?
+          @contributors.size == 1 && contributors[0].unnamed_persons.present?
         end
 
         def authors
-          unnamed_persons? ? ["praca zbiorowa"] : contributors.find_all { |c| c.role_name == "author" }.map(&:person_name)
+          unnamed_persons? ? ["praca zbiorowa"] : @contributors.find_all { |c| c.role_name == "author" }.map(&:person_name)
         end
 
         [:ghostwriter, :scenarist, :originator, :illustrator, :photographer, :author_of_preface, :drawer, :cover_designer, 
          :inked_or_colored_by, :editor, :revisor, :translator, :editor_in_chief, :read_by].each do |role|
           define_method "#{role}s" do
-            contributors.find_all { |c| c.role_name == role.to_s }.map(&:person_name)
+            @contributors.find_all { |c| c.role_name == role.to_s }.map(&:person_name)
           end
         end
 
@@ -172,11 +172,11 @@ module Elibri
         end
 
         def front_cover
-          supporting_resources.find { |resource| resource.content_type_name == "front_cover" }
+          @supporting_resources.find { |resource| resource.content_type_name == "front_cover" }
         end
 
         def series_names
-          series.map { |series| series[0] }
+          @series.map { |series| series[0] }
         end
 
         def premiere
@@ -184,7 +184,7 @@ module Elibri
         end
  
         def proprietary_identifiers 
-          identifiers.find_all { |i| i.identifier_type == "proprietary" }.inject({}) { |res, ident| res[ident.type_name] = ident.value; res }
+          @identifiers.find_all { |i| i.identifier_type == "proprietary" }.inject({}) { |res, ident| res[ident.type_name] = ident.value; res }
         end
 
         #I don't want to see roxml_references in output - it's faar to big output
@@ -271,17 +271,17 @@ private
         end
 
         def compute_state!
-          if notification_type == "01"
+          if @notification_type == "01"
             @current_state = :announced
-          elsif notification_type == "02"
+          elsif @notification_type == "02"
             @current_state = :preorder
           else
-            if publishing_status == "04"
+            if @publishing_status == "04"
               @current_state = :published
-            elsif publishing_status == "07"
+            elsif @publishing_status == "07"
               @current_state = :out_of_print
             else
-              raise "cannot determine the state of the product #{record_reference}"
+              raise "cannot determine the state of the product #{@record_reference}"
             end
           end
         end

@@ -15,6 +15,7 @@ module Elibri
         ]
         
         def self.from_xml(data, *initialization_args)
+          Kernel.warn "[DEPRECATION] `from_xml` is deprecated. Please use `new` instead."
           self.new(data, *initialization_args)
         end
 
@@ -23,8 +24,8 @@ module Elibri
           xml = Nokogiri::XML(data)
           onix_message = xml.children.first
           @release = onix_message['release']
-          @elibri_dialect = onix_message.at_xpath('//elibri:Dialect').text
-          @header = Header.new(onix_message.at_xpath('xmlns:Header'))
+          @elibri_dialect = onix_message.at_xpath('elibri:Dialect').text
+          @header = Header.new(onix_message.at_xpath('xmlns:Header')) if onix_message.at_xpath('xmlns:Header')
           @products = onix_message.xpath('xmlns:Product').map { |product_node| Product.new(product_node) }
         end
 

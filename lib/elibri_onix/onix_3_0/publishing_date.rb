@@ -23,7 +23,7 @@ module Elibri
         end
 
         def parsed
-          case format
+          case @format
             when '00' then [date[0...4].to_i, date[4...6].to_i, date[6...8].to_i]
             when '01' then [date[0...4].to_i, date[4...6].to_i]
             when '05' then [date[0...4].to_i]

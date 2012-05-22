@@ -15,9 +15,9 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @sender_name = data.at_xpath('//xmlns:SenderName').text
-          @contact_name = data.at_xpath('//xmlns:ContactName').text
-          @email_address = data.at_xpath('//xmlns:EmailAddress').text
+          @sender_name = data.at_xpath('xmlns:SenderName').text
+          @contact_name = data.at_xpath('xmlns:ContactName').text
+          @email_address = data.at_xpath('xmlns:EmailAddress').text
         end
         
       end

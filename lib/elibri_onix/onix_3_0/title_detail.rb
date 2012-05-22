@@ -24,7 +24,7 @@ module Elibri
         end
 
         def eid
-          type.to_i
+          @type.to_i
         end 
         
         def id
@@ -55,7 +55,7 @@ module Elibri
         end
 
         def product_level
-          elements.find {|element| element.level == "01"}
+          @elements.find {|element| element.level == "01"}
         end
 
         def collection_level_title
@@ -63,7 +63,7 @@ module Elibri
         end
 
         def collection_level
-          elements.find {|element| element.level == "02"}
+          @elements.find {|element| element.level == "02"}
         end
 
       end

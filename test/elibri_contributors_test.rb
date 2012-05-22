@@ -14,7 +14,6 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
     assert_equal "contributorid:255", cont1.id_before_type_cast
     assert_equal 255, cont1.eid
-    assert_equal 255, cont1.id
     assert_equal "20111104T0905", cont1.datestamp_before_type_cast
     assert_equal Date.new(2011, 11, 04).to_time + 9.hours + 5.minutes, cont1.datestamp
 

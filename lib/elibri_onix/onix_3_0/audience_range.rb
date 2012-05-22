@@ -4,20 +4,12 @@ module Elibri
     module Release_3_0
 
       class AudienceRange
-#        include ROXML
-#        include Inspector
-
-#        xml_name 'AudienceRange'
         
         ATTRIBUTES = [
           :qualifier, :precision, :value
         ]
         
         RELATIONS = []
-
-#        xml_accessor :qualifier, :from => 'AudienceRangeQualifier'
-#        xml_accessor :precision, :from => 'AudienceRangePrecision'
-#        xml_accessor :value, :from => 'AudienceRangeValue', :as => Fixnum
         
         attr_accessor :qualifier, :precision, :value, :to_xml
 
@@ -29,7 +21,7 @@ module Elibri
         end
 
         def eid
-          "#{qualifier}-#{precision}-#{value}"
+          "#{@qualifier}-#{@precision}-#{@value}"
         end
         
         def id

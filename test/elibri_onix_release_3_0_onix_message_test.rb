@@ -7,7 +7,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
   it "should be able to parse all attributes supported in Elibri" do
     xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", "all_possible_tags.xml")
     
-    onix = Elibri::ONIX::Release_3_0::ONIXMessage.from_xml(xml_string)
+    onix = Elibri::ONIX::Release_3_0::ONIXMessage.new(xml_string)
     assert_equal '3.0', onix.release
     assert_equal '3.0.1', onix.elibri_dialect
     assert_equal 'Elibri.com.pl', onix.header.sender.sender_name
@@ -171,7 +171,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
   it "should consider elibri_dialect attribute and ignore attributes unrecognized in specified dialect" do
     xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", "old_dialect.xml")
     
-    onix = Elibri::ONIX::Release_3_0::ONIXMessage.from_xml(xml_string)
+    onix = Elibri::ONIX::Release_3_0::ONIXMessage.new(xml_string)
     assert_equal '3.0', onix.release
     assert_equal '3.0.0', onix.elibri_dialect
 

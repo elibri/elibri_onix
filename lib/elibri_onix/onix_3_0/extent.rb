@@ -5,14 +5,7 @@ module Elibri
     module Release_3_0
 
       class Extent
-#        include ROXML
-#        include Inspector
-#
-#        xml_name 'Extent'
-#        xml_accessor :type, :from => 'ExtentType'
-#        xml_accessor :value, :from => 'ExtentValue', :as => Fixnum
-#        xml_accessor :unit, :from => 'ExtentUnit'
-#        
+                
         ATTRIBUTES = [
           :type, :value, :unit, :type_name, :unit_name
         ]
@@ -31,7 +24,7 @@ module Elibri
         end
 
         def eid
-          type.to_i
+          @type.to_i
         end
         
         def id

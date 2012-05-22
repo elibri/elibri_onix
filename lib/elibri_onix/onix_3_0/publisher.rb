@@ -26,6 +26,11 @@ module Elibri
           end
         end
         
+        def id
+          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
+          @eid
+        end
+        
       end
 
     end

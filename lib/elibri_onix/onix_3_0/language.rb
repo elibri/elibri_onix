@@ -5,12 +5,6 @@ module Elibri
     module Release_3_0
 
       class Language
-#       include ROXML
-#       include Inspector
-#       xml_name 'Language'
-#
-#       xml_accessor :role, :from => 'LanguageRole'
-#       xml_accessor :code, :from => 'LanguageCode'
         
         ATTRIBUTES = [
           :role, :code, :role_name, :language
@@ -41,7 +35,7 @@ module Elibri
         end
 
         def eid
-          "#{role}-#{code}"
+          "#{@role}-#{@code}"
         end
         
         def id
