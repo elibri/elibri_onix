@@ -6,7 +6,54 @@
 
 == Description
 
-Description goes here.
+This is gem designed to parse eLibri generated onix files.
+If you don't have access to eLibri api, but you still want to make some us of it - check elibri_onix_mocks gem for mocks and examples of using it.
+
+== Usage
+
+Usage depends on what you want to parse. In normal usage, when you received response from eLibri server you want to parse it using ONIXMessage class. Therefore you need to execute:
+
+Elibri::ONIX::Release_3_0::ONIXMessage.new(xml_data)
+
+xml_data should be string containing ONIX xml you want to parse.
+
+Creating a new ONIXMessage object will also create embedded objects inside - representing structure of xml file.
+ONIXMessage -> many Product(s)
+  Product -> many ProductIdentifier(s)
+  Product -> many RelatedProduct(s)
+    RelatedProduct -> many ProductIdentifier(s)
+  Product -> many SupplyDetail(s)
+    SupplyDetail -> one Supplier
+    SupplyDetail -> one Price
+    SupplyDetail -> one StockQuantityCoded
+  Product -> many Measure(s)
+  Product -> many TitleDetail(s)
+    TitleDetail -> many TitleElement(s)
+  Product -> many Collection(s)
+    Collection -> many TitleElement(s)
+    Collection -> one TitleDetail
+  Product -> many Contributor(s)
+  Product -> many Language(s)
+  Product -> many Extent(s)
+  Product -> many Subject(s)
+  Product -> many AudienceRange(s)
+  Product -> many TextContent(s)
+  Product -> many SupportingResource(s)
+  Product -> one Imprint
+  Product -> one Publisher
+  Product -> one PublishingDate
+  Product -> many SalesRestriction(s)
+ONIXMessage -> one Header
+  Header -> one Sender
+
+
+However if you have only fragment of xml that you want to parse - for example Contributor, you may parse only this fragment invoking constructor of appropriate class, providing xml as an argument, for example:
+
+Elibri::ONIX::Release_3_0::Contributor.new(xml_data)
+
+Each object provide method to_xml which will return xml used to construct it.
+
+Object contains attributes, which are represented by instance variables. You can see list of attributes in FIELDS file.
 
 == Contributing to elibri_onix
  

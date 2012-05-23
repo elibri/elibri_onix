@@ -5,7 +5,10 @@ module Elibri
 
       class Product
         
-        
+        #class representing one Product from eLibri.
+        #important thing - record reference is unique eLibri identifier
+      
+      
         ATTRIBUTES =
         [
           :elibri_dialect, :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 

@@ -5,6 +5,10 @@ module Elibri
     module Release_3_0
 
       class Extent
+        
+        #from ONIX documentation:
+        #covers product extents, in terms of pages, running times, file sizes etc, as may be appropriate to each media type.
+        #For products whose content is primarily readable text, it also covers illustrations and other kinds of ancillary matter such as the inclusion of a bibliography or index.
                 
         ATTRIBUTES = [
           :type, :value, :unit, :type_name, :unit_name

@@ -5,7 +5,9 @@ module Elibri
 
       class ONIXMessage        
         attr_accessor :release, :elibri_dialect, :products, :header, :to_xml
-
+        
+        #class representing whole ONIX response from eLibri server
+        
         ATTRIBUTES = [
           :release, :elibri_dialect, :header
         ]

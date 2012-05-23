@@ -8,6 +8,7 @@ module Elibri
 
       class RelatedProduct
         
+        
         ATTRIBUTES = [
           :relation_code, :proprietary_identifiers, :record_reference
         ]

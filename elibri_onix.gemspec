@@ -2,8 +2,8 @@
 require File.expand_path('../lib/elibri_onix/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Marcin Urbanski"]
-  gem.email         = ["marcin@urbanski.vdl.pl"]
+  gem.authors       = ["Marcin Urbanski", "Piotr Szmielew"]
+  gem.email         = ["marcin@urbanski.vdl.pl", "p.szmielew@ava.waw.pl"]
   gem.description   = %q{EDItEUR ONIX format subset implementation used in Elibri publication system}
   gem.summary       = %q{EDItEUR ONIX format subset implementation used in Elibri publication system}
   gem.homepage      = "http://github.com/elibri/elibri_onix"
