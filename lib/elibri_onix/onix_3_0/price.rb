@@ -8,6 +8,9 @@ module Elibri
 
       class Price
         
+        #from ONIX documentation:
+        #A repeatable group of data elements which together specify a unit price.
+        
         ATTRIBUTES = [
           :type, :minimum_order_quantity, :amount, :currency_code, :printed_on_product,
           :position_on_product, :tax_type, :tax_rate_percent, :vat

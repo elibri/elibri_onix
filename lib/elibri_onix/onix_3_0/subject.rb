@@ -6,6 +6,9 @@ module Elibri
 
       class Subject
         
+        #from ONIX documentation:
+        #An optional and repeatable group of data elements which together specify a subject classification or subject heading.
+        
         ATTRIBUTES = [
           :scheme_identifier, :scheme_name, :scheme_version, :code, :heading_text, :main_subject
         ]

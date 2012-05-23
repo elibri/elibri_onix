@@ -4,6 +4,18 @@ module Elibri
     module Release_3_0
 
       class TitleElement
+      
+        #from ONIX documentation:
+        #A repeatable group of data elements which together represent an element of a collection title.
+        #At least one title element is mandatory in each occurrence of the <TitleDetail> composite.
+        #An instance of the <TitleElement> composite must include at least one of: <PartNumber>; <YearOfAnnual>; <TitleText>, or <TitlePrefix> together
+        #with <TitleWithoutPrefix>. In other words it must carry either the text of a title element or a part or year designation; and it may carry both.
+        #A title element must be designated as belonging to product level, collection level, or subcollection level
+        #(the first of these may not occur in a title element representing a collective identity, and the last-named may only occur
+        #in the case of a multi-level collection).
+        #In the simplest case, title detail sent in a <Collection> composite will consist of a single title element, at collection level.
+        #However, the composite structure in ONIX 3.0 allows more complex combinations of titles and part designations in multi-level
+        #collections to be correctly represented.
 
         ATTRIBUTES = [
           :level, :part_number, :title, :subtitle, :full_title

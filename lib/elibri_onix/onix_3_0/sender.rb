@@ -5,6 +5,10 @@ module Elibri
 
       class Sender
         
+        #from ONIX documentation
+        #A group of data elements which together specify the sender of an ONIX for Books message.
+        #Mandatory in any ONIX for Books message, and non-repeating.
+        
         attr_accessor :sender_name, :contact_name, :email_address, :to_xml
         
         ATTRIBUTES = [

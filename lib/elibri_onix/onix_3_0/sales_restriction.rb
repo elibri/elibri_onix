@@ -6,6 +6,10 @@ module Elibri
     module Release_3_0
 
       class SalesRestriction
+
+        #from ONIX documentation:        
+        #A group of data elements which together identify a non-territorial sales restriction which a publisher applies to a product.
+        #Optional and repeatable.
         
         ATTRIBUTES = [
           :type, :outlet_name, :end_date

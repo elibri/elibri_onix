@@ -4,6 +4,11 @@ module Elibri
     module Release_3_0
 
       class ProductIdentifier
+        
+        #from ONIX documentation:
+        #A repeatable group of data elements which together define an identifier of a product in accordance with a specified scheme.
+        #As well as standard identifiers, the composite allows proprietary identifiers (SKUs) assigned by wholesalers or
+        #vendors to be sent as part of the ONIX record.
 
         attr_accessor :type, :type_name, :value, :to_xml
         

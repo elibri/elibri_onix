@@ -7,6 +7,15 @@ module Elibri
         include ExternalId
         include ExternalTimestamp
         
+        #from ONIX documentation:
+        #Authorship and other forms of contribution are described by repeats of the <Contributor> composite, 
+        #within which the recommended form of representation of a person name is the structured data element 
+        #group consisting of Person name part 1 to Person name part 8. A single occurrence of the composite may
+        #carry both the primary name of a contributor, and one or more alternative names,
+        #for example if a contributor is referenced both by their real name and by a pseudonym,
+        #or by the name given on the title page and by an authority-controlled name.
+        #In addition, more than one representation of the same name may be sent.
+        
         ATTRIBUTES = 
         [
           :number, :role, :person_name, :from_language, :titles_before_names, :names_before_key, :prefix_to_key,

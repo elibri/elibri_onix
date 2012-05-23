@@ -6,6 +6,10 @@ module Elibri
 
       class Imprint
         
+        #from ONIX documentation:
+        #A repeatable group of data elements which together identify an imprint or brand under which the product is marketed.
+        #The composite must carry either a name identifier or a name or both.
+        
         ATTRIBUTES = [
           :name
         ]

@@ -6,6 +6,11 @@ module Elibri
     module Release_3_0
 
       class SupplyDetail
+        
+        #from ONIX documentation:
+        #A group of data elements which together give details of a supply source, and price and availability from that source.
+        #Mandatory in each occurrence of the <ProductSupply> block and repeatable.
+        
 
         ATTRIBUTES = [
           :relation_code, :supplier, :product_availability, :pack_quantity, :price, :on_hand, :quantity_coded, :quantity_code

@@ -8,6 +8,9 @@ module Elibri
         include ExternalId
         include ExternalTimestamp
         
+        #from ONIX documentation:
+        #An optional and repeatable group of data elements which together describe a supporting resource.
+        
         ATTRIBUTES = [
           :content_type, :mode, :form, :link, :content_type_name, :mode_name, :form_name
         ]

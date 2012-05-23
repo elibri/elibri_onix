@@ -8,6 +8,10 @@ module Elibri
 
       class RelatedProduct
         
+        #from ONIX documentation:
+        #An optional and repeatable group of data elements which together describe a product which has a specified relationship
+        #to the product described in the ONIX record.
+        
         
         ATTRIBUTES = [
           :relation_code, :proprietary_identifiers, :record_reference

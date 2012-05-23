@@ -6,6 +6,9 @@ module Elibri
     module Release_3_0
 
       class Supplier
+        
+        #from ONIX documentation:
+        #A group of data elements which together define a supplier. Mandatory in each occurrence of the <SupplyDetail> composite, and not repeatable.
 
         ATTRIBUTES = [
           :role, :name, :telephone_number, :email_address, :website, :nip

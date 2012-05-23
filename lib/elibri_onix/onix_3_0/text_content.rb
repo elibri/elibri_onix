@@ -4,9 +4,12 @@ module Elibri
     module Release_3_0
 
       class TextContent
-         include ExternalId
-         include ExternalTimestamp
-        
+        include ExternalId
+        include ExternalTimestamp
+         
+        #from ONIX documentation:
+        #An optional and repeatable group of data elements which together carry text related to the product.
+      
         ATTRIBUTES = [
           :type, :author, :source_title, :text, :source_url, :type_name
         ]

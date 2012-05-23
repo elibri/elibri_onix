@@ -3,6 +3,11 @@ module Elibri
     module Release_3_0
 
       class StockQuantityCoded
+        
+        #from ONIX documentation:
+        #A group of data elements which together specify coded stock level without stating the exact quantity of stock.
+        #Either <StockQuantityCoded> or <OnHand> is mandatory in each occurrence of the <Stock> composite, even if 
+        #the quantity on hand is zero. Non-repeating.
 
         ATTRIBUTES = [
           :code_type, :code

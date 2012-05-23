@@ -5,6 +5,12 @@ module Elibri
     module Release_3_0
 
       class Header
+        
+        #from ONIX documentation:
+        #A group of data elements which together constitute a message header.
+        #Mandatory in any ONIX for Books message, and non-repeating.
+        #In ONIX 3.0, a number of redundant elements have been deleted, and the Sender and Addressee structures and
+        #the name and format of the <SentDateTime> element have been made consistent with other current ONIX formats.
 
         attr_accessor :sent_date_time, :sender, :to_xml
         

@@ -6,6 +6,10 @@ module Elibri
 
       class Measure
         
+        #from ONIX documentation:
+        #An optional and repeatable group of data elements which together identify a measurement and the units in which
+        #it is expressed; used to specify the overall dimensions of a physical product including its packaging (if any).
+        
         ATTRIBUTES = [
           :type, :measurement, :unit, :type_name
         ]

@@ -6,6 +6,11 @@ module Elibri
 
       class TitleDetail
         
+        #from ONIX documentation:
+        #A repeatable group of data elements which together give the text of a collection title and specify its type.
+        #Optional, but the composite is required unless the collection title is carried in full, and word-for- word,
+        #as an integral part of the product title in P.6, in which case it should not be repeated in P.5.
+        
         ATTRIBUTES = [
           :type, :type_name, :full_title, :product_level_title, :product_level, :collection_level_title,
           :collection_level

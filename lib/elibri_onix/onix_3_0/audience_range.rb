@@ -6,7 +6,8 @@ module Elibri
       class AudienceRange
         
         #from ONIX documentation:
-        #An optional and repeatable group of data elements which together describe an audience or readership range for which a product is intended.
+        #An optional and repeatable group of data elements which together describe an audience or readership range for which a product
+        #is intended.
         
         ATTRIBUTES = [
           :qualifier, :precision, :value

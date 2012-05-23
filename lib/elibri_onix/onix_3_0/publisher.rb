@@ -7,6 +7,11 @@ module Elibri
 
       class Publisher
         
+        #from ONIX documentation:
+        #A repeatable group of data elements which together identify an entity which is associated with the publishing of a product.
+        #The composite allows additional publishing roles to be introduced without adding new fields.
+        #Each occurrence of the composite must carry a publishing role code and either a name identifier code or a name or both.
+        
         ATTRIBUTES = [
           :role, :name, :eid
         ]
