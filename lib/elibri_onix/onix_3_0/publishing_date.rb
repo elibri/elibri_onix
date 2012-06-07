@@ -11,6 +11,8 @@ module Elibri
         #A repeatable group of data elements which together specify a date associated with the publishing of the product.
         #Optional, but a date of publication must be specified either or in <MarketPublishingDetail> (P.25).
         #Other dates related to the publishing of a product can be sent in further repeats.
+
+        include HashId
         
         ATTRIBUTES = [
           :role, :format, :date, :parsed

@@ -8,6 +8,8 @@ module Elibri
         
         #class representing whole ONIX response from eLibri server
         
+        include HashId
+        
         ATTRIBUTES = [
           :release, :elibri_dialect, :header
         ]

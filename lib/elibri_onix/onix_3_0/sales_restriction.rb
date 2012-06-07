@@ -10,6 +10,8 @@ module Elibri
         #from ONIX documentation:        
         #A group of data elements which together identify a non-territorial sales restriction which a publisher applies to a product.
         #Optional and repeatable.
+
+        include HashId
         
         ATTRIBUTES = [
           :type, :outlet_name, :end_date

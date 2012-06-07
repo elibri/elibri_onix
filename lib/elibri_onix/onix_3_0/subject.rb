@@ -8,6 +8,9 @@ module Elibri
         
         #from ONIX documentation:
         #An optional and repeatable group of data elements which together specify a subject classification or subject heading.
+
+        include HashId
+
         
         ATTRIBUTES = [
           :scheme_identifier, :scheme_name, :scheme_version, :code, :heading_text, :main_subject
@@ -31,9 +34,9 @@ module Elibri
           @main_subject == ''
         end
 
-        def eid
-          @code
-        end
+    #   def eid
+    #      @code
+    #    end
         
         def id
           Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."

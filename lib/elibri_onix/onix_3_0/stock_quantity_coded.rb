@@ -9,6 +9,8 @@ module Elibri
         #Either <StockQuantityCoded> or <OnHand> is mandatory in each occurrence of the <Stock> composite, even if 
         #the quantity on hand is zero. Non-repeating.
 
+        include HashId
+
         ATTRIBUTES = [
           :code_type, :code
         ]

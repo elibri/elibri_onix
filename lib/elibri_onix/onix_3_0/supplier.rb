@@ -18,6 +18,8 @@ module Elibri
           :identifiers
         ]
         
+        include HashId
+        
         attr_accessor :role, :identifiers, :name, :telephone_number, :email_address, :website, :to_xml
         
         def initialize(data)

@@ -11,6 +11,8 @@ module Elibri
         #Optional, but the composite is required unless the collection title is carried in full, and word-for- word,
         #as an integral part of the product title in P.6, in which case it should not be repeated in P.5.
         
+        include HashId        
+        
         ATTRIBUTES = [
           :type, :type_name, :full_title, :product_level_title, :product_level, :collection_level_title,
           :collection_level
@@ -28,9 +30,9 @@ module Elibri
           @elements = data.xpath('xmlns:TitleElement').map { |element_data| TitleElement.new(element_data) }
         end
 
-        def eid
-          @type.to_i
-        end 
+    #    def eid
+    #      @type.to_i
+    #    end 
         
         def id
           Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."

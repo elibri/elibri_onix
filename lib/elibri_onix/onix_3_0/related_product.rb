@@ -11,7 +11,7 @@ module Elibri
         #from ONIX documentation:
         #An optional and repeatable group of data elements which together describe a product which has a specified relationship
         #to the product described in the ONIX record.
-        
+        include HashId        
         
         ATTRIBUTES = [
           :relation_code, :proprietary_identifiers, :record_reference

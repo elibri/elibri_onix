@@ -10,6 +10,8 @@ module Elibri
         #from ONIX documentation:
         #A group of data elements which together give details of a supply source, and price and availability from that source.
         #Mandatory in each occurrence of the <ProductSupply> block and repeatable.
+
+        include HashId
         
 
         ATTRIBUTES = [

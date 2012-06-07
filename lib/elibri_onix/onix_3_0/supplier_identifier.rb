@@ -13,7 +13,8 @@ module Elibri
         #and allowing different types of supplier identifier to be included without defining additional data elements.
         #Optional, but each occurrence of the <Supplier> composite must carry either at least one supplier identifier,
         #or a <SupplierName>, or both.
-        
+       
+       include HashId 
 
         ATTRIBUTES = [
           :type, :type_name, :value

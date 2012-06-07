@@ -17,6 +17,9 @@ module Elibri
         #However, the composite structure in ONIX 3.0 allows more complex combinations of titles and part designations in multi-level
         #collections to be correctly represented.
 
+
+        include HashId
+
         ATTRIBUTES = [
           :level, :part_number, :title, :subtitle, :full_title
         ]
