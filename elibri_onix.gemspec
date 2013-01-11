@@ -33,6 +33,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "minitest", ">= 0"
   gem.add_development_dependency "bundler", ">= 1.0.0"
   gem.add_development_dependency "rake"
+  gem.add_development_dependency "rdoc"
   #gem.add_development_dependency "ruby-debug"
   gem.add_development_dependency "rcov", ">= 0"
   
