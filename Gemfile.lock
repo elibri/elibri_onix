@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    elibri_onix (0.2.2)
+    elibri_onix (0.2.3)
       activesupport (>= 2.3.5)
       elibri_onix_dict (>= 0.0.5)
       i18n
@@ -33,6 +33,7 @@ GEM
       slop (>= 2.4.4, < 3)
       spoon (~> 0.0)
     rake (0.9.2.2)
+    rcov (1.0.0)
     slop (2.4.4)
     spoon (0.0.1)
 
@@ -47,3 +48,4 @@ DEPENDENCIES
   mocha
   pry
   rake
+  rcov
