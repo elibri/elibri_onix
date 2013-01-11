@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference" xmlns:elibri="http://elibri.com.pl/ns/extensions">
+  <elibri:Dialect>3.0.1</elibri:Dialect>
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20111111</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>fdb8fa072be774d97a97</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9788324799992</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <ProductComposition>00</ProductComposition>
+      <ProductForm>EA</ProductForm>
+      <EpubUsageConstraint>
+        <EpubUsageType>01</EpubUsageType>
+        <EpubUsageStatus>01</EpubUsageStatus>
+      </EpubUsageConstraint>
+      <TitleDetail>
+        <TitleType>01</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Nielegalni</TitleText>
+        </TitleElement>
+      </TitleDetail>
+    </DescriptiveDetail>
+    <PublishingDetail>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherIdentifier>
+          <PublisherIDType>01</PublisherIDType>
+          <IDTypeName>ElibriPublisherCode</IDTypeName>
+          <IDValue>11</IDValue>
+        </PublisherIdentifier>
+        <PublisherName>GREG</PublisherName>
+      </Publisher>
+      <PublishingStatus>04</PublishingStatus>
+      <SalesRights>
+        <SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <RegionsIncluded>WORLD</RegionsIncluded>
+        </Territory>
+      </SalesRights>
+    </PublishingDetail>
+    <elibri:preview_exists>false</elibri:preview_exists>
+    <elibri:SaleNotRestricted/>
+  </Product>
+</ONIXMessage>

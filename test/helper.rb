@@ -22,8 +22,8 @@ require 'elibri_onix'
 class Test::Unit::TestCase
 end
 
-def load_fixture(filename)
+def load_fixture(filename, idx = 0)
   xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", filename)
   onix = Elibri::ONIX::Release_3_0::ONIXMessage.new(xml_string)
-  return onix.products.first
+  return onix.products[idx]
 end

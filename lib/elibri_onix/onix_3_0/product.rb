@@ -18,7 +18,7 @@ module Elibri
           :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :product_composition, :product_form, :imprint,
           :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
           :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
-          :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description
+          :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description, :sale_restricted_to_poland
         ]
         
         
@@ -38,8 +38,8 @@ module Elibri
                       :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
                       :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
                       :collection_part, :full_title, :original_title, :trade_title, :short_description,
-                      :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists
-                      
+                      :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :unlimited_licence,
+                      :licence_limited_to_before_type_cast, :licence_limited_to, :digital_formats, :technical_protection
           
                       #from xml_accessor
         attr_accessor :record_reference, :notification_type, :deletion_text
@@ -49,7 +49,7 @@ module Elibri
                       :product_composition, :product_form, :measures, :title_details, :collections, :contributors, :no_contributor,
                       :languages, :extents, :subjects, :audience_ranges, :edition_statement, :number_of_illustrations, :text_contents,
                       :supporting_resources, :imprint, :publisher, :publishing_status, :publishing_date, :sales_restrictions,
-                      :identifiers, :related_products, :supply_details, :to_xml, :city_of_publication
+                      :identifiers, :related_products, :supply_details, :to_xml, :city_of_publication, :sale_restricted_to_poland
 
 
         def initialize(data)
@@ -95,7 +95,18 @@ module Elibri
           descriptive_details_setup(data.at_xpath('xmlns:DescriptiveDetail')) if data.at_xpath('xmlns:DescriptiveDetail')
           collateral_details_setup(data.at_xpath('xmlns:CollateralDetail')) if data.at_xpath('xmlns:CollateralDetail')
           publishing_details_setup(data.at_xpath('xmlns:PublishingDetail')) if data.at_xpath('xmlns:PublishingDetail')
+          licence_information_setup(data)
           after_parse
+        end
+ 
+        def licence_information_setup(data)
+          if data.at_xpath("elibri:SaleNotRestricted")
+            @unlimited_licence = true
+          elsif date = data.at_xpath("elibri:SaleRestrictedTo").try(:text)
+            @unlimited_licence = false
+            @licence_limited_to_before_type_cast = date
+            @licence_limited_to = Date.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i)
+          end
         end
         
         def descriptive_details_setup(data)
@@ -110,6 +121,19 @@ module Elibri
           @extents = data.xpath('xmlns:Extent').map { |extent_data| Extent.new(extent_data) }
           @subjects = data.xpath('xmlns:Subject').map { |subject_data| Subject.new(subject_data) }
           @audience_ranges = data.xpath('xmlns:AudienceRange').map { |audience_data| AudienceRange.new(audience_data) }
+
+          if data.xpath("xmlns:ProductFormDetail").size > 0
+            @digital_formats = []
+            data.xpath("xmlns:ProductFormDetail").each do |format|
+              @digital_formats << Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text).name.upcase.gsub("MOBIPOCKET", "MOBI")
+            end
+          end
+         
+          #zabezpiecznie pliku
+          if protection = data.at_xpath("xmlns:EpubTechnicalProtection").try(:text)
+            @technical_protection =  Elibri::ONIX::Dict::Release_3_0::EpubTechnicalProtection::find_by_onix_code(protection).name
+          end
+
           @edition_statement = data.at_xpath('xmlns:EditionStatement').try(:text)
           @number_of_illustrations = data.at_xpath('xmlns:NumberOfIllustrations').try(:text).try(:to_i)
         end
@@ -126,6 +150,13 @@ module Elibri
           @city_of_publication = data.at_xpath("xmlns:CityOfPublication").try(:text)
           @publishing_date = PublishingDate.new(data.at_xpath('xmlns:PublishingDate')) if data.at_xpath('xmlns:PublishingDate')
           @sales_restrictions = data.xpath('xmlns:SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }      
+          #ograniczenia terytorialne
+          if data.at_xpath(".//xmlns:CountriesIncluded").try(:text) == "PL"
+            @sale_restricted_to_poland = true
+          else
+            @sale_restricted_to_poland = false
+          end
+
         end
 
         # Attributes in namespace elibri:* are specific for dialect >= 3.0.1.
@@ -273,6 +304,8 @@ private
 
           compute_state!
         end
+
+        
 
         def compute_state!
           if @notification_type == "01"
