@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ONIXMessage xmlns="http://www.editeur.org/onix/3.0/reference" release="3.0" xmlns:elibri="http://elibri.com.pl/ns/extensions">
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference" xmlns:elibri="http://elibri.com.pl/ns/extensions">
   <elibri:Dialect>3.0.1</elibri:Dialect>
   <Header>
     <Sender>
@@ -7,7 +7,7 @@
       <ContactName>Tomasz Meka</ContactName>
       <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
     </Sender>
-    <SentDateTime>20111204</SentDateTime>
+    <SentDateTime>20111111</SentDateTime>
   </Header>
   <Product>
     <RecordReference>fdb8fa072be774d97a97</RecordReference>
@@ -26,15 +26,15 @@
           <TitleText>Taka jest nasza wiara</TitleText>
         </TitleElement>
       </TitleDetail>
-      <Contributor datestamp="20111104T0905" sourcename="contributorid:255">
+      <Contributor sourcename="contributorid:255" datestamp="20111104T0905">
         <SequenceNumber>1</SequenceNumber>
         <ContributorRole>A01</ContributorRole>
         <PersonName>Św. Tomasz z Akwinu</PersonName>
         <NamesBeforeKey>Św.</NamesBeforeKey>
         <KeyNames>Tomasz z Akwinu</KeyNames>
-        <BiographicalNote>Tomasz z Akwinu, Akwinata, łac. Thoma de Aquino (ur. 1225, zm. 7 marca 1274) – filozof scholastyczny, teolog, członek zakonu dominikanów. Był jednym z najwybitniejszych myślicieli w dziejach chrześcijaństwa. Święty Kościoła katolickiego, jeden z doktorów Kościoła, który nauczając przekazywał owoce swej kontemplacji (łac. contemplata aliis tradere).</BiographicalNote>
+        <BiographicalNote>&lt;p&gt;Tomasz z Akwinu, Akwinata, łac. Thoma de Aquino (ur. 1225, zm. 7 marca 1274) – filozof scholastyczny, teolog, członek zakonu dominikanów. Był jednym z najwybitniejszych myślicieli w dziejach chrześcijaństwa. Święty Kościoła katolickiego, jeden z doktorów Kościoła, który nauczając przekazywał owoce swej kontemplacji (łac. contemplata aliis tradere).&lt;/p&gt;</BiographicalNote>
       </Contributor>
-      <Contributor datestamp="20111104T0905" sourcename="contributorid:256">
+      <Contributor sourcename="contributorid:256" datestamp="20111104T0905">
         <SequenceNumber>2</SequenceNumber>
         <ContributorRole>B06</ContributorRole>
         <FromLanguage>lat</FromLanguage>
@@ -47,7 +47,24 @@
       </Contributor>
     </DescriptiveDetail>
     <PublishingDetail>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherIdentifier>
+          <PublisherIDType>01</PublisherIDType>
+          <IDTypeName>ElibriPublisherCode</IDTypeName>
+          <IDValue>11</IDValue>
+        </PublisherIdentifier>
+        <PublisherName>GREG</PublisherName>
+      </Publisher>
+      <CityOfPublication>Warszawa</CityOfPublication>
       <PublishingStatus>04</PublishingStatus>
+      <SalesRights>
+        <SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <RegionsIncluded>WORLD</RegionsIncluded>
+        </Territory>
+      </SalesRights>
     </PublishingDetail>
+    <elibri:preview_exists>false</elibri:preview_exists>
   </Product>
 </ONIXMessage>

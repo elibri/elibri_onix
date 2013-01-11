@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ONIXMessage xmlns="http://www.editeur.org/onix/3.0/reference" release="3.0" xmlns:elibri="http://elibri.com.pl/ns/extensions">
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference" xmlns:elibri="http://elibri.com.pl/ns/extensions">
   <elibri:Dialect>3.0.1</elibri:Dialect>
   <Header>
     <Sender>
@@ -7,7 +7,7 @@
       <ContactName>Tomasz Meka</ContactName>
       <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
     </Sender>
-    <SentDateTime>20111204</SentDateTime>
+    <SentDateTime>20111111</SentDateTime>
   </Header>
   <Product>
     <RecordReference>fdb8fa072be774d97a97</RecordReference>
@@ -40,7 +40,15 @@
         </PublisherIdentifier>
         <PublisherName>G+J Gruner+Jahr Polska</PublisherName>
       </Publisher>
+      <CityOfPublication>Warszawa</CityOfPublication>
       <PublishingStatus>04</PublishingStatus>
+      <SalesRights>
+        <SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <RegionsIncluded>WORLD</RegionsIncluded>
+        </Territory>
+      </SalesRights>
     </PublishingDetail>
+    <elibri:preview_exists>false</elibri:preview_exists>
   </Product>
 </ONIXMessage>

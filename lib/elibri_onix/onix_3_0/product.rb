@@ -17,7 +17,7 @@ module Elibri
           :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date, :record_reference,
           :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :product_composition, :product_form, :imprint,
           :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
-          :publishing_date, :premiere, :front_cover, :series_names,
+          :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
           :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description
         ]
         
@@ -49,7 +49,7 @@ module Elibri
                       :product_composition, :product_form, :measures, :title_details, :collections, :contributors, :no_contributor,
                       :languages, :extents, :subjects, :audience_ranges, :edition_statement, :number_of_illustrations, :text_contents,
                       :supporting_resources, :imprint, :publisher, :publishing_status, :publishing_date, :sales_restrictions,
-                      :identifiers, :related_products, :supply_details, :to_xml
+                      :identifiers, :related_products, :supply_details, :to_xml, :city_of_publication
 
 
         def initialize(data)
@@ -123,6 +123,7 @@ module Elibri
           @imprint = Imprint.new(data.at_xpath('xmlns:Imprint')) if data.at_xpath('xmlns:Imprint')
           @publisher = Publisher.new(data.at_xpath('xmlns:Publisher')) if data.at_xpath('xmlns:Publisher')
           @publishing_status = data.at_xpath('xmlns:PublishingStatus').try(:text)
+          @city_of_publication = data.at_xpath("xmlns:CityOfPublication").try(:text)
           @publishing_date = PublishingDate.new(data.at_xpath('xmlns:PublishingDate')) if data.at_xpath('xmlns:PublishingDate')
           @sales_restrictions = data.xpath('xmlns:SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }      
         end
