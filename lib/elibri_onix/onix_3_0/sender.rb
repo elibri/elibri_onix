@@ -2,19 +2,28 @@
 module Elibri
   module ONIX
     module Release_3_0
-
+ 
+      #Sender of the message
       class Sender
         
-        #from ONIX documentation
-        #A group of data elements which together specify the sender of an ONIX for Books message.
-        #Mandatory in any ONIX for Books message, and non-repeating.
+        #name of company, which sent the message
+        attr_accessor :sender_name
+
+        #contact person 
+        attr_accessor :contact_name
+
+        #contact email
+        attr_accessor :email_address
+
+        #xml representation of sender
+        attr_accessor :to_xml
         
-        attr_accessor :sender_name, :contact_name, :email_address, :to_xml
-        
+        #:nodoc:
         ATTRIBUTES = [
           :sender_name, :contact_name, :email_address
         ]
         
+        #:nodoc:
         RELATIONS = []
         
         def initialize(data)

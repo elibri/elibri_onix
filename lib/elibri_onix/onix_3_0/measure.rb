@@ -1,16 +1,12 @@
 
-
 module Elibri
   module ONIX
     module Release_3_0
-
+      
+      #klasa abstahuje parsowanie wymiarów książki.
       class Measure
         
-                include HashId
-        
-        #from ONIX documentation:
-        #An optional and repeatable group of data elements which together identify a measurement and the units in which
-        #it is expressed; used to specify the overall dimensions of a physical product including its packaging (if any).
+        include HashId
         
         ATTRIBUTES = [
           :type, :measurement, :unit, :type_name

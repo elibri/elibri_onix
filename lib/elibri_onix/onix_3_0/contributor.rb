@@ -16,20 +16,59 @@ module Elibri
         #or by the name given on the title page and by an authority-controlled name.
         #In addition, more than one representation of the same name may be sent.
         
+        #:nodoc:
         ATTRIBUTES = 
         [
           :number, :role, :person_name, :from_language, :titles_before_names, :names_before_key, :prefix_to_key,
           :key_names, :names_after_key, :biographical_note, :unnamed_persons, :role_name
         ]
         
+        #:nodoc:
         RELATIONS =
         [
           :inspect_include_fields
         ]
         
-        attr_accessor :number, :role, :person_name, :from_language, :titles_before_names, :names_before_key, :prefix_to_key,
-          :key_names, :names_after_key, :biographical_note, :unnamed_persons, :to_xml
+        #:nodoc:
+        attr_reader :number
+
+        #:doc:
+        #kod ONIX dla roli - np. 'A01' - autor, pełna lista pod adresem 
+        #https://github.com/elibri/elibri_onix_dict/blob/master/lib/elibri_onix_dict/onix_3_0/serialized/ProductFormCode.yml
+        attr_reader :role
+
+        #pełne imię i nazwisko - to pole jest zawsze uzupełnione
+        attr_reader :person_name
+
+        #w przypadku tłumacza kod języka oryginału, lista języków dostępna pod adresem
+        #https://github.com/elibri/elibri_onix_dict/blob/master/lib/elibri_onix_dict/onix_3_0/serialized/LanguageCode.yml
+        attr_reader :from_language
+
+        #tytuł naukowy, np. prof.
+        attr_reader :titles_before_names
+
+        #imię lub imiona
+        attr_reader :names_before_key
+
+        #prefix przed nazwiskiem, np. von, van
+        attr_reader :prefix_to_key
+
+        #nazwisko lub nazwiska
+        attr_reader :key_names
+   
+        #dodatkowe oznaczenia, np. OHP (zakon)
+        attr_reader :names_after_key
+
+        #biografia
+        attr_reader :biographical_note
+
+        #:nodoc:
+        attr_reader :unnamed_persons
+ 
+        #reprezentacja danych w xml-u
+        attr_reader :to_xml
           
+
         def initialize(data)
           @to_xml = data.to_s
           @number = data.at_xpath('xmlns:SequenceNumber').try(:text).try(:to_i)

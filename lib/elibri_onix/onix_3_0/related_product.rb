@@ -1,7 +1,5 @@
 
 
-
-
 module Elibri
   module ONIX
     module Release_3_0
@@ -12,16 +10,20 @@ module Elibri
         #An optional and repeatable group of data elements which together describe a product which has a specified relationship
         #to the product described in the ONIX record.
         include HashId        
-        
+ 
+        #:nodoc:       
         ATTRIBUTES = [
           :relation_code, :proprietary_identifiers, :record_reference
         ]
         
+        #:nodoc:
         RELATIONS = [
           :identifiers
         ]
         
-        attr_accessor :relation_code, :identifiers, :to_xml
+        attr_reader :relation_code
+        attr_reader :identifiers
+        attr_reader :to_xml
         
         def initialize(data)
           @to_xml = data.to_s

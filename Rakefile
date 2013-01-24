@@ -24,10 +24,11 @@ task :default => :test
 require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = Elibri::ONIX::VERSION
-
-  rdoc.rdoc_dir = 'rdoc'
+  rdoc.main = "README.rdoc"
+  rdoc.rdoc_dir = 'doc'
   rdoc.title = "elibri_onix #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('FIELDS*')
+  rdoc.options << "--hyperlink-all"
+  rdoc.rdoc_files.include('README.rdoc')
+  rdoc.rdoc_files.include('FIELDS.rdoc')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

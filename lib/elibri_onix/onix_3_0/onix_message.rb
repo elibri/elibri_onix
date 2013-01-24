@@ -3,17 +3,31 @@ module Elibri
   module ONIX
     module Release_3_0
 
-      class ONIXMessage        
-        attr_accessor :release, :elibri_dialect, :products, :header, :to_xml
-        
-        #class representing whole ONIX response from eLibri server
+      #class representing whole ONIX response from eLibri server
+      class ONIXMessage   
+        #list of all products returned in this mnessage
+        attr_accessor :products
+
+        #xml representation of this message
+        attr_accessor :to_xml
+
+        #ONIX version number 
+        attr_accessor :release
+
+        #:nodoc:
+        attr_accessor :elibri_dialect
+
+        #returned message header - Elibri::ONIX::Release_3_0::Header
+        attr_accessor :header
         
         include HashId
-        
+         
+        #:nodoc:
         ATTRIBUTES = [
           :release, :elibri_dialect, :header
         ]
         
+        #:nodoc:
         RELATIONS = [
           :products
         ]

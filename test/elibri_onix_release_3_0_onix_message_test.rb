@@ -167,20 +167,4 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     end
   end
 
-
-  it "should consider elibri_dialect attribute and ignore attributes unrecognized in specified dialect" do
-    xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", "old_dialect.xml")
-    
-    onix = Elibri::ONIX::Release_3_0::ONIXMessage.new(xml_string)
-    assert_equal '3.0', onix.release
-    assert_equal '3.0.0', onix.elibri_dialect
-
-    product = onix.products.first
-    assert_equal '3.0.0', product.elibri_dialect
-    assert_nil product.cover_type 
-    assert_nil product.cover_price
-    assert_nil product.vat
-    assert_nil product.pkwiu
-  end
-
 end

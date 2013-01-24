@@ -3,21 +3,29 @@ module Elibri
   module ONIX
     module Release_3_0
 
+      #product identifier, for example isbn
       class ProductIdentifier
-        
-        #from ONIX documentation:
-        #A repeatable group of data elements which together define an identifier of a product in accordance with a specified scheme.
-        #As well as standard identifiers, the composite allows proprietary identifiers (SKUs) assigned by wholesalers or
-        #vendors to be sent as part of the ONIX record.
         
         include HashId
 
-        attr_accessor :type, :type_name, :value, :to_xml
+        #onix code of type (see elibri_onix_dict, Elibri::ONIX::Dict::Release_3_0::ProductIDType)
+        attr_accessor :type
+
+        #if type is prioprietery (01) - then the name of type
+        attr_accessor :type_name
+  
+        #identifier value
+        attr_accessor :value
+
+        #xml representation of identifier
+        attr_accessor :to_xml
         
+        #:nodoc:
         ATTRIBUTES = [
           :type, :type_name, :value, :identifier_type
         ]
         
+        #:nodoc:
         RELATIONS = [
           :inspect_include_fields
         ]
@@ -29,10 +37,12 @@ module Elibri
           @value = data.at_xpath('xmlns:IDValue').try(:text)
         end
 
+        #returs the string name of value type
         def identifier_type
           Elibri::ONIX::Dict::Release_3_0::ProductIDType.find_by_onix_code(@type).const_name.downcase
         end
 
+        #:nodoc:
         def inspect_include_fields
           [:identifier_type]
         end
