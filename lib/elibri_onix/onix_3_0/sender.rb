@@ -5,7 +5,8 @@ module Elibri
  
       #Sender of the message
       class Sender
-        
+        include Inspector
+       
         #name of company, which sent the message
         attr_accessor :sender_name
 
@@ -25,6 +26,11 @@ module Elibri
         
         #:nodoc:
         RELATIONS = []
+
+        #:nodoc:
+        def inspect_include_fields
+          [:sender_name, :contact_name, :email_address]
+        end
         
         def initialize(data)
           @to_xml = data.to_s

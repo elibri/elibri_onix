@@ -5,6 +5,8 @@ module Elibri
 
       #class representing whole ONIX response from eLibri server
       class ONIXMessage   
+        include Inspector
+  
         #list of all products returned in this mnessage
         attr_accessor :products
 
@@ -31,7 +33,12 @@ module Elibri
         RELATIONS = [
           :products
         ]
+
+        def inspect_include_fields
+          [:header, :elibri_dialect, :release, :products]
+        end
         
+
         def self.from_xml(data, *initialization_args)
           Kernel.warn "[DEPRECATION] `from_xml` is deprecated. Please use `new` instead."
           self.new(data, *initialization_args)

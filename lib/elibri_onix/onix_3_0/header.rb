@@ -6,7 +6,8 @@ module Elibri
 
       #Class representing ONIX header
       class Header
-        
+        include Inspector
+       
         #date, at which message was sent
         attr_accessor :sent_date_time
    
@@ -23,7 +24,12 @@ module Elibri
         
         #:nodoc:
         RELATIONS = []
-        
+ 
+        #:nodoc: 
+        def inspect_include_fields
+          [:sender]
+        end
+
         def initialize(data)
           @to_xml = data.to_s
           @sent_date_time = Date.parse(data.xpath('xmlns:SentDateTime').try(:text)) if data.xpath('xmlns:SentDateTime')
