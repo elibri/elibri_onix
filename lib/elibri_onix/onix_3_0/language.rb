@@ -10,6 +10,8 @@ module Elibri
         #An optional and repeatable group of data elements which together represent a language, and specify its role and,
         #where required, whether it is a country variant.
  
+        include Inspector
+
         #:nodoc:       
         ATTRIBUTES = [
           :role, :code, :role_name, :language

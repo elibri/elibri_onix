@@ -35,7 +35,8 @@ module Elibri
         ]
 
         def inspect_include_fields
-          [:record_reference, :full_title, :front_cover, :publisher, :isbn13, :ean, :premiere]
+          [:record_reference, :full_title, :front_cover, :publisher, :isbn13, :ean, :premiere, :contributors, :languages, :description, :product_form_name,
+            :technical_protection, :digital_formats]
         end
 
 
@@ -150,6 +151,10 @@ module Elibri
         #https://github.com/elibri/elibri_onix_dict/blob/master/lib/elibri_onix_dict/onix_3_0/serialized/ProductFormCode.yml
         attr_reader :product_form
 
+        #nazwa typu produktu, małe litery, np. 'book' - patrz pełna lista pod adresem
+        #https://github.com/elibri/elibri_onix_dict/blob/master/lib/elibri_onix_dict/onix_3_0/serialized/ProductFormCode.yml
+        attr_reader :product_form_name
+    
         #lista autorów, tłumaczy i innych, którzy mieli wkład w książkę, lista instancji Contributor
         attr_reader :contributors
         
@@ -259,6 +264,7 @@ module Elibri
         def descriptive_details_setup(data)
           @product_composition = data.at_xpath('xmlns:ProductComposition').try(:text)
           @product_form = data.at_xpath('xmlns:ProductForm').try(:text)
+          @product_form_name = Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form).name(:en).downcase
           @measures =  data.xpath('xmlns:Measure').map { |measure_data| Measure.new(measure_data) }
           @title_details = data.xpath('xmlns:TitleDetail').map { |title_data| TitleDetail.new(title_data) }
           @collections = data.xpath('xmlns:Collection').map { |collection_data| Collection.new(collection_data) }

@@ -6,6 +6,7 @@ module Elibri
       class Contributor
         include ExternalId
         include ExternalTimestamp
+        include Inspector
         
         #from ONIX documentation:
         #Authorship and other forms of contribution are described by repeats of the <Contributor> composite, 
@@ -91,7 +92,7 @@ module Elibri
         end
 
         def inspect_include_fields
-          [:role_name]
+          [:role_name, :person_name]
         end
          
       end

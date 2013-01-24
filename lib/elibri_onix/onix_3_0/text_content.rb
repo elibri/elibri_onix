@@ -6,6 +6,7 @@ module Elibri
       class TextContent
         include ExternalId
         include ExternalTimestamp
+        include Inspector
          
         #from ONIX documentation:
         #An optional and repeatable group of data elements which together carry text related to the product.
@@ -41,7 +42,7 @@ module Elibri
 
  
         def inspect_include_fields
-          [:type_name]
+          [:type_name, :text]
         end
 
         private
