@@ -6,6 +6,8 @@ module Elibri
       #Niektóre pola mogą pozostać bez wartości - zależy to od formy produktu
       class Product
         
+        include Inspector
+
         #:nodoc:
         ATTRIBUTES =
         [
@@ -31,6 +33,11 @@ module Elibri
           :ghostwriters, :scenarists, :originators, :illustrators, :photographers, :author_of_prefaces, :drawers,
           :cover_designers, :inked_or_colored_bys, :editors, :revisors, :translators, :editor_in_chiefs, :read_bys
         ]
+
+        def inspect_include_fields
+          [:record_reference, :full_title, :front_cover, :publisher, :isbn13, :ean, :premiere]
+        end
+
 
         #:doc:
         #wysokość w milimetrach
@@ -76,10 +83,10 @@ module Elibri
         #Wiek czytelnika - do
         attr_reader :reading_age_to
 
-        #Spis treści - jeśli wydawca takowy umieścił
+        #Spis treści - jeśli wydawca takowy umieścił, instancja TextContent
         attr_reader :table_of_contents
 
-        #Opis produktu
+        #Opis produktu, instancja TextContent
         attr_reader :description
 
         #lista serii, w postaci [nazwa serii, numer w serii]
@@ -103,7 +110,7 @@ module Elibri
         #tytuł oryginału
         attr_reader :original_title
 
-        #krótki opis, jeśli wydawca takowy zamieści
+        #krótki opis, jeśli wydawca takowy zamieści, instancja TextContent
         attr_reader :short_description
 
         #id kategorii elibri (1)
@@ -374,31 +381,6 @@ module Elibri
           @identifiers.find_all { |i| i.identifier_type == "proprietary" }.inject({}) { |res, ident| res[ident.type_name] = ident.value; res }
         end
 
-        #:nodoc:
-        def pretty_print_instance_variables
-          (instance_variables - ["@roxml_references", "@measures", "@identifiers", "@notification_type", "@publishing_status",
-                                 "@elibri_dialect", "@product_composition", "@extents", "@publisher", "@imprint",
-                                 "@audience_ranges", "@text_contents", "@collections", "@title_details", "@publishing_date"]).find_all { |varname|
-              instance_variable_get(varname).present?
-          }.sort
-        end
-
-        #:nodoc:
-        def pretty_print(pp)
-          pp.object_address_group(self) {
-            pp.seplist(self.pretty_print_instance_variables, lambda { pp.text ',' }) {|v|
-              pp.breakable
-              v = v.to_s if Symbol === v
-              pp.text v
-              pp.text '='
-              pp.group(1) {
-                pp.breakable ''
-                pp.pp(self.instance_eval(v))
-              }
-            }
-          }
-        end
-        
         #data premiery w postaci listy [rok, miesiąc, dzień], [rok, miesiąc], [rok], lub pustej listy - jeśli data premiery nie jest znana
         #(data premiery może nie być znana w przypadku backlisty)
         def parsed_publishing_date

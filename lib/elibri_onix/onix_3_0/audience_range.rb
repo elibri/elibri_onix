@@ -8,14 +8,16 @@ module Elibri
         #from ONIX documentation:
         #An optional and repeatable group of data elements which together describe an audience or readership range for which a product
         #is intended.
-        
+ 
+        #:nodoc:       
         ATTRIBUTES = [
           :qualifier, :precision, :value
         ]
         
+        #:nodoc:
         RELATIONS = []
         
-        attr_accessor :qualifier, :precision, :value, :to_xml
+        attr_reader :qualifier, :precision, :value, :to_xml
 
         def initialize(data)
           @old_xml = data.to_s

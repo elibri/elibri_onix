@@ -9,11 +9,13 @@ module Elibri
          
         #from ONIX documentation:
         #An optional and repeatable group of data elements which together carry text related to the product.
-      
+  
+        #:nodoc:    
         ATTRIBUTES = [
           :type, :author, :source_title, :text, :source_url, :type_name
         ]
         
+        #:nodoc:
         RELATIONS = [
           :inspect_include_fields
         ]

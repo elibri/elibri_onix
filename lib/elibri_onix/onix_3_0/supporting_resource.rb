@@ -7,6 +7,7 @@ module Elibri
       class SupportingResource
         include ExternalId
         include ExternalTimestamp
+        include Inspector
         
         #from ONIX documentation:
         #An optional and repeatable group of data elements which together describe a supporting resource.

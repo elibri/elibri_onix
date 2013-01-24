@@ -1,6 +1,6 @@
 module HashId
   
-  SKIPPED_ATTRIBS = ["@opts", "@default_namespace", "@instance", "@roxml_references"]
+  SKIPPED_ATTRIBS = ["@opts", "@default_namespace", "@instance"]
   SKIPPED_2 = ["@id", "@id_before_type_cast"]
 
   def eid
