@@ -75,7 +75,7 @@ module Elibri
         #użytkownikowi w sklepie jako nazwa wydawnictwa.
         attr_reader :imprint_name
 
-        #Status produktu - jedna z wartości: announced, :preorder, :published, :out_of_print
+        #Status produktu - jedna z wartości: announced, :preorder, :published, :out_of_print, :deleted
         attr_reader :current_state
 
         #Wiek czytelnika - od
@@ -453,6 +453,8 @@ module Elibri
             @current_state = :announced
           elsif @notification_type == "02"
             @current_state = :preorder
+          elsif @notification_type == "05"
+            @current_state = :deleted
           else
             if @publishing_status == "04"
               @current_state = :published
