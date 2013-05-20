@@ -18,7 +18,8 @@ module Elibri
           :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :product_composition, 
           :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
           :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
-          :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description, :sale_restricted_to_poland
+          :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description, :sale_restricted_to_poland,
+          :technical_protection_onix_code
         ]
         
         #:nodoc:
@@ -131,6 +132,7 @@ module Elibri
 
         #sposób zabezpieczania pliki (DRM, WATERMARK) - pliki dostępne w API transakcyjnym zawsze będą chronione watermarkiem
         attr_reader :technical_protection
+        attr_reader :technical_protection_onix_code
           
         #record reference - wewnętrzny identyfikator rekordu, niezmienny i unikatowy
         attr_reader :record_reference
@@ -172,6 +174,7 @@ module Elibri
 
         #miasto, w którym została wydana ksiażka
         attr_reader :city_of_publication
+
 
         #:nodoc:
         attr_reader :text_contents
@@ -285,6 +288,7 @@ module Elibri
           #zabezpiecznie pliku
           if protection = data.at_xpath("xmlns:EpubTechnicalProtection").try(:text)
             @technical_protection =  Elibri::ONIX::Dict::Release_3_0::EpubTechnicalProtection::find_by_onix_code(protection).name
+            @technical_protection_onix_code = protection
           end
 
           @edition_statement = data.at_xpath('xmlns:EditionStatement').try(:text)
