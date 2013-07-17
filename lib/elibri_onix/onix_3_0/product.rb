@@ -175,6 +175,11 @@ module Elibri
         #miasto, w którym została wydana ksiażka
         attr_reader :city_of_publication
 
+        #informacje o fragmentach utworów (produkty cyfrowe)
+        attr_reader :excerpt_infos
+
+        #informacje o plikach master (produkty cyfrowe)
+        attr_reader :file_infos
 
         #:nodoc:
         attr_reader :text_contents
@@ -251,6 +256,8 @@ module Elibri
           collateral_details_setup(data.at_xpath('xmlns:CollateralDetail')) if data.at_xpath('xmlns:CollateralDetail')
           publishing_details_setup(data.at_xpath('xmlns:PublishingDetail')) if data.at_xpath('xmlns:PublishingDetail')
           licence_information_setup(data)
+          @excerpt_infos = data.xpath("//elibri:excerpt").map { |node| ExcerptInfo.new(node) }
+          @file_infos = data.xpath("//elibri:master").map { |node| FileInfo.new(node) }
           after_parse
         end
  
