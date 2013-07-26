@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference" xmlns:elibri="http://elibri.com.pl/ns/extensions">
+  <elibri:Dialect>3.0.1</elibri:Dialect>
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20130710</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>fdb8fa072be774d97a97</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9788324799992</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <ProductComposition>00</ProductComposition>
+      <ProductForm>EA</ProductForm>
+      <TitleDetail>
+        <TitleType>01</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Nielegalni</TitleText>
+        </TitleElement>
+      </TitleDetail>
+    </DescriptiveDetail>
+    <PublishingDetail>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherIdentifier>
+          <PublisherIDType>01</PublisherIDType>
+          <IDTypeName>ElibriPublisherCode</IDTypeName>
+          <IDValue>11</IDValue>
+        </PublisherIdentifier>
+        <PublisherName>GREG</PublisherName>
+      </Publisher>
+      <CityOfPublication>Warszawa</CityOfPublication>
+      <PublishingStatus>04</PublishingStatus>
+      <SalesRights>
+        <SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <RegionsIncluded>WORLD</RegionsIncluded>
+        </Territory>
+      </SalesRights>
+    </PublishingDetail>
+    <elibri:preview_exists>false</elibri:preview_exists>
+    <elibri:SaleNotRestricted/>
+    <elibri:excerpts>
+      <elibri:excerpt md5="4b145ff46636b06f49225abdab70927f" file_size="2100230" file_type="epub_excerpt" updated_at="2012-12-30T15:18:00+00:00" id="767">https://www.elibri.com.pl/excerpt/767</elibri:excerpt>
+      <elibri:excerpt md5="6f534ab6ab573845bb7ab221192aa86a" file_size="2101254" file_type="mobi_excerpt" updated_at="2012-12-30T15:16:00+00:00" id="768">https://www.elibri.com.pl/excerpt/768</elibri:excerpt>
+    </elibri:excerpts>
+    <elibri:masters>
+      <elibri:master id="765" md5="e9353ce40eaa677f8c5d666c2f8bbb3f" file_size="4197382" file_type="epub" updated_at="2012-12-30T15:18:00+00:00"/>
+      <elibri:master id="766" md5="d2c75a26973a1888f241125717b166cf" file_size="5246982" file_type="mobi" updated_at="2012-12-30T15:16:00+00:00"/>
+    </elibri:masters>
+  </Product>
+</ONIXMessage>

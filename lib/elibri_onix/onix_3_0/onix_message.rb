@@ -44,9 +44,9 @@ module Elibri
           self.new(data, *initialization_args)
         end
 
-        def initialize(data, *initialization_args)
-          @to_xml = data.to_s
-          xml = Nokogiri::XML(data) unless xml.is_a?(Nokogiri::XML::Document)
+        def initialize(xml, *initialization_args)
+          @to_xml = xml.to_s
+          xml = Nokogiri::XML(xml) unless xml.is_a?(Nokogiri::XML::Document)
           onix_message = xml.children.first
           @release = onix_message['release']
           @elibri_dialect = onix_message.at_xpath('elibri:Dialect').try(:text)
