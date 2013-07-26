@@ -19,7 +19,7 @@ module Elibri
           :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
           :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
           :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description, :sale_restricted_to_poland,
-          :technical_protection_onix_code
+          :technical_protection_onix_code, :unlimited_licence
         ]
         
         #:nodoc:
