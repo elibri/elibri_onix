@@ -13,7 +13,11 @@ module ExternalId
   end
 
   def eid
-    @id_before_type_cast.split(":")[1].to_i
+    begin
+      @id_before_type_cast.split(":")[1].to_i
+    rescue
+      nil
+    end
   end
   
   def id
