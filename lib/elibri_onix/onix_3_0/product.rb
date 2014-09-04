@@ -256,8 +256,16 @@ module Elibri
           collateral_details_setup(data.at_xpath('xmlns:CollateralDetail')) if data.at_xpath('xmlns:CollateralDetail')
           publishing_details_setup(data.at_xpath('xmlns:PublishingDetail')) if data.at_xpath('xmlns:PublishingDetail')
           licence_information_setup(data)
-          @excerpt_infos = data.xpath("//elibri:excerpt").map { |node| ExcerptInfo.new(node) }
-          @file_infos = data.xpath("//elibri:master").map { |node| FileInfo.new(node) }
+          begin
+            @excerpt_infos = data.at_xpath("elibri:excerpts").xpath("elibri:excerpt").map { |node| ExcerptInfo.new(node) }
+          rescue
+            @excerpt_infos = []
+          end
+          begin
+            @file_infos = data.at_xpath("elibri:masters").xpath("elibri:master").map { |node| FileInfo.new(node) }
+          rescue
+            @file_infos = []
+          end
           after_parse
         end
  
