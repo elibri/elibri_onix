@@ -15,8 +15,6 @@ require 'elibri_onix/releases'
 require 'elibri_onix/nokogiri_patch'
 require 'elibri_onix_dict'
 
-$KCODE = "UTF-8"
-
 
 module Elibri
   module ONIX
