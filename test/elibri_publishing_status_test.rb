@@ -19,6 +19,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal :preorder, product.current_state
     assert_equal [2011, 2, 10], product.parsed_publishing_date
     assert_equal Date.new(2011, 2, 10), product.premiere
+    assert_equal Date.new(2011, 2, 1), product.preorder_embargo_date
     assert !product.sales_restrictions?
   end
 

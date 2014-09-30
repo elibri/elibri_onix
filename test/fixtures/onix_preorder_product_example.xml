@@ -7,7 +7,7 @@
       <ContactName>Tomasz Meka</ContactName>
       <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
     </Sender>
-    <SentDateTime>20111111</SentDateTime>
+    <SentDateTime>20140930</SentDateTime>
   </Header>
   <Product>
     <RecordReference>fdb8fa072be774d97a97</RecordReference>
@@ -43,6 +43,11 @@
         <PublishingDateRole>01</PublishingDateRole>
         <DateFormat>00</DateFormat>
         <Date>20110210</Date>
+      </PublishingDate>
+      <PublishingDate>
+        <PublishingDateRole>27</PublishingDateRole>
+        <DateFormat>00</DateFormat>
+        <Date>20110201</Date>
       </PublishingDate>
       <SalesRights>
         <SalesRightsType>01</SalesRightsType>

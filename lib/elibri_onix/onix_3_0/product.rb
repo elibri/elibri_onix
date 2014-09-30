@@ -19,7 +19,7 @@ module Elibri
           :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
           :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
           :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description, :sale_restricted_to_poland,
-          :technical_protection_onix_code, :unlimited_licence
+          :technical_protection_onix_code, :unlimited_licence, :hyphenated_isbn, :preorder_embargo_date
         ]
         
         #:nodoc:
@@ -181,6 +181,9 @@ module Elibri
         #informacje o plikach master (produkty cyfrowe)
         attr_reader :file_infos
 
+        #isbn z kreskami
+        attr_reader :hyphenated_isbn
+
         #:nodoc:
         attr_reader :text_contents
         attr_reader :file_size
@@ -207,6 +210,7 @@ module Elibri
         attr_reader :sales_restrictions
         attr_reader :publishing_date
         attr_reader :related_products
+        attr_reader :preorder_embargo_date
 
         #:nodoc:
         attr_accessor :sale_restricted_to_poland, :unlimited_licence, :no_contributor, :preview_exists
@@ -240,6 +244,8 @@ module Elibri
           @cover_price = BigDecimal.new(data.at_xpath('elibri:CoverPrice').try(:text)) if data.at_xpath('elibri:CoverPrice')
           @vat = data.at_xpath('elibri:Vat').try(:text).try(:to_i)
           @pkwiu = data.at_xpath('elibri:PKWiU').try(:text)
+          @hyphenated_isbn = data.at_xpath('elibri:HyphenatedISBN').try(:text)
+
           @preview_exists = (data.at_xpath('elibri:preview_exists').try(:text) == "true")
           @identifiers = data.xpath('xmlns:ProductIdentifier').map { |ident_data| ProductIdentifier.new(ident_data) }
           begin
@@ -312,7 +318,13 @@ module Elibri
           @publisher = Publisher.new(data.at_xpath('xmlns:Publisher')) if data.at_xpath('xmlns:Publisher')
           @publishing_status = data.at_xpath('xmlns:PublishingStatus').try(:text)
           @city_of_publication = data.at_xpath("xmlns:CityOfPublication").try(:text)
-          @publishing_date = PublishingDate.new(data.at_xpath('xmlns:PublishingDate')) if data.at_xpath('xmlns:PublishingDate')
+          publication_dates = data.xpath('xmlns:PublishingDate').map do |node|
+            PublishingDate.new(node)
+          end
+          @publishing_date = publication_dates.find { |date| date.role == Elibri::ONIX::Dict::Release_3_0::PublishingDateRole::PUBLICATION_DATE }
+          preorder_embargo_date_as_object = publication_dates.find { |date| date.role == Elibri::ONIX::Dict::Release_3_0::PublishingDateRole::PREORDER_EMBARGO_DATE }
+          @preorder_embargo_date = Date.new(*preorder_embargo_date_as_object.parsed) if preorder_embargo_date_as_object
+
           @sales_restrictions = data.xpath('xmlns:SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }      
           #ograniczenia terytorialne
           if data.at_xpath(".//xmlns:CountriesIncluded").try(:text) == "PL"

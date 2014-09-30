@@ -8,6 +8,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal "fdb8fa072be774d97a97", product.record_reference
     assert_equal '9788324799992', product.isbn13
     assert_equal '9788324788882', product.ean
+    assert_equal '978-83-2478-888-2', product.hyphenated_isbn
 
     assert_equal({"Olesiejuk" => "355006"}, product.proprietary_identifiers)
 
