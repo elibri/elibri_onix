@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    elibri_onix (0.2.14)
+    elibri_onix (0.3.0)
       activesupport (>= 2.3.5)
       elibri_onix_dict (>= 0.0.5)
       i18n
@@ -10,23 +10,24 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (3.2.17)
+    activesupport (3.2.22.5)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     coderay (1.0.6)
-    elibri_onix_dict (0.0.24)
-    i18n (0.6.11)
+    elibri_onix_dict (0.0.28)
+    i18n (0.8.1)
     json (1.7.6)
     json (1.7.6-java)
     metaclass (0.0.1)
     method_source (0.7.1)
-    mini_portile (0.5.3)
+    mini_portile2 (2.1.0)
     minitest (3.0.1)
     mocha (0.11.4)
       metaclass (~> 0.0.1)
-    multi_json (1.10.1)
-    nokogiri (1.6.1)
-      mini_portile (~> 0.5.0)
+    multi_json (1.12.1)
+    nokogiri (1.7.2)
+      mini_portile2 (~> 2.1.0)
+    nokogiri (1.7.2-java)
     pry (0.9.9.6)
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
@@ -54,3 +55,6 @@ DEPENDENCIES
   pry
   rake
   rdoc
+
+BUNDLED WITH
+   1.11.2
