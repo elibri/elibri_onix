@@ -5,7 +5,7 @@ module Elibri
       #Klasa reprezentująca produkt
       #Niektóre pola mogą pozostać bez wartości - zależy to od formy produktu
       class Product
-        
+
         include Inspector
 
         #:nodoc:
@@ -21,7 +21,7 @@ module Elibri
           :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description, :sale_restricted_to_poland,
           :technical_protection_onix_code, :unlimited_licence, :hyphenated_isbn, :preorder_embargo_date
         ]
-        
+
         #:nodoc:
         RELATIONS =
         [
@@ -56,7 +56,7 @@ module Elibri
 
         #ean, jeśli jest inny, niż isbn13
         attr_reader :ean
-  
+
         #isbn13 - bez kresek
         attr_reader :isbn13
 
@@ -133,13 +133,13 @@ module Elibri
         #sposób zabezpieczania pliki (DRM, WATERMARK) - pliki dostępne w API transakcyjnym zawsze będą chronione watermarkiem
         attr_reader :technical_protection
         attr_reader :technical_protection_onix_code
-          
+
         #record reference - wewnętrzny identyfikator rekordu, niezmienny i unikatowy
         attr_reader :record_reference
 
         #typ okładki, np. 'miękka ze skrzydełkami'
         attr_reader :cover_type
-  
+
         #sugerowana cena detaliczna brutto produktu
         attr_reader :cover_price
 
@@ -149,6 +149,9 @@ module Elibri
         #PKWiU
         attr_reader :pkwiu
 
+        #PDWExclusiveness
+        attr_reader :pdw_exclusiveness
+
         #kod ONIX typu produktu, np. 'BA' - lista dostępna pod adresem 
         #https://github.com/elibri/elibri_onix_dict/blob/master/lib/elibri_onix_dict/onix_3_0/serialized/ProductFormCode.yml
         attr_reader :product_form
@@ -156,10 +159,10 @@ module Elibri
         #nazwa typu produktu, małe litery, np. 'book' - patrz pełna lista pod adresem
         #https://github.com/elibri/elibri_onix_dict/blob/master/lib/elibri_onix_dict/onix_3_0/serialized/ProductFormCode.yml
         attr_reader :product_form_name
-    
+
         #lista autorów, tłumaczy i innych, którzy mieli wkład w książkę, lista instancji Contributor
         attr_reader :contributors
-        
+
         #lista języków, lista intancji Language
         attr_reader :languages
 
@@ -233,9 +236,9 @@ module Elibri
           @audience_ranges = []
           ##publishing_details
           @sales_restrictions = []
-          
+
           #moving to parsing attributes
-          
+
           @elibri_dialect = data.at_xpath('//elibri:Dialect').try(:text)
           @record_reference = data.at_xpath('xmlns:RecordReference').try(:text)
           @notification_type = data.at_xpath('xmlns:NotificationType').try(:text)
@@ -245,6 +248,7 @@ module Elibri
           @vat = data.at_xpath('elibri:Vat').try(:text).try(:to_i)
           @pkwiu = data.at_xpath('elibri:PKWiU').try(:text)
           @hyphenated_isbn = data.at_xpath('elibri:HyphenatedISBN').try(:text)
+          @pdw_exclusiveness = data.at_xpath('elibri:PDWExclusiveness').try(:text)
 
           @preview_exists = (data.at_xpath('elibri:preview_exists').try(:text) == "true")
           @identifiers = data.xpath('xmlns:ProductIdentifier').map { |ident_data| ProductIdentifier.new(ident_data) }
@@ -274,7 +278,7 @@ module Elibri
           end
           after_parse
         end
- 
+
         def licence_information_setup(data)
           if data.at_xpath("elibri:SaleNotRestricted")
             @unlimited_licence = true
@@ -284,7 +288,7 @@ module Elibri
             @licence_limited_to = Date.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i)
           end
         end
-        
+
         def descriptive_details_setup(data)
           @product_composition = data.at_xpath('xmlns:ProductComposition').try(:text)
           @product_form = data.at_xpath('xmlns:ProductForm').try(:text)
@@ -305,7 +309,7 @@ module Elibri
               @digital_formats << Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text).name.upcase.gsub("MOBIPOCKET", "MOBI")
             end
           end
-         
+
           #zabezpiecznie pliku
           if protection = data.at_xpath("xmlns:EpubTechnicalProtection").try(:text)
             @technical_protection =  Elibri::ONIX::Dict::Release_3_0::EpubTechnicalProtection::find_by_onix_code(protection).name
@@ -315,12 +319,12 @@ module Elibri
           @edition_statement = data.at_xpath('xmlns:EditionStatement').try(:text)
           @number_of_illustrations = data.at_xpath('xmlns:NumberOfIllustrations').try(:text).try(:to_i)
         end
-        
+
         def collateral_details_setup(data)
           @text_contents = data.xpath('xmlns:TextContent').map { |text_detail| TextContent.new(text_detail) }
           @supporting_resources = data.xpath('xmlns:SupportingResource').map { |supporting_data| SupportingResource.new(supporting_data) }
         end
-        
+
         def publishing_details_setup(data)
           @imprint = Imprint.new(data.at_xpath('xmlns:Imprint')) if data.at_xpath('xmlns:Imprint')
           @publisher = Publisher.new(data.at_xpath('xmlns:Publisher')) if data.at_xpath('xmlns:Publisher')
@@ -351,7 +355,7 @@ module Elibri
         def sale_restricted_to_poland?
           @sale_restricted_to_poland
         end
- 
+
         #flaga informująca, czy licencja jest bezterminowa
         def unlimited_licence?
           @unlimited_licence
@@ -412,7 +416,7 @@ module Elibri
         def related_products_record_references
           related_products.map(&:record_reference)
         end
- 
+
         #:nodoc:
         def proprietary_identifiers 
           @identifiers.find_all { |i| i.identifier_type == "proprietary" }.inject({}) { |res, ident| res[ident.type_name] = ident.value; res }
@@ -470,14 +474,14 @@ module Elibri
           @full_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).try(:full_title)
           @original_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::ORIGINAL_TITLE).try(:full_title)
           @trade_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTRIBUTORS_TITLE).try(:full_title)
-  
+
           @elibri_product_category1_id = subjects[0].code if subjects[0]
           @elibri_product_category2_id = subjects[1].code if subjects[1]
 
           compute_state!
         end
 
-        
+
 
         def compute_state!
           if @notification_type == "01"
