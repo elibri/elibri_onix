@@ -12,6 +12,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal "58.11.1", product.pkwiu
     assert_equal "VIC", product.pdw_exclusiveness
     assert product.preview_exists?
+    assert_equal "PROMOCJA!", product.additional_info
   end
 
 end

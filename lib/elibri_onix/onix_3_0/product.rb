@@ -152,6 +152,9 @@ module Elibri
         #PDWExclusiveness
         attr_reader :pdw_exclusiveness
 
+        #AdditionalInfo
+        attr_reader :additional_info
+
         #kod ONIX typu produktu, np. 'BA' - lista dostępna pod adresem 
         #https://github.com/elibri/elibri_onix_dict/blob/master/lib/elibri_onix_dict/onix_3_0/serialized/ProductFormCode.yml
         attr_reader :product_form
@@ -249,6 +252,7 @@ module Elibri
           @pkwiu = data.at_xpath('elibri:PKWiU').try(:text)
           @hyphenated_isbn = data.at_xpath('elibri:HyphenatedISBN').try(:text)
           @pdw_exclusiveness = data.at_xpath('elibri:PDWExclusiveness').try(:text)
+          @additional_info = data.at_xpath('elibri:AdditionalInfo').try(:text)
 
           @preview_exists = (data.at_xpath('elibri:preview_exists').try(:text) == "true")
           @identifiers = data.xpath('xmlns:ProductIdentifier').map { |ident_data| ProductIdentifier.new(ident_data) }
