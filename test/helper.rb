@@ -9,7 +9,7 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'test/unit'
+
 require 'minitest/autorun'
 require 'mocha'
 require 'pry'
@@ -18,9 +18,6 @@ require 'pry'
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'elibri_onix'
-
-class Test::Unit::TestCase
-end
 
 def load_fixture(filename, idx = 0)
   xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", filename)

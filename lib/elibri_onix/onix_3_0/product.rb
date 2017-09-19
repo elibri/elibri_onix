@@ -15,7 +15,7 @@ module Elibri
           :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
           :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
           :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date, :record_reference,
-          :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :product_composition, 
+          :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :additional_info, :product_composition, 
           :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
           :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
           :elibri_product_category1_id, :elibri_product_category2_id, :preview_exists, :short_description, :sale_restricted_to_poland,
@@ -211,7 +211,6 @@ module Elibri
         attr_reader :audience_ranges
         attr_reader :supply_details
         attr_reader :identifiers
-        attr_reader :no_contributor
         attr_reader :supporting_resources
         attr_reader :sales_restrictions
         attr_reader :publishing_date
@@ -395,11 +394,6 @@ module Elibri
           define_method "#{state}?" do
             current_state == state
           end
-        end
-
-        #czy istnieje podgląd?
-        def preview_exists?
-          @preview_exists
         end
 
         #okładka ksiązki, instance SupportingResource
