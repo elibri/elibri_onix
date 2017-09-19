@@ -30,7 +30,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "pry"
   gem.add_development_dependency "mocha"
   gem.add_development_dependency "minitest", ">= 0"
-  gem.add_development_dependency "bundler", "~> 1.15"
+  gem.add_development_dependency "bundler", "~> 1.7"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rdoc"
   #gem.add_development_dependency "ruby-debug"
