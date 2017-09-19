@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'lib/elibri_onix'
+require_relative 'lib/elibri_onix'
 
 File.open("FIELDS.rdoc", 'w') do |f|
   f.write("= List of attributes in Elibri_Onix classes\n\n")
