@@ -10,8 +10,7 @@ Gem::Specification.new do |gem|
 
   gem.licenses = ["MIT"]
 
-  gem.files         = Dir["{lib}/**/*"] + %w(Rakefile README.rdoc FIELDS.rdoc LICENSE.txt)
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.files         = Dir["{lib,test}/**/*"] + %w(Rakefile README.rdoc FIELDS.rdoc LICENSE.txt)
   gem.name          = "elibri_onix"
   gem.require_paths = ["lib"]
   gem.version       = Elibri::ONIX::VERSION
