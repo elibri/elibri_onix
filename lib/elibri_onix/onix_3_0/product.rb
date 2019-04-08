@@ -246,7 +246,7 @@ module Elibri
           @notification_type = data.at_xpath('xmlns:NotificationType').try(:text)
           @deletion_text = data.at_xpath('xmlns:DeletionText').try(:text)
           @cover_type = data.at_xpath('elibri:CoverType').try(:text)
-          @cover_price = BigDecimal.new(data.at_xpath('elibri:CoverPrice').try(:text)) if data.at_xpath('elibri:CoverPrice')
+          @cover_price = BigDecimal(data.at_xpath('elibri:CoverPrice').try(:text)) if data.at_xpath('elibri:CoverPrice')
           @vat = data.at_xpath('elibri:Vat').try(:text).try(:to_i)
           @pkwiu = data.at_xpath('elibri:PKWiU').try(:text)
           @hyphenated_isbn = data.at_xpath('elibri:HyphenatedISBN').try(:text)
