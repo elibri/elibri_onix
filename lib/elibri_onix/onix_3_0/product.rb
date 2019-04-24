@@ -295,7 +295,9 @@ module Elibri
         def descriptive_details_setup(data)
           @product_composition = data.at_xpath('xmlns:ProductComposition').try(:text)
           @product_form = data.at_xpath('xmlns:ProductForm').try(:text)
-          @product_form_name = Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form).name(:en).downcase
+          if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form)
+            @product_form_name = Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form).name(:en).downcase
+          end
           @measures =  data.xpath('xmlns:Measure').map { |measure_data| Measure.new(measure_data) }
           @title_details = data.xpath('xmlns:TitleDetail').map { |title_data| TitleDetail.new(title_data) }
           @collections = data.xpath('xmlns:Collection').map { |collection_data| Collection.new(collection_data) }
