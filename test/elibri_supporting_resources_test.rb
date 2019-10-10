@@ -17,9 +17,11 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal Date.new(2011, 12, 1) + 18.hours + 5.minutes, product.front_cover.datestamp
     assert_equal 667, product.front_cover.eid
 
-    assert_equal "sample_content", product.supporting_resources[1].content_type_name
+    assert_equal "widget", product.supporting_resources[1].content_type_name
     assert_equal "text", product.supporting_resources[1].mode_name
-    assert_equal "downloadable_file", product.supporting_resources[1].form_name
+    assert_equal "embeddable_application", product.supporting_resources[1].form_name
+
+    assert product.preview_exists?
   end
 
 end

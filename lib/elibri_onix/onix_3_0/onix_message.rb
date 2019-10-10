@@ -16,9 +16,6 @@ module Elibri
         #ONIX version number 
         attr_accessor :release
 
-        #:nodoc:
-        attr_accessor :elibri_dialect
-
         #returned message header - Elibri::ONIX::Release_3_0::Header
         attr_accessor :header
         
@@ -26,7 +23,7 @@ module Elibri
          
         #:nodoc:
         ATTRIBUTES = [
-          :release, :elibri_dialect, :header
+          :release, :header
         ]
         
         #:nodoc:
@@ -35,26 +32,17 @@ module Elibri
         ]
 
         def inspect_include_fields
-          [:header, :elibri_dialect, :release, :products]
+          [:header, :release, :products]
         end
         
-
-        def self.from_xml(data, *initialization_args)
-          Kernel.warn "[DEPRECATION] `from_xml` is deprecated. Please use `new` instead."
-          self.new(data, *initialization_args)
-        end
-
         def initialize(xml, *initialization_args)
           @to_xml = xml.to_s
           xml = Nokogiri::XML(xml) unless xml.is_a?(Nokogiri::XML::Document)
           onix_message = xml.children.first
           @release = onix_message['release']
-          @elibri_dialect = onix_message.at_xpath('elibri:Dialect').try(:text)
-          @header = Header.new(onix_message.at_xpath('xmlns:Header')) if onix_message.at_xpath('xmlns:Header')
-          @products = onix_message.xpath('xmlns:Product').map { |product_node| Product.new(product_node) }
+          @header = Header.new(onix_message.at_css('Header')) if onix_message.at_css('Header')
+          @products = onix_message.css('Product').map { |product_node| Product.new(product_node) }
         end
-
-
       end
 
     end

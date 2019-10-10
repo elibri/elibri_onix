@@ -1,9 +1,5 @@
 module ExternalId
  
-#  def self.included(base)
-#    base.xml_accessor :id_before_type_cast, :from => "@sourcename"
-#  end
-
   def self.included(base)
     base.send(:attr_accessor, :id_before_type_cast)
   end
@@ -19,10 +15,4 @@ module ExternalId
       nil
     end
   end
-  
-  def id
-    Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
-    eid
-  end
-
 end

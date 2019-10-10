@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference">
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20190729</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>fdb8fa072be774d97a97</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9788324799992</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <ProductComposition>00</ProductComposition>
+      <ProductForm>BA</ProductForm>
+      <TitleDetail>
+        <TitleType>01</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Nielegalni</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <Subject>
+        <MainSubject/>
+        <SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
+        <SubjectSchemeName>elibri.com.pl</SubjectSchemeName>
+        <SubjectSchemeVersion>1.0</SubjectSchemeVersion>
+        <SubjectCode>1110</SubjectCode>
+        <SubjectHeadingText>Historia / II Wojna Światowa / Ruch oporu</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
+        <SubjectSchemeName>elibri.com.pl</SubjectSchemeName>
+        <SubjectSchemeVersion>1.0</SubjectSchemeVersion>
+        <SubjectCode>491</SubjectCode>
+        <SubjectHeadingText>Szkoła i nauczanie / Lektury szkolne z opracowaniami</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <SubjectSchemeIdentifier>93</SubjectSchemeIdentifier>
+        <SubjectSchemeVersion>1.3</SubjectSchemeVersion>
+        <SubjectCode>JWCM</SubjectCode>
+        <SubjectHeadingText>Społeczeństwo i nauki społeczne / Działania wojenne i obronność / Siły zbrojne / Lotnictwo wojskowe i wojna w powietrzu</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <SubjectSchemeIdentifier>94</SubjectSchemeIdentifier>
+        <SubjectSchemeVersion>1.3</SubjectSchemeVersion>
+        <SubjectCode>1DTP</SubjectCode>
+        <SubjectHeadingText>Kwalifikatory geograficzne / Europa / Europa Wschodnia / Polska</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <SubjectSchemeIdentifier>96</SubjectSchemeIdentifier>
+        <SubjectSchemeVersion>1.3</SubjectSchemeVersion>
+        <SubjectCode>3MPBGH</SubjectCode>
+        <SubjectHeadingText>Kwalifikatory chronologiczne / od ok. 1500 do dzisiaj / XX wiek (ok. 1900–1999) / 1. poł. XX wieku (ok. 1900–1950) / Dwudziestolecie międzywojenne (ok. 1919–1939) / ok. 1920–1929</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
+        <SubjectSchemeName>GREG</SubjectSchemeName>
+        <SubjectCode>191</SubjectCode>
+        <SubjectHeadingText>Beletrystyka: Horror</SubjectHeadingText>
+      </Subject>
+    </DescriptiveDetail>
+    <PublishingDetail>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherIdentifier>
+          <PublisherIDType>01</PublisherIDType>
+          <IDTypeName>ElibriPublisherCode</IDTypeName>
+          <IDValue>11</IDValue>
+        </PublisherIdentifier>
+        <PublisherName>GREG</PublisherName>
+      </Publisher>
+      <CityOfPublication>Warszawa</CityOfPublication>
+      <PublishingStatus>04</PublishingStatus>
+      <SalesRights>
+        <SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <RegionsIncluded>WORLD</RegionsIncluded>
+        </Territory>
+      </SalesRights>
+    </PublishingDetail>
+    <ProductSupply>
+      <SupplyDetail>
+        <Supplier>
+          <SupplierRole>01</SupplierRole>
+          <SupplierIdentifier>
+            <SupplierIDType>23</SupplierIDType>
+            <IDValue>PL6782821670</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>GREG</SupplierName>
+        </Supplier>
+        <ProductAvailability>99</ProductAvailability>
+        <Price>
+          <PriceType>02</PriceType>
+          <PriceAmount>12.99</PriceAmount>
+          <Tax>
+            <TaxType>01</TaxType>
+            <TaxRatePercent>5</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+        </Price>
+      </SupplyDetail>
+    </ProductSupply>
+  </Product>
+</ONIXMessage>

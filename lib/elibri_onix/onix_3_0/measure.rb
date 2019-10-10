@@ -20,9 +20,9 @@ module Elibri
 
         def initialize(data)
           @to_xml = data.to_s
-          @type = data.at_xpath('xmlns:MeasureType').try(:text)
-          @measurement = data.at_xpath('xmlns:Measurement').try(:text).try(:to_i)
-          @unit = data.at_xpath('xmlns:MeasureUnitCode').try(:text)
+          @type = data.at_css('MeasureType').try(:text)
+          @measurement = data.at_css('Measurement').try(:text).try(:to_i)
+          @unit = data.at_css('MeasureUnitCode').try(:text)
 
         end
 
@@ -32,15 +32,6 @@ module Elibri
 
         def inspect_include_fields
           [:type_name]
-        end
-
-  #      def eid
-  #        @type.to_i
-  #      end
-
-        def id
-          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
-          eid
         end
 
       end

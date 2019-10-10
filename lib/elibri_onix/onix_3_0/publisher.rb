@@ -27,24 +27,17 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @role = data.at_xpath('xmlns:PublishingRole').try(:text)
-          @name = data.at_xpath('xmlns:PublisherName').try(:text)
-          if data.at_xpath('xmlns:PublisherIdentifier')
-            @eid = data.at_xpath('xmlns:PublisherIdentifier').at_xpath('xmlns:IDValue').try(:text).try(:to_i)
+          @role = data.at_css('PublishingRole').try(:text)
+          @name = data.at_css('PublisherName').try(:text)
+          if data.at_css('PublisherIdentifier')
+            @eid = data.at_css('PublisherIdentifier').at_css('IDValue').try(:text).try(:to_i)
           end
         end
 
         def inspect_include_fields
           [:eid, :name]
         end
-        
-        def id
-          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
-          @eid
-        end
-        
       end
-
     end
   end
 end

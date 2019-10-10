@@ -32,8 +32,8 @@ module Elibri
 
         def initialize(data)
           @to_xml = data.to_s
-          @sent_date_time = Date.parse(data.xpath('xmlns:SentDateTime').try(:text)) if data.xpath('xmlns:SentDateTime')
-          @sender = Sender.new(data.at_xpath('xmlns:Sender')) if data.at_xpath('xmlns:Sender')
+          @sent_date_time = Date.parse(data.css('SentDateTime').try(:text)) if data.css('SentDateTime')
+          @sender = Sender.new(data.at_css('Sender')) if data.at_css('Sender')
         end        
         
       end

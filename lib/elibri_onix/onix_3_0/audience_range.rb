@@ -21,18 +21,9 @@ module Elibri
 
         def initialize(data)
           @old_xml = data.to_s
-          @qualifier = data.at_xpath('xmlns:AudienceRangeQualifier').try(:text)
-          @precision = data.at_xpath('xmlns:AudienceRangePrecision').try(:text)
-          @value = data.at_xpath('xmlns:AudienceRangeValue').try(:text).try(:to_i)
-        end
-
-        def eid
-          "#{@qualifier}-#{@precision}-#{@value}"
-        end
-        
-        def id
-          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
-          eid
+          @qualifier = data.at_css('AudienceRangeQualifier').try(:text)
+          @precision = data.at_css('AudienceRangePrecision').try(:text)
+          @value = data.at_css('AudienceRangeValue').try(:text).try(:to_i)
         end
 
       end

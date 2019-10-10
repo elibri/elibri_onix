@@ -9,7 +9,6 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     
     onix = Elibri::ONIX::Release_3_0::ONIXMessage.new(xml_string)
     assert_equal '3.0', onix.release
-    assert_equal '3.0.1', onix.elibri_dialect
     assert_equal 'Elibri.com.pl', onix.header.sender.sender_name
     assert_equal 'Tomasz Meka', onix.header.sender.contact_name
     assert_equal 'kontakt@elibri.com.pl', onix.header.sender.email_address
@@ -18,7 +17,6 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 1, onix.products.size 
 
     product = onix.products.first
-    assert_equal '3.0.1', product.elibri_dialect
 
     assert_equal 'miękka', product.cover_type 
     assert_equal 12.99, product.cover_price
@@ -73,18 +71,6 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 250, product.number_of_pages
     assert_equal 32, product.number_of_illustrations
 
-    assert_equal 2, product.subjects.size 
-    assert !product.subjects[1].main_subject?
-
-    product.subjects[0].tap do |first_subject|
-      assert first_subject.main_subject?
-      assert_equal 24, first_subject.scheme_identifier
-      assert_equal 'elibri.com.pl', first_subject.scheme_name
-      assert_equal '1.0', first_subject.scheme_version
-      assert_equal '1110', first_subject.code
-      assert_equal 'Beletrystyka / Literatura popularna / Powieść historyczna', first_subject.heading_text
-    end
-
     assert_equal 7, product.reading_age_from 
     assert_equal 25, product.reading_age_to
 
@@ -138,7 +124,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
     product.supply_details.first.tap do |supply_detail|
       supply_detail.supplier.tap do |supplier|
-        assert_equal 3, supplier.role
+        assert_equal "03", supplier.role
         assert_equal '5213359408', supplier.nip
         assert_equal 'Gildia.pl', supplier.name 
         assert_equal "22 631 40 83", supplier.telephone_number
@@ -151,14 +137,14 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
       assert_equal 7, supply_detail.pack_quantity
 
       supply_detail.price.tap do |price|
-        assert_equal 2, price.type
+        assert_equal "02", price.type
         assert_equal 20, price.minimum_order_quantity
         assert_equal 12.99, price.amount
         assert_equal 7, price.vat 
         assert_equal 'PLN', price.currency_code
-        assert_equal 2, price.printed_on_product
+        assert_equal "02", price.printed_on_product
         assert price.printed_on_product?
-        assert_equal 0, price.position_on_product
+        assert_equal "00", price.position_on_product
       end
     end
 

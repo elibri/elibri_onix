@@ -22,18 +22,9 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @type = data.xpath('xmlns:ExtentType').try(:text)
-          @value = data.xpath('xmlns:ExtentValue').try(:text).try(:to_i)
-          @unit = data.xpath('xmlns:ExtentUnit').try(:text)
-        end
-
-        def eid
-          @type.to_i
-        end
-        
-        def id
-          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
-          eid
+          @type = data.css('ExtentType').try(:text)
+          @value = data.css('ExtentValue').try(:text).try(:to_i)
+          @unit = data.css('ExtentUnit').try(:text)
         end
 
         def type_name

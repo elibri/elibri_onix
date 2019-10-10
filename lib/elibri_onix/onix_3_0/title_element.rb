@@ -30,10 +30,10 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @level = data.at_xpath('xmlns:TitleElementLevel').try(:text)
-          @part_number = data.at_xpath('xmlns:PartNumber').try(:text)
-          @title = data.at_xpath('xmlns:TitleText').try(:text)
-          @subtitle = data.at_xpath('xmlns:Subtitle').try(:text)
+          @level = data.at_css('TitleElementLevel').try(:text)
+          @part_number = data.at_css('PartNumber').try(:text)
+          @title = data.at_css('TitleText').try(:text)
+          @subtitle = data.at_css('Subtitle').try(:text)
         end
 
         def full_title

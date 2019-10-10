@@ -23,11 +23,11 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @type = data.at_xpath('xmlns:SalesRestrictionType').try(:text).try(:to_i)
-          if data.at_xpath('xmlns:SalesOutlet')
-            @outlet_name = data.at_xpath('xmlns:SalesOutlet').at_xpath('xmlns:SalesOutletName').try(:text)
+          @type = data.at_css('SalesRestrictionType').try(:text).try(:to_i)
+          if data.at_css('SalesOutlet')
+            @outlet_name = data.at_css('SalesOutlet').at_css('SalesOutletName').try(:text)
           end
-          @end_date = Date.parse(data.at_xpath('xmlns:EndDate').try(:text)) if data.at_xpath('xmlns:EndDate')
+          @end_date = Date.parse(data.at_css('EndDate').try(:text)) if data.at_css('EndDate')
         end
 
       end

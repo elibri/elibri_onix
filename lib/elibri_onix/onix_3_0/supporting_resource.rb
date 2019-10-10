@@ -20,14 +20,15 @@ module Elibri
           :inspect_include_fields
         ]
         
-        attr_accessor :content_type, :mode, :form, :link, :to_xml
+        attr_accessor :content_type, :mode, :form, :link, :to_xml, :data
         
         def initialize(data)
+          @data = data
           @to_xml = data.to_s
-          @content_type = data.at_xpath('xmlns:ResourceContentType').try(:text)
-          @mode = data.at_xpath('xmlns:ResourceMode').try(:text)
-          @form = data.at_xpath('xmlns:ResourceVersion').at_xpath('xmlns:ResourceForm').try(:text)
-          @link = data.at_xpath('xmlns:ResourceVersion').at_xpath('xmlns:ResourceLink').try(:text)
+          @content_type = data.at_css('ResourceContentType').try(:text)
+          @mode = data.at_css('ResourceMode').try(:text)
+          @form = data.at_css('ResourceVersion').at_css('ResourceForm').try(:text)
+          @link = data.at_css('ResourceVersion').at_css('ResourceLink').try(:text)
           set_eid(data)
           set_datestamp(data)
         end

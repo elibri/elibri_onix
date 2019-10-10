@@ -21,8 +21,8 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @code_type = data.at_xpath('xmlns:StockQuantityCodeType').try(:text).try(:to_i)
-          @code = data.at_xpath('xmlns:StockQuantityCode').try(:text)
+          @code_type = data.at_css('StockQuantityCodeType').try(:text).try(:to_i)
+          @code = data.at_css('StockQuantityCode').try(:text)
         end
         
       end

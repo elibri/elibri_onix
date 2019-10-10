@@ -24,9 +24,9 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @role = data.at_xpath('xmlns:PublishingDateRole').try(:text)
-          @format = data.at_xpath('xmlns:DateFormat').try(:text)
-          @date = data.at_xpath('xmlns:Date').try(:text)
+          @role = data.at_css('PublishingDateRole').try(:text)
+          @format = data.at_css('DateFormat').try(:text)
+          @date = data.at_css('Date').try(:text)
         end
 
         def parsed

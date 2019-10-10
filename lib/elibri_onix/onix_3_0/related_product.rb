@@ -27,8 +27,8 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @relation_code = data.at_xpath('xmlns:ProductRelationCode').try(:text)
-          @identifiers = data.xpath('xmlns:ProductIdentifier').map { |identifier_data| ProductIdentifier.new(identifier_data) }
+          @relation_code = data.at_css('ProductRelationCode').try(:text)
+          @identifiers = data.css('ProductIdentifier').map { |identifier_data| ProductIdentifier.new(identifier_data) }
         end
 
         

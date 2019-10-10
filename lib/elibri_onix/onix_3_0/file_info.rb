@@ -27,11 +27,6 @@ module Elibri
           @eid = data.attributes['id'].value.to_i
         end
 
-        def id
-          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
-          eid
-        end
-
         def inspect_include_fields
           [:file_type]
         end

@@ -36,8 +36,8 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @role = data.at_xpath('xmlns:LanguageRole').try(:text)
-          @code = data.at_xpath('xmlns:LanguageCode').try(:text)
+          @role = data.at_css('LanguageRole').try(:text)
+          @code = data.at_css('LanguageCode').try(:text)
         end
 
         #określenie roli jako string, np. language_of_text
@@ -53,18 +53,7 @@ module Elibri
         def inspect_include_fields
            [:role_name, :language]
         end
-
-        def eid
-          "#{@role}-#{@code}"
-        end
-        
-        def id
-          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
-          eid
-        end
-
       end
-
     end
   end
 end

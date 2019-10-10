@@ -24,13 +24,13 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @role = data.at_xpath('xmlns:SupplierRole').try(:text).try(:to_i)
-          @identifiers = data.xpath('xmlns:SupplierIdentifier').map { |identifier_data| SupplierIdentifier.new(identifier_data) }
-          @name = data.at_xpath('xmlns:SupplierName').try(:text)
-          @telephone_number = data.at_xpath('xmlns:TelephoneNumber').try(:text)
-          @email_address = data.at_xpath('xmlns:EmailAddress').try(:text)
-          if data.at_xpath('xmlns:Website')
-            @website = data.at_xpath('xmlns:Website').at_xpath('xmlns:WebsiteLink').try(:text) 
+          @role = data.at_css('SupplierRole').try(:text)
+          @identifiers = data.css('SupplierIdentifier').map { |identifier_data| SupplierIdentifier.new(identifier_data) }
+          @name = data.at_css('SupplierName').try(:text)
+          @telephone_number = data.at_css('TelephoneNumber').try(:text)
+          @email_address = data.at_css('EmailAddress').try(:text)
+          if data.at_css('Website')
+            @website = data.at_css('Website').at_css('WebsiteLink').try(:text) 
           end
         end
 

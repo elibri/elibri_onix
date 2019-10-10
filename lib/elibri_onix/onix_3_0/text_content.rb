@@ -25,12 +25,12 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @type = data.at_xpath('xmlns:TextType').try(:text)
-          @author = data.at_xpath('xmlns:TextAuthor').try(:text)
-          @source_title = data.at_xpath('xmlns:SourceTitle').try(:text)
-          if data.at_xpath('xmlns:Text')
-            @text = data.at_xpath('xmlns:Text').children.find { |x| x.cdata? }.try(:text) #cdata => true ?
-            @source_url =  data.at_xpath('xmlns:Text').attribute('sourcename').try(:text)
+          @type = data.at_css('TextType').try(:text)
+          @author = data.at_css('TextAuthor').try(:text)
+          @source_title = data.at_css('SourceTitle').try(:text)
+          if data.at_css('Text')
+            @text = data.at_css('Text').children.find { |x| x.cdata? }.try(:text) #cdata => true ?
+            @source_url =  data.at_css('Text').attribute('sourcename').try(:text)
           end
           set_eid(data)
           set_datestamp(data)

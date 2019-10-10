@@ -411,7 +411,7 @@
           <Tax>
             <!-- VAT -->
             <TaxType>01</TaxType>
-            <TaxRatePercent>7</TaxRatePercent>
+            <TaxRatePercent>5</TaxRatePercent>
           </Tax>
           <CurrencyCode>PLN</CurrencyCode>
           <!-- Cena na okładce?

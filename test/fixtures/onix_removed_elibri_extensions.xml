@@ -7,7 +7,7 @@
       <ContactName>Tomasz Meka</ContactName>
       <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
     </Sender>
-    <SentDateTime>20111111</SentDateTime>
+    <SentDateTime>20190729</SentDateTime>
   </Header>
   <Product>
     <RecordReference>fdb8fa072be774d97a97</RecordReference>
@@ -18,7 +18,12 @@
     </ProductIdentifier>
     <DescriptiveDetail>
       <ProductComposition>00</ProductComposition>
-      <ProductForm>BA</ProductForm>
+      <ProductForm>BB</ProductForm>
+      <ProductFormDetail>B501</ProductFormDetail>
+      <ProductClassification>
+        <ProductClassificationType>12</ProductClassificationType>
+        <ProductClassificationCode>58.11.1</ProductClassificationCode>
+      </ProductClassification>
       <TitleDetail>
         <TitleType>01</TitleType>
         <TitleElement>
@@ -27,37 +32,6 @@
         </TitleElement>
       </TitleDetail>
     </DescriptiveDetail>
-    <CollateralDetail>
-      <SupportingResource sourcename="resourceid:667" datestamp="20111201T1805">
-        <ResourceContentType>01</ResourceContentType>
-        <ContentAudience>00</ContentAudience>
-        <ResourceMode>03</ResourceMode>
-        <ResourceVersion>
-          <ResourceForm>02</ResourceForm>
-          <ResourceLink>http://elibri.com.pl/sciezka/do/pliku.png</ResourceLink>
-        </ResourceVersion>
-      </SupportingResource>
-      <SupportingResource>
-        <!--ResourceContentType: WIDGET-->
-        <ResourceContentType>16</ResourceContentType>
-
-        <!--ContentAudience: UNRESTRICTED-->
-        <ContentAudience>00</ContentAudience>
-
-        <!--ResourceMode: TEXT-->
-        <ResourceMode>04</ResourceMode>
-        <ResourceVersion>
-          <!--ResourceForm: EMBEDDABLE_APPLICATION-->
-          <ResourceForm>03</ResourceForm>
-          <ResourceLink>https://p.elibri.com.pl/book.js?record_reference=0d713d0bc445f63c2c73</ResourceLink>
-          <ContentDate>
-            <!--ContentDateRole: LAST_UPDATED-->
-            <ContentDateRole>17</ContentDateRole>
-            <Date dateformat="13">20150715T0755Z</Date>
-          </ContentDate>
-        </ResourceVersion>
-      </SupportingResource>
-    </CollateralDetail>
     <PublishingDetail>
       <Publisher>
         <PublishingRole>01</PublishingRole>
@@ -77,5 +51,31 @@
         </Territory>
       </SalesRights>
     </PublishingDetail>
+    <ProductSupply>
+      <SupplyDetail>
+        <Supplier>
+          <SupplierRole>01</SupplierRole>
+          <SupplierIdentifier>
+            <SupplierIDType>23</SupplierIDType>
+            <IDValue>PL6782821670</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>GREG</SupplierName>
+        </Supplier>
+        <SupplierOwnCoding>
+          <SupplierCodeType>01</SupplierCodeType>
+          <SupplierCodeValue>PROMO 20</SupplierCodeValue>
+        </SupplierOwnCoding>
+        <ProductAvailability>99</ProductAvailability>
+        <Price>
+          <PriceType>02</PriceType>
+          <PriceAmount>12.99</PriceAmount>
+          <Tax>
+            <TaxType>01</TaxType>
+            <TaxRatePercent>5</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+        </Price>
+      </SupplyDetail>
+    </ProductSupply>
   </Product>
 </ONIXMessage>

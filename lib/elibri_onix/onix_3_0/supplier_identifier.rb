@@ -26,9 +26,9 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @type = data.at_xpath('xmlns:SupplierIDType').try(:text)
-          @type_name = data.at_xpath('xmlns:IDTypeName').try(:text)
-          @value = data.at_xpath('xmlns:IDValue').try(:text)
+          @type = data.at_css('SupplierIDType').try(:text)
+          @type_name = data.at_css('IDTypeName').try(:text)
+          @value = data.at_css('IDValue').try(:text)
         end
 
       end

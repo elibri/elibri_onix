@@ -26,17 +26,8 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @type = data.at_xpath('xmlns:TitleType').try(:text)
-          @elements = data.xpath('xmlns:TitleElement').map { |element_data| TitleElement.new(element_data) }
-        end
-
-    #    def eid
-    #      @type.to_i
-    #    end 
-        
-        def id
-          Kernel.warn "[DEPRECATION] `id` is deprecated. Please use `eid` instead."
-          eid
+          @type = data.at_css('TitleType').try(:text)
+          @elements = data.css('TitleElement').map { |element_data| TitleElement.new(element_data) }
         end
 
         def type_name

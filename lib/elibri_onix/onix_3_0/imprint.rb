@@ -22,7 +22,7 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @name = data.at_xpath('xmlns:ImprintName').try(:text)
+          @name = data.at_css('ImprintName').try(:text)
         end
 
       end
