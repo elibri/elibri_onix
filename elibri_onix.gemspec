@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'activesupport', '>= 2.3.5'
   gem.add_runtime_dependency 'nokogiri', '~>1.4'
   gem.add_runtime_dependency 'i18n'
-  gem.add_runtime_dependency 'elibri_onix_dict', '>= 0.0.5'
+  gem.add_runtime_dependency 'elibri_onix_dict', '>= 0.0.50'
 
   gem.add_development_dependency "pry"
   gem.add_development_dependency "mocha"

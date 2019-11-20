@@ -16,7 +16,7 @@ module Elibri
           :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
           :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date, :record_reference,
           :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :additional_info, :product_composition, 
-          :publisher, :product_form, :no_contributor, :edition_statement, :number_of_illustrations, :publishing_status,
+          :publisher, :product_form, :no_contributor, :edition_statement, :edition_type_onix_code, :number_of_illustrations, :publishing_status,
           :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
           :preview_exists, :short_description, :sale_restricted_to_poland,
           :technical_protection_onix_code, :unlimited_licence, :hyphenated_isbn, :preorder_embargo_date, :additional_trade_information
@@ -165,6 +165,9 @@ module Elibri
 
         #informacja o numerze wydania
         attr_reader :edition_statement
+
+        #informacja o type wydanie, kod onix
+        attr_reader :edition_type_onix_code
 
         #liczba ilustracji
         attr_reader :number_of_illustrations
@@ -392,6 +395,10 @@ module Elibri
           end
 
           @edition_statement = data.at_css('EditionStatement').try(:text)
+          if Elibri::ONIX::Dict::Release_3_0::EditionType.find_by_onix_code(data.at_css('EditionType').try(:text))
+            @edition_type_onix_code = data.at_css('EditionType').try(:text)
+          end
+
           @number_of_illustrations = data.at_css('NumberOfIllustrations').try(:text).try(:to_i)
         end
 
