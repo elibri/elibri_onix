@@ -309,7 +309,7 @@ module Elibri
         def self.determine_cover_type(product_form, product_form_detail)
           if product_form == "BG"
             "skórzana"
-          elsif product_form == "BF"
+          elsif product_form == "BP"
             "gąbka"
           elsif product_form == "BC"
              if product_form_detail == "B504"
