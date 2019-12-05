@@ -34,7 +34,12 @@ module Elibri
         end
 
         def content_type_name
-          Elibri::ONIX::Dict::Release_3_0::ResourceContentType.find_by_onix_code(@content_type).const_name.downcase
+          content_type = Elibri::ONIX::Dict::Release_3_0::ResourceContentType.find_by_onix_code(@content_type)
+          if content_type
+            content_type.const_name.downcase
+          else
+            raise ArgumentError, "Cannot find ResourceContentType for #{@content_type}"
+          end
         end
  
         #def audience_name
