@@ -306,32 +306,6 @@ module Elibri
           after_parse
         end
 
-        def self.determine_cover_type(product_form, product_form_detail)
-          if product_form == "BG"
-            "skórzana"
-          elsif product_form == "BP"
-            "gąbka"
-          elsif product_form == "BC"
-             if product_form_detail == "B504"
-              "miękka ze skrzydełkami"
-            elsif product_form_detail == "B412"
-              "zintegrowana"
-            else
-              "miękka"
-            end
-          elsif product_form == "BB"
-            if product_form_detail == "B501"
-              "twarda z obwolutą"
-            elsif product_form_detail == "B415"
-              "twarda lakierowana"
-            elsif product_form_detail == "B413"
-              "plastikowa"
-            else
-              "twarda"
-            end
-          end
-        end
-
         def licence_information_setup(data)
           if data.namespaces.values.any? { |uri| uri =~ /elibri/ } && (data.at_xpath("elibri:SaleNotRestricted") || data.at_xpath("elibri:SaleRestrictedTo"))
             if data.at_xpath("elibri:SaleNotRestricted")
@@ -360,7 +334,7 @@ module Elibri
           @product_composition = data.at_css('ProductComposition').try(:text)
           @product_form = data.at_css('ProductForm').text
           if @product_form.starts_with?("B") && !@cover_type
-            @cover_type = self.class.determine_cover_type(@product_form, data.at_css('ProductFormDetail').try(:text))
+            @cover_type = Elibri::ONIX::Dict::CoverType.determine_cover_type(@product_form, data.at_css('ProductFormDetail').try(:text))
           end
           if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form)
             @product_form_name = Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form).name(:en).downcase
