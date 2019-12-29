@@ -358,7 +358,8 @@ module Elibri
           if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(simplified_product_form).try!(:digital?)
             @digital_formats = []
             data.css("ProductFormDetail").each do |format|
-              @digital_formats << Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text).name.upcase.gsub("MOBIPOCKET", "MOBI")
+              format_name = Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text).try(:name)
+              @digital_formats << format_name.upcase.gsub("MOBIPOCKET", "MOBI") if format_name
             end
           end
 
