@@ -37,7 +37,7 @@ module Elibri
         end
 
         def type_name
-          Elibri::ONIX::Dict::Release_3_0::OtherTextType.find_by_onix_code(@type).const_name.downcase
+          Elibri::ONIX::Dict::Release_3_0::OtherTextType.find_by_onix_code(@type).try(:const_name).try(:downcase)
         end
 
  

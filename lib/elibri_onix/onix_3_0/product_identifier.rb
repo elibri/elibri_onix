@@ -39,7 +39,7 @@ module Elibri
 
         #returs the string name of value type
         def identifier_type
-          Elibri::ONIX::Dict::Release_3_0::ProductIDType.find_by_onix_code(@type).const_name.downcase
+          Elibri::ONIX::Dict::Release_3_0::ProductIDType.find_by_onix_code(@type).try(:const_name).try(:downcase)
         end
 
         #:nodoc:

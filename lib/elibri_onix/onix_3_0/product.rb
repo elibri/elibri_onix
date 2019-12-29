@@ -355,7 +355,7 @@ module Elibri
           @audience_ranges = data.css('AudienceRange').map { |audience_data| AudienceRange.new(audience_data) }
 
           simplified_product_form = @product_form.starts_with?("B") ? "BA" : @product_form
-          if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(simplified_product_form).digital?
+          if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(simplified_product_form).try!(:digital?)
             @digital_formats = []
             data.css("ProductFormDetail").each do |format|
               @digital_formats << Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text).name.upcase.gsub("MOBIPOCKET", "MOBI")
@@ -364,7 +364,7 @@ module Elibri
 
           #zabezpiecznie pliku
           if protection = data.at_css("EpubTechnicalProtection").try(:text)
-            @technical_protection =  Elibri::ONIX::Dict::Release_3_0::EpubTechnicalProtection::find_by_onix_code(protection).name
+            @technical_protection =  Elibri::ONIX::Dict::Release_3_0::EpubTechnicalProtection::find_by_onix_code(protection).try(:name)
             @technical_protection_onix_code = protection
           end
 
@@ -544,6 +544,8 @@ module Elibri
               @current_state = :published
             elsif @publishing_status == "07"
               @current_state = :out_of_print
+            elsif @notification_type == "03"
+              @current_state = :published
             else
               raise "cannot determine the state of the product #{@record_reference}"
             end

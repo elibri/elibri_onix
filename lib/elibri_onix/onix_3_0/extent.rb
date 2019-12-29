@@ -22,17 +22,17 @@ module Elibri
         
         def initialize(data)
           @to_xml = data.to_s
-          @type = data.css('ExtentType').try(:text)
-          @value = data.css('ExtentValue').try(:text).try(:to_i)
-          @unit = data.css('ExtentUnit').try(:text)
+          @type = data.css('ExtentType').try(:text).try(:strip)
+          @value = data.css('ExtentValue').try(:text).try(:strip).try(:to_i)
+          @unit = data.css('ExtentUnit').try(:text).try(:strip)
         end
 
         def type_name
-          Elibri::ONIX::Dict::Release_3_0::ExtentType.find_by_onix_code(@type).const_name.downcase
+          Elibri::ONIX::Dict::Release_3_0::ExtentType.find_by_onix_code(@type).try(:const_name).try(:downcase)
         end
  
         def unit_name
-          Elibri::ONIX::Dict::Release_3_0::ExtentUnit.find_by_onix_code(@unit).const_name.downcase
+          Elibri::ONIX::Dict::Release_3_0::ExtentUnit.find_by_onix_code(@unit).try(:const_name).try(:downcase)
         end
 
         def inspect_include_fields
