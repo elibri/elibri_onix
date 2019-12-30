@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage release="3.0"
+    eisbn:nextPage="https://e-isbn.pl/IsbnWeb/api.xml?idFrom=1401255&amp;max=1"
+    xmlns:schemaLocation="http://ns.editeur.org/onix/3.0/reference https://e-isbn.pl/IsbnWeb/schemas/ONIX_BookProduct_3.0_reference.xsd"
+    xmlns:eisbn="http://e-isbn.pl"
+    xmlns="http://ns.editeur.org/onix/3.0/reference" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Header>
+        <Sender>
+            <SenderName>Serwis e-ISBN</SenderName>
+            <ContactName>Dorota Cymer, tel. +4822608608241</ContactName>
+            <EmailAddress>d.cymer@e-isbn.pl</EmailAddress>
+        </Sender>
+        <MessageNumber>2099</MessageNumber>
+        <SentDateTime>20191230T1222+0100</SentDateTime>
+        <MessageNote>API e-ISBN</MessageNote>
+        <DefaultLanguageOfText>pol</DefaultLanguageOfText>
+    </Header>
+    <Product datestamp="20161025">
+        <RecordReference>pl-eisbn-1401255</RecordReference>
+        <NotificationType>03</NotificationType>
+        <RecordSourceType>01</RecordSourceType>
+        <RecordSourceName>Stowarzyszenie Historyczno-Kulturalne TERRA INCOGNITA w Chojnie</RecordSourceName>
+        <ProductIdentifier>
+            <ProductIDType>15</ProductIDType>
+            <IDValue>9788394063641</IDValue>
+        </ProductIdentifier>
+        <ProductIdentifier>
+            <ProductIDType>01</ProductIDType>
+            <IDTypeName>numer rekordu Biblioteki Narodowej</IDTypeName>
+            <IDValue>b38370232</IDValue>
+        </ProductIdentifier>
+        <DescriptiveDetail>
+            <ProductComposition>00</ProductComposition>
+            <ProductForm>BA</ProductForm>
+            <TitleDetail>
+                <TitleType>01</TitleType>
+                <TitleElement>
+                    <TitleElementLevel>01</TitleElementLevel>
+                    <TitleText>Innowacja i tradycja</TitleText>
+                    <Subtitle>Henryk Brunsberg i późnogotycka architektura ceglana Pomorza i Brandenburgii /</Subtitle>
+                </TitleElement>
+            </TitleDetail>
+            <Contributor>
+                <SequenceNumber>1</SequenceNumber>
+                <ContributorRole>A01</ContributorRole>
+                <PersonNameInverted>Stowarzyszenie Historyczno-Kulturalne "Terra Incognita" (Chojna)</PersonNameInverted>
+            </Contributor>
+            <Contributor>
+                <SequenceNumber>2</SequenceNumber>
+                <ContributorRole>B06</ContributorRole>
+                <PersonNameInverted>Lindenhayn, Agnieszka</PersonNameInverted>
+            </Contributor>
+            <Contributor>
+                <SequenceNumber>3</SequenceNumber>
+                <ContributorRole>B01</ContributorRole>
+                <PersonNameInverted>Gierke, Michał</PersonNameInverted>
+            </Contributor>
+            <EditionType>NED</EditionType>
+            <EditionNumber>1</EditionNumber>
+            <Language>
+                <LanguageRole>01</LanguageRole>
+                <LanguageCode>pol</LanguageCode>
+            </Language>
+            <Subject>
+                <SubjectSchemeIdentifier>09</SubjectSchemeIdentifier>
+                <SubjectCode>72.033.5(438)</SubjectCode>
+            </Subject>
+            <Subject>
+                <SubjectSchemeIdentifier>09</SubjectSchemeIdentifier>
+                <SubjectCode>72.033.5(430)</SubjectCode>
+            </Subject>
+            <Subject>
+                <SubjectSchemeIdentifier>20</SubjectSchemeIdentifier>
+                <SubjectCode>Architektura niemiecka</SubjectCode>
+            </Subject>
+            <Subject>
+                <SubjectSchemeIdentifier>20</SubjectSchemeIdentifier>
+                <SubjectCode>Brandenburgia (Niemcy)</SubjectCode>
+            </Subject>
+            <Subject>
+                <SubjectSchemeIdentifier>20</SubjectSchemeIdentifier>
+                <SubjectCode>Pomorze Zachodnie</SubjectCode>
+            </Subject>
+        </DescriptiveDetail>
+        <PublishingDetail>
+            <Imprint>
+                <ImprintName>Stowarzyszenie Historyczno-Kulturalne Terra Incognita ;</ImprintName>
+            </Imprint>
+            <Publisher>
+                <PublishingRole>01</PublishingRole>
+                <PublisherName>Stowarzyszenie Historyczno-Kulturalne TERRA INCOGNITA w Chojnie</PublisherName>
+            </Publisher>
+            <CityOfPublication>Chojna :</CityOfPublication>
+            <CountryOfPublication>PL</CountryOfPublication>
+            <PublishingDate>
+                <PublishingDateRole>01</PublishingDateRole>
+                <Date>20151230</Date>
+            </PublishingDate>
+            <PublishingDate>
+                <PublishingDateRole>09</PublishingDateRole>
+                <Date>20151230</Date>
+            </PublishingDate>
+        </PublishingDetail>
+    </Product>
+</ONIXMessage>
