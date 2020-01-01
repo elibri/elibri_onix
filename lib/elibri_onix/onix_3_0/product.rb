@@ -269,7 +269,7 @@ module Elibri
             @cover_price = BigDecimal(data.at_xpath('elibri:CoverPrice').try(:text)) if data.at_xpath('elibri:CoverPrice')
             @vat = data.at_xpath('elibri:Vat').try(:text).try(:to_i)
           else
-            price_sd = @supply_details.find { |sd| sd.supplier.role == Elibri::ONIX::Dict::Release_3_0::SupplierRole::PUB_TO_RET }
+            price_sd = @supply_details.find { |sd| sd.supplier && sd.supplier.role == Elibri::ONIX::Dict::Release_3_0::SupplierRole::PUB_TO_RET }
             if price_sd && price_sd.price && price_sd.price && price_sd.price.type == Elibri::ONIX::Dict::Release_3_0::PriceTypeCode::RRP_WITH_TAX 
               @vat = price_sd.price.tax_rate_percent.to_i
               @cover_price = price_sd.price.amount
@@ -316,9 +316,8 @@ module Elibri
               @licence_limited_to = Date.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i)
             end
           else
-            daten = data.css('PublishingDate').find { |d| d.at_css("PublishingDateRole").text == Elibri::ONIX::Dict::Release_3_0::PublishingDateRole::OUT_OF_PRINT_DATE }
+            daten = data.css('PublishingDate').find { |d| d.at_css("PublishingDateRole") && d.at_css("PublishingDateRole").text == Elibri::ONIX::Dict::Release_3_0::PublishingDateRole::OUT_OF_PRINT_DATE }
             if daten
-          
               date = daten.at_css('Date').text
               @licence_limited_to_before_type_cast = date
               @licence_limited_to = Date.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i)
@@ -332,12 +331,24 @@ module Elibri
 
         def descriptive_details_setup(data)
           @product_composition = data.at_css('ProductComposition').try(:text)
-          @product_form = data.at_css('ProductForm').text
-          if @product_form.starts_with?("B") && !@cover_type
-            @cover_type = Elibri::ONIX::Dict::CoverType.determine_cover_type(@product_form, data.at_css('ProductFormDetail').try(:text))
-          end
-          if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form)
-            @product_form_name = Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form).name(:en).downcase
+          @product_form = data.at_css('ProductForm').try(:text)
+          if @product_form
+            if @product_form.starts_with?("B") && !@cover_type
+              @cover_type = Elibri::ONIX::Dict::CoverType.determine_cover_type(@product_form, data.at_css('ProductFormDetail').try(:text))
+            end
+            if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form)
+              @product_form_name = Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form).name(:en).downcase
+            end
+
+            simplified_product_form = @product_form.starts_with?("B") ? "BA" : @product_form
+            if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(simplified_product_form).try!(:digital?)
+              @digital_formats = []
+              data.css("ProductFormDetail").each do |format|
+                format_name = Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text).try(:name)
+                @digital_formats << format_name.upcase.gsub("MOBIPOCKET", "MOBI") if format_name
+              end
+            end
+
           end
           if classification = data.css('ProductClassification').find { |cl| 
              cl.at_css('ProductClassificationType').text == Elibri::ONIX::Dict::Release_3_0::ProductClassificationType::PKWIU }
@@ -353,15 +364,6 @@ module Elibri
           @thema_subjects = data.css('Subject').find_all { |sd| 
              %w{93 94 95 96 97 98 99}.include?(sd.at_css('SubjectSchemeIdentifier').try(:text)) }.map { |sd| ThemaSubject.new(sd) }
           @audience_ranges = data.css('AudienceRange').map { |audience_data| AudienceRange.new(audience_data) }
-
-          simplified_product_form = @product_form.starts_with?("B") ? "BA" : @product_form
-          if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(simplified_product_form).try!(:digital?)
-            @digital_formats = []
-            data.css("ProductFormDetail").each do |format|
-              format_name = Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text).try(:name)
-              @digital_formats << format_name.upcase.gsub("MOBIPOCKET", "MOBI") if format_name
-            end
-          end
 
           #zabezpiecznie pliku
           if protection = data.at_css("EpubTechnicalProtection").try(:text)
@@ -534,21 +536,23 @@ module Elibri
 
 
         def compute_state!
-          if @notification_type == "01"
-            @current_state = :announced
-          elsif @notification_type == "02"
-            @current_state = :preorder
-          elsif @notification_type == "05"
-            @current_state = :deleted
-          else
-            if @publishing_status == "04"
-              @current_state = :published
-            elsif @publishing_status == "07"
-              @current_state = :out_of_print
-            elsif @notification_type == "03"
-              @current_state = :published
+          if @notification_type || @publishing_status
+            if @notification_type == "01"
+              @current_state = :announced
+            elsif @notification_type == "02"
+              @current_state = :preorder
+            elsif @notification_type == "05"
+              @current_state = :deleted
             else
-              raise "cannot determine the state of the product #{@record_reference}"
+              if @publishing_status == "04"
+                @current_state = :published
+              elsif @publishing_status == "07"
+                @current_state = :out_of_print
+              elsif @notification_type == "03"
+                @current_state = :published
+              else
+                raise "cannot determine the state of the product #{@record_reference}"
+              end
             end
           end
         end
