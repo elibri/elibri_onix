@@ -465,6 +465,8 @@ module Elibri
         #data premiery, jako instancja Date (tylko wtedy, gdy dokładna data jest znana)
         def premiere
           Date.new(*parsed_publishing_date) if parsed_publishing_date.size == 3
+        rescue ArgumentError
+          nil
         end
 
         def related_products_record_references
