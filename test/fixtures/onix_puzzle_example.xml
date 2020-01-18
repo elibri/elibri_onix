@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage xmlns="http://ns.editeur.org/onix/3.0/reference" release="3.0">
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20200118</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>85b3ad798e01c3b5ee67</RecordReference>
+    <!--NotificationType: CONFIRMED_ON_PUBLICATION--><NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <!--ProductIDType: EAN--><ProductIDType>03</ProductIDType>
+      <IDValue>5902719471810</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <!--ProductComposition: SINGLE_COMPONENT_RETAIL_PRODUCT--><ProductComposition>00</ProductComposition>
+      <!--ProductFormCode: JIGSAW--><ProductForm>ZJ</ProductForm>
+      <ProductFormFeature>
+        <!--ProductFormFeatureType: NUMBER_OF_GAME_PIECES--><ProductFormFeatureType>22</ProductFormFeatureType>
+        <ProductFormFeatureValue>25</ProductFormFeatureValue>
+      </ProductFormFeature>
+      <ProductClassification>
+        <!--ProductClassificationType: PKWIU--><ProductClassificationType>12</ProductClassificationType>
+        <ProductClassificationCode>32.40.32</ProductClassificationCode>
+      </ProductClassification>
+      <Collection>
+        <!--CollectionType: PUBLISHER_COLLECTION--><CollectionType>10</CollectionType>
+        <TitleDetail>
+          <!--TitleType: DISTINCTIVE_TITLE--><TitleType>01</TitleType>
+          <TitleElement>
+            <!--TitleElementLevel: COLLECTION--><TitleElementLevel>02</TitleElementLevel>
+            <TitleText>Puzzle</TitleText>
+          </TitleElement>
+        </TitleDetail>
+      </Collection>
+      <TitleDetail>
+        <!--TitleType: DISTINCTIVE_TITLE--><TitleType>01</TitleType>
+        <TitleElement>
+          <!--TitleElementLevel: PRODUCT--><TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Pucio. Puzzle: Co tu pasuje?</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <TitleDetail>
+        <!--TitleType: DISTRIBUTORS_TITLE--><TitleType>10</TitleType>
+        <TitleElement>
+          <!--TitleElementLevel: PRODUCT--><TitleElementLevel>01</TitleElementLevel>
+          <TitleText>PUCIO. PUZZLE: CO TU PASUJE?</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <Contributor sourcename="contributorid:210002" datestamp="20190116T1724">
+        <SequenceNumber>1</SequenceNumber>
+        <!--ContributorRole: AUTHOR--><ContributorRole>A01</ContributorRole>
+        <PersonName>Marta Galewska-Kustra</PersonName>
+        <NamesBeforeKey>Marta</NamesBeforeKey>
+        <KeyNames>Galewska-Kustra</KeyNames>
+      </Contributor>
+      <Contributor sourcename="contributorid:210003" datestamp="20190116T1724">
+        <SequenceNumber>2</SequenceNumber>
+        <!--ContributorRole: ILLUSTRATOR--><ContributorRole>A12</ContributorRole>
+        <PersonName>Joanna Kłos</PersonName>
+        <NamesBeforeKey>Joanna</NamesBeforeKey>
+        <KeyNames>Kłos</KeyNames>
+      </Contributor>
+      <Language>
+        <!--LanguageRole: LANGUAGE_OF_TEXT--><LanguageRole>01</LanguageRole>
+        <!--LanguageCode: Polish--><LanguageCode>pol</LanguageCode>
+      </Language>
+    </DescriptiveDetail>
+    <CollateralDetail>
+      <TextContent sourcename="textid:115723" datestamp="20190116T1724">
+        <!--OtherTextType: MAIN_DESCRIPTION--><TextType>03</TextType>
+        <!--ContentAudience: UNRESTRICTED--><ContentAudience>00</ContentAudience>
+        <Text>
+          <![CDATA[<p>
+ <strong>Wreszcie są! Długo wyczekiwane, mądre i piękne zabawki z PUCIEM!</strong></p>
+ <p>
+ Uwielbiany przez dzieci i rodziców bohater bestsellerowej serii Marty Galewskiej-Kustry, fenomenalnie ilustrowanej przez Joannę Kłos, w końcu wykracza poza karty książek i pojawia się także na puzzlach! Zapraszamy do wspólnej zabawy i nauki!</p>
+ <p>
+ Puzzle przeznaczone dla dzieci od 2 lat. Składają się z 5 obrazków głównych oraz 20 uzupełniających. Na obrazkach głównych jest Pucio w znanych dziecku codziennych sytuacjach (np. jedzenie posiłku, poranna toaleta, ubieranie się). Elementy uzupełniające przedstawiają pojedyncze obiekty zaprezentowane także na obrazku głównym (np. kanapka, szczoteczka do zębów, czapka). Dziecko ma się przyjrzeć obrazkowi głównemu, odnaleźć pasujące do niego elementy uzupełniające i dołączyć je do obrazka głównego.</p>
+ <p>
+ To na pozór proste zadanie wymaga skupienia uwagi na ilustracji, rozwija spostrzegawczość i mowę, ale przede wszystkim pobudza do myślenia. Mimo niedużej liczby elementów puzzle dają okazję do wielu zabaw o różnym stopniu trudności. </p>
+ <p>
+ Wyprodukowano w Polsce.</p>
+]]>
+        </Text>
+      </TextContent>
+    </CollateralDetail>
+    <PublishingDetail>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherIdentifier>
+          <PublisherIDType>01</PublisherIDType>
+          <IDTypeName>ElibriPublisherCode</IDTypeName>
+          <IDValue>41</IDValue>
+        </PublisherIdentifier>
+        <PublisherName>Nasza Księgarnia</PublisherName>
+      </Publisher>
+      <CityOfPublication>Warszawa</CityOfPublication>
+      <!--PublishingStatusCode: ACTIVE--><PublishingStatus>04</PublishingStatus>
+      <PublishingDate>
+        <!--PublishingDateRole: PUBLICATION_DATE--><PublishingDateRole>01</PublishingDateRole>
+        <!--DateFormat: YYYYMMDD--><DateFormat>00</DateFormat>
+        <Date dateformat="00">20190227</Date>
+      </PublishingDate>
+      <PublishingDate>
+        <!--PublishingDateRole: PREORDER_EMBARGO_DATE--><PublishingDateRole>27</PublishingDateRole>
+        <!--DateFormat: YYYYMMDD--><DateFormat>00</DateFormat>
+        <Date dateformat="00">20190213</Date>
+      </PublishingDate>
+      <SalesRights>
+        <!--SalesRightsType: FOR_SALE_WITH_EXLUSIVE_RIGHTS--><SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <CountriesIncluded>PL</CountriesIncluded>
+        </Territory>
+      </SalesRights>
+    </PublishingDetail>
+    <ProductSupply>
+      <SupplyDetail>
+        <Supplier>
+          <!--SupplierRole: PUB_TO_RET--><SupplierRole>01</SupplierRole>
+          <SupplierIdentifier>
+            <!--SupplierIDType: VAT_IDENTITY_NUMBER--><SupplierIDType>23</SupplierIDType>
+            <IDValue>PL5260205285</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>Nasza Księgarnia</SupplierName>
+        </Supplier>
+        <!--ProductAvailabilityType: NOT_AVAILABLE--><ProductAvailability>40</ProductAvailability>
+        <Stock>
+          <OnHand>0</OnHand>
+          <!--Proximity: EXACTLY--><Proximity>03</Proximity>
+        </Stock>
+        <Price>
+          <!--PriceTypeCode: RRP_WITH_TAX--><PriceType>02</PriceType>
+          <PriceAmount>24.9</PriceAmount>
+          <Tax>
+            <!--TaxType: VAT--><TaxType>01</TaxType>
+            <TaxRatePercent>23</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+          <!--PricePrintedOnProduct: NO--><PrintedOnProduct>01</PrintedOnProduct>
+        </Price>
+      </SupplyDetail>
+    </ProductSupply>
+  </Product>
+</ONIXMessage>

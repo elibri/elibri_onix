@@ -19,7 +19,9 @@ module Elibri
           :publisher, :product_form, :no_contributor, :edition_statement, :edition_type_onix_code, :number_of_illustrations, :publishing_status,
           :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
           :preview_exists, :short_description, :sale_restricted_to_poland,
-          :technical_protection_onix_code, :unlimited_licence, :hyphenated_isbn, :preorder_embargo_date, :additional_trade_information
+          :technical_protection_onix_code, :unlimited_licence, :hyphenated_isbn, :preorder_embargo_date, :additional_trade_information,
+          :number_of_pieces, :players_number_from, :players_number_to, :playing_time_from, :playing_time_to
+
         ]
 
         #:nodoc:
@@ -190,6 +192,21 @@ module Elibri
         #dodatkowa informacja handlowa
         attr_reader :additional_trade_information
 
+        #ilość elementów (puzzle, gry planszowe)      
+        attr_reader :number_of_pieces
+
+        #min. ilość graczy - gry planszowe
+        attr_reader :players_number_from
+ 
+        #max. ilość graczy - gry planszowe
+        attr_reader :players_number_to
+
+        #min. czas gry - gry planszowe
+        attr_reader :playing_time_from
+
+        #max. czas gry - gry planszowe
+        attr_reader :playing_time_to
+
         #:nodoc:
         attr_reader :text_contents
         attr_reader :file_size
@@ -286,6 +303,7 @@ module Elibri
             @preview_exists = @supporting_resources.find { |sr| sr.content_type_name == "widget" && sr.link =~ /p.elibri.com.pl/ }.present?
           end
 
+          product_form_features_setup(data.css("ProductFormFeature"))
 
           publishing_details_setup(data.at_css('PublishingDetail')) if data.at_css('PublishingDetail')
           licence_information_setup(data)
@@ -326,6 +344,23 @@ module Elibri
               @unlimited_licence = true
             end
 
+          end
+        end
+
+        def product_form_features_setup(data)
+          data.each do |feature|
+            ftype = feature.at_css("ProductFormFeatureType").inner_text
+            v1, v2 = feature.at_css("ProductFormFeatureValue, ProductFormFeatureDescription").inner_text.split("-").map(&:to_i)
+
+            if ftype == Elibri::ONIX::Dict::Release_3_0::ProductFormFeatureType::NUMBER_OF_GAME_PIECES
+              @number_of_pieces = v1
+            elsif ftype == Elibri::ONIX::Dict::Release_3_0::ProductFormFeatureType::GAME_PLAYERS
+              @players_number_from = v1
+              @players_number_to = v2
+            elsif ftype == Elibri::ONIX::Dict::Release_3_0::ProductFormFeatureType::GAME_PLAY_TIME
+              @playing_time_from = v1
+              @playing_time_to = v2
+            end
           end
         end
 

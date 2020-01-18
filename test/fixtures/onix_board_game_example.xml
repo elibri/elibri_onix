@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage xmlns="http://ns.editeur.org/onix/3.0/reference" release="3.0">
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20200118</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>76843e73500beb04ddf8</RecordReference>
+    <!--NotificationType: CONFIRMED_ON_PUBLICATION--><NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <!--ProductIDType: EAN--><ProductIDType>03</ProductIDType>
+      <IDValue>5902719470332</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <!--ProductComposition: SINGLE_COMPONENT_RETAIL_PRODUCT--><ProductComposition>00</ProductComposition>
+      <!--ProductFormCode: GAME--><ProductForm>ZE</ProductForm>
+      <ProductFormFeature>
+        <!--ProductFormFeatureType: GAME_PLAYERS--><ProductFormFeatureType>23</ProductFormFeatureType>
+        <ProductFormFeatureDescription>2-5 graczy</ProductFormFeatureDescription>
+      </ProductFormFeature>
+      <ProductFormFeature>
+        <!--ProductFormFeatureType: GAME_PLAY_TIME--><ProductFormFeatureType>24</ProductFormFeatureType>
+        <ProductFormFeatureValue>20</ProductFormFeatureValue>
+      </ProductFormFeature>
+      <ProductClassification>
+        <!--ProductClassificationType: PKWIU--><ProductClassificationType>12</ProductClassificationType>
+        <ProductClassificationCode>32.40.39.0</ProductClassificationCode>
+      </ProductClassification>
+      <Collection>
+        <!--CollectionType: PUBLISHER_COLLECTION--><CollectionType>10</CollectionType>
+        <TitleDetail>
+          <!--TitleType: DISTINCTIVE_TITLE--><TitleType>01</TitleType>
+          <TitleElement>
+            <!--TitleElementLevel: COLLECTION--><TitleElementLevel>02</TitleElementLevel>
+            <TitleText>Gry planszowe</TitleText>
+          </TitleElement>
+        </TitleDetail>
+      </Collection>
+      <TitleDetail>
+        <!--TitleType: DISTINCTIVE_TITLE--><TitleType>01</TitleType>
+        <TitleElement>
+          <!--TitleElementLevel: PRODUCT--><TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Jamniki</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <TitleDetail>
+        <!--TitleType: DISTRIBUTORS_TITLE--><TitleType>10</TitleType>
+        <TitleElement>
+          <!--TitleElementLevel: PRODUCT--><TitleElementLevel>01</TitleElementLevel>
+          <TitleText>JAMNIKI</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <Contributor sourcename="contributorid:201641" datestamp="20200118T2047">
+        <SequenceNumber>1</SequenceNumber>
+        <!--ContributorRole: AUTHOR--><ContributorRole>A01</ContributorRole>
+        <PersonName>David Short</PersonName>
+        <NamesBeforeKey>David</NamesBeforeKey>
+        <KeyNames>Short</KeyNames>
+      </Contributor>
+      <Contributor sourcename="contributorid:201642" datestamp="20200118T2047">
+        <SequenceNumber>2</SequenceNumber>
+        <!--ContributorRole: ILLUSTRATOR--><ContributorRole>A12</ContributorRole>
+        <PersonName>Maciej Szymanowicz</PersonName>
+        <NamesBeforeKey>Maciej</NamesBeforeKey>
+        <KeyNames>Szymanowicz</KeyNames>
+      </Contributor>
+      <Language>
+        <!--LanguageRole: LANGUAGE_OF_TEXT--><LanguageRole>01</LanguageRole>
+        <!--LanguageCode: Polish--><LanguageCode>pol</LanguageCode>
+      </Language>
+      <Subject>
+        <!--SubjectSchemeIdentifier: PROPRIETARY--><SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
+        <SubjectSchemeName>Nasza Księgarnia</SubjectSchemeName>
+        <SubjectCode>871</SubjectCode>
+        <SubjectHeadingText>Gry planszowe</SubjectHeadingText>
+      </Subject>
+      <AudienceRange>
+        <!--AudienceRangeQualifier: READING_AGE--><AudienceRangeQualifier>18</AudienceRangeQualifier>
+        <!--AudienceRangePrecision: FROM--><AudienceRangePrecision>03</AudienceRangePrecision>
+        <AudienceRangeValue>6</AudienceRangeValue>
+      </AudienceRange>
+      <AudienceRange>
+        <!--AudienceRangeQualifier: READING_AGE--><AudienceRangeQualifier>18</AudienceRangeQualifier>
+        <!--AudienceRangePrecision: TO--><AudienceRangePrecision>04</AudienceRangePrecision>
+        <AudienceRangeValue>106</AudienceRangeValue>
+      </AudienceRange>
+    </DescriptiveDetail>
+    <CollateralDetail>
+      <TextContent sourcename="textid:109999" datestamp="20200118T2047">
+        <!--OtherTextType: MAIN_DESCRIPTION--><TextType>03</TextType>
+        <!--ContentAudience: UNRESTRICTED--><ContentAudience>00</ContentAudience>
+        <Text>
+          <![CDATA[<p>
+ <strong>UBIERZ JAMNIKA W KUBRACZEK!</strong></p>
+ <p>
+ Podczas gry Twój jamnik będzie rósł, musisz więc ubierać go w coraz większy kubraczek. Staraj się, aby na kubraczku było jak najwięcej symboli kostek – zdobędziesz za nie punkty! Dodatkowe punkty dostaniesz za kolory kubraczka.</p>
+]]>
+        </Text>
+      </TextContent>
+    </CollateralDetail>
+    <PublishingDetail>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherIdentifier>
+          <PublisherIDType>01</PublisherIDType>
+          <IDTypeName>ElibriPublisherCode</IDTypeName>
+          <IDValue>41</IDValue>
+        </PublisherIdentifier>
+        <PublisherName>Nasza Księgarnia</PublisherName>
+      </Publisher>
+      <CityOfPublication>Warszawa</CityOfPublication>
+      <!--PublishingStatusCode: ACTIVE--><PublishingStatus>04</PublishingStatus>
+      <PublishingDate>
+        <!--PublishingDateRole: PUBLICATION_DATE--><PublishingDateRole>01</PublishingDateRole>
+        <!--DateFormat: YYYYMMDD--><DateFormat>00</DateFormat>
+        <Date dateformat="00">20180919</Date>
+      </PublishingDate>
+      <PublishingDate>
+        <!--PublishingDateRole: PREORDER_EMBARGO_DATE--><PublishingDateRole>27</PublishingDateRole>
+        <!--DateFormat: YYYYMMDD--><DateFormat>00</DateFormat>
+        <Date dateformat="00">20180905</Date>
+      </PublishingDate>
+      <SalesRights>
+        <!--SalesRightsType: FOR_SALE_WITH_EXLUSIVE_RIGHTS--><SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <CountriesIncluded>PL</CountriesIncluded>
+        </Territory>
+      </SalesRights>
+    </PublishingDetail>
+    <ProductSupply>
+      <SupplyDetail>
+        <Supplier>
+          <!--SupplierRole: PUB_TO_RET--><SupplierRole>01</SupplierRole>
+          <SupplierIdentifier>
+            <!--SupplierIDType: VAT_IDENTITY_NUMBER--><SupplierIDType>23</SupplierIDType>
+            <IDValue>PL5260205285</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>Nasza Księgarnia</SupplierName>
+        </Supplier>
+        <!--ProductAvailabilityType: IN_STOCK--><ProductAvailability>21</ProductAvailability>
+        <Stock>
+          <OnHand>200</OnHand>
+          <!--Proximity: MORE_THAN--><Proximity>07</Proximity>
+        </Stock>
+        <PackQuantity>12</PackQuantity>
+        <Price>
+          <!--PriceTypeCode: RRP_WITH_TAX--><PriceType>02</PriceType>
+          <PriceAmount>59.9</PriceAmount>
+          <Tax>
+            <!--TaxType: VAT--><TaxType>01</TaxType>
+            <TaxRatePercent>23</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+          <!--PricePrintedOnProduct: NO--><PrintedOnProduct>01</PrintedOnProduct>
+        </Price>
+      </SupplyDetail>
+    </ProductSupply>
+  </Product>
+</ONIXMessage>
