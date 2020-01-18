@@ -69,6 +69,9 @@ module Elibri
         #:nodoc:
         attr_reader :unnamed_persons
 
+        attr_reader :corporate_name
+        attr_reader :corporate_name_inverted
+
         #reprezentacja danych w xml-u
         attr_reader :to_xml
 
@@ -87,6 +90,8 @@ module Elibri
           @names_after_key = data.at_css('NamesAfterKey').try(:text)
           @biographical_note = data.at_css('BiographicalNote').try(:text)
           @unnamed_persons = data.at_css('UnnamedPersons').try(:text)
+          @corporate_name = data.at_css('CorporateName').try(:text)
+          @corporate_name_inverted = data.at_css('CorporateNameInverted').try(:text)
           set_eid(data)
           set_datestamp(data)
         end
