@@ -29,7 +29,7 @@ module Elibri
         [
           :contributors, #IMPORTANT
           :related_products, :languages, :measures, :supply_details, :measures, :title_details,
-          :collections, :extents, :thema_subjects, :audience_ranges,
+          :collections, :extents, :thema_subjects, :publisher_subjects, :audience_ranges,
           :text_contents, #IMPORTANT
           :supporting_resources, #for example: cover
           :sales_restrictions, :authors,
@@ -224,6 +224,7 @@ module Elibri
         attr_reader :collections
         attr_reader :extents
         attr_reader :thema_subjects
+        attr_reader :publisher_subjects
         attr_reader :audience_ranges
         attr_reader :supply_details
         attr_reader :identifiers
@@ -251,6 +252,7 @@ module Elibri
           @languages = []
           @extents = []
           @thema_subjects = []
+          @publisher_subjects = []
           @audience_ranges = []
           ##publishing_details
           @sales_restrictions = []
@@ -396,6 +398,9 @@ module Elibri
           @no_contributor = !!data.at_css('NoContributor')
           @languages = data.css('Language').map { |language_data| Language.new(language_data) }
           @extents = data.css('Extent').map { |extent_data| Extent.new(extent_data) }
+
+          @publisher_subjects = data.css('Subject').find_all { |sd|
+             %w{24}.include?(sd.at_css('SubjectSchemeIdentifier').try(:text)) }.map { |sd| PublisherSubject.new(sd) }
           @thema_subjects = data.css('Subject').find_all { |sd| 
              %w{93 94 95 96 97 98 99}.include?(sd.at_css('SubjectSchemeIdentifier').try(:text)) }.map { |sd| ThemaSubject.new(sd) }
           @audience_ranges = data.css('AudienceRange').map { |audience_data| AudienceRange.new(audience_data) }

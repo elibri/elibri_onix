@@ -25,6 +25,12 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal "Kwalifikatory chronologiczne / od ok. 1500 do dzisiaj / XX wiek (ok. 1900–1999) " +
                          "/ 1. poł. XX wieku (ok. 1900–1950) / Dwudziestolecie międzywojenne (ok. 1919–1939) / ok. 1920–1929", s3.heading_text
 
+    assert_equal 1, product.publisher_subjects.count
+
+    p1 = product.publisher_subjects[0]
+
+    assert_equal "191", p1.code
+    assert_equal "Beletrystyka: Horror", p1.heading_text
   end
 
 end

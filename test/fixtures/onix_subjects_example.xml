@@ -26,21 +26,6 @@
         </TitleElement>
       </TitleDetail>
       <Subject>
-        <MainSubject/>
-        <SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
-        <SubjectSchemeName>elibri.com.pl</SubjectSchemeName>
-        <SubjectSchemeVersion>1.0</SubjectSchemeVersion>
-        <SubjectCode>1110</SubjectCode>
-        <SubjectHeadingText>Historia / II Wojna Światowa / Ruch oporu</SubjectHeadingText>
-      </Subject>
-      <Subject>
-        <SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
-        <SubjectSchemeName>elibri.com.pl</SubjectSchemeName>
-        <SubjectSchemeVersion>1.0</SubjectSchemeVersion>
-        <SubjectCode>491</SubjectCode>
-        <SubjectHeadingText>Szkoła i nauczanie / Lektury szkolne z opracowaniami</SubjectHeadingText>
-      </Subject>
-      <Subject>
         <SubjectSchemeIdentifier>93</SubjectSchemeIdentifier>
         <SubjectSchemeVersion>1.3</SubjectSchemeVersion>
         <SubjectCode>JWCM</SubjectCode>
