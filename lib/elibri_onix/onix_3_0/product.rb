@@ -600,7 +600,7 @@ module Elibri
         end
 
         def _parse_date(string)
-          Date.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i)
+          Date.new(string[0...4].to_i, string[4...6].to_i, string[6...8].to_i)
         rescue ArgumentError
           raise "Invalid date '#{string}' when parsing date for #{@record_reference}"
         end
