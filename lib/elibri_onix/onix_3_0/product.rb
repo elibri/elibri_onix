@@ -11,11 +11,11 @@ module Elibri
         #:nodoc:
         ATTRIBUTES =
         [
-          :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration, 
-          :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to, 
+          :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration,
+          :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to,
           :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
           :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date, :record_reference,
-          :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :additional_info, :product_composition, 
+          :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :additional_info, :product_composition,
           :publisher, :product_form, :no_contributor, :edition_statement, :edition_type_onix_code, :number_of_illustrations, :publishing_status,
           :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
           :preview_exists, :short_description, :sale_restricted_to_poland,
@@ -151,7 +151,7 @@ module Elibri
         #AdditionalInfo
         attr_reader :additional_info
 
-        #kod ONIX typu produktu, np. 'BA' - lista dostępna pod adresem 
+        #kod ONIX typu produktu, np. 'BA' - lista dostępna pod adresem
         #https://github.com/elibri/elibri_onix_dict/blob/master/lib/elibri_onix_dict/onix_3_0/serialized/ProductFormCode.yml
         attr_reader :product_form
 
@@ -192,12 +192,12 @@ module Elibri
         #dodatkowa informacja handlowa
         attr_reader :additional_trade_information
 
-        #ilość elementów (puzzle, gry planszowe)      
+        #ilość elementów (puzzle, gry planszowe)
         attr_reader :number_of_pieces
 
         #min. ilość graczy - gry planszowe
         attr_reader :players_number_from
- 
+
         #max. ilość graczy - gry planszowe
         attr_reader :players_number_to
 
@@ -265,7 +265,7 @@ module Elibri
           @deletion_text = data.at_css('DeletionText').try(:text)
 
           if data.namespaces.values.any? { |uri| uri =~ /elibri/ }
-            @cover_type = data.at_xpath('elibri:CoverType').try(:text) 
+            @cover_type = data.at_xpath('elibri:CoverType').try(:text)
             @pkwiu = data.at_xpath('elibri:PKWiU').try(:text)
             @hyphenated_isbn = data.at_xpath('elibri:HyphenatedISBN').try(:text)
             @pdw_exclusiveness = data.at_xpath('elibri:PDWExclusiveness').try(:text)
@@ -289,7 +289,7 @@ module Elibri
             @vat = data.at_xpath('elibri:Vat').try(:text).try(:to_i)
           else
             price_sd = @supply_details.find { |sd| sd.supplier && sd.supplier.role == Elibri::ONIX::Dict::Release_3_0::SupplierRole::PUB_TO_RET }
-            if price_sd && price_sd.price && price_sd.price && price_sd.price.type == Elibri::ONIX::Dict::Release_3_0::PriceTypeCode::RRP_WITH_TAX 
+            if price_sd && price_sd.price && price_sd.price && price_sd.price.type == Elibri::ONIX::Dict::Release_3_0::PriceTypeCode::RRP_WITH_TAX
               @vat = price_sd.price.tax_rate_percent.to_i
               @cover_price = price_sd.price.amount
               @additional_trade_information = price_sd.additional_trade_information
@@ -333,14 +333,14 @@ module Elibri
             elsif date = data.at_xpath("elibri:SaleRestrictedTo").try(:text)
               @unlimited_licence = false
               @licence_limited_to_before_type_cast = date
-              @licence_limited_to = Date.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i)
+              @licence_limited_to = _parse_date(date)
             end
           else
             daten = data.css('PublishingDate').find { |d| d.at_css("PublishingDateRole") && d.at_css("PublishingDateRole").text == Elibri::ONIX::Dict::Release_3_0::PublishingDateRole::OUT_OF_PRINT_DATE }
             if daten
               date = daten.at_css('Date').text
               @licence_limited_to_before_type_cast = date
-              @licence_limited_to = Date.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i)
+              @licence_limited_to = _parse_date(date)
               @unlimited_licence = false
             else
               @unlimited_licence = true
@@ -387,7 +387,7 @@ module Elibri
             end
 
           end
-          if classification = data.css('ProductClassification').find { |cl| 
+          if classification = data.css('ProductClassification').find { |cl|
              cl.at_css('ProductClassificationType').text == Elibri::ONIX::Dict::Release_3_0::ProductClassificationType::PKWIU }
             @pkwiu  = classification.at_css('ProductClassificationCode').text
           end
@@ -401,7 +401,7 @@ module Elibri
 
           @publisher_subjects = data.css('Subject').find_all { |sd|
              %w{24}.include?(sd.at_css('SubjectSchemeIdentifier').try(:text)) }.map { |sd| PublisherSubject.new(sd) }
-          @thema_subjects = data.css('Subject').find_all { |sd| 
+          @thema_subjects = data.css('Subject').find_all { |sd|
              %w{93 94 95 96 97 98 99}.include?(sd.at_css('SubjectSchemeIdentifier').try(:text)) }.map { |sd| ThemaSubject.new(sd) }
           @audience_ranges = data.css('AudienceRange').map { |audience_data| AudienceRange.new(audience_data) }
 
@@ -436,7 +436,7 @@ module Elibri
           preorder_embargo_date_as_object = publication_dates.find { |date| date.role == Elibri::ONIX::Dict::Release_3_0::PublishingDateRole::PREORDER_EMBARGO_DATE }
           @preorder_embargo_date = Date.new(*preorder_embargo_date_as_object.parsed) if preorder_embargo_date_as_object
 
-          @sales_restrictions = data.css('SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }      
+          @sales_restrictions = data.css('SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }
           #ograniczenia terytorialne
           if data.at_css("CountriesIncluded").try(:text) == "PL"
             @sale_restricted_to_poland = true
@@ -462,7 +462,7 @@ module Elibri
 
         #flaga - true, jeśli produkt nie ma żadnego autora
         def no_contributor?
-          @no_contributor 
+          @no_contributor
         end
 
         #flaga, czy książka to praca zbiorowa?
@@ -479,7 +479,7 @@ module Elibri
           unnamed_persons? ? ["praca zbiorowa"] : @contributors.find_all { |c| c.role_name == "author" }.map(&:person_name)
         end
 
-        [:ghostwriter, :scenarist, :originator, :illustrator, :photographer, :author_of_preface, :drawer, :cover_designer, 
+        [:ghostwriter, :scenarist, :originator, :illustrator, :photographer, :author_of_preface, :drawer, :cover_designer,
          :inked_or_colored_by, :editor, :revisor, :translator, :editor_in_chief, :read_by].each do |role|
           define_method "#{role}s" do
             @contributors.find_all { |c| c.role_name == role.to_s }.map(&:person_name)
@@ -514,7 +514,7 @@ module Elibri
         end
 
         #:nodoc:
-        def proprietary_identifiers 
+        def proprietary_identifiers
           @identifiers.find_all { |i| i.identifier_type == "proprietary" }.inject({}) { |res, ident| res[ident.type_name] = ident.value; res }
         end
 
@@ -597,6 +597,12 @@ module Elibri
               end
             end
           end
+        end
+
+        def _parse_date(string)
+          Date.new(date[0...4].to_i, date[4...6].to_i, date[6...8].to_i)
+        rescue ArgumentError
+          raise "Invalid date '#{string}' when parsing date for #{@record_reference}"
         end
       end
 
