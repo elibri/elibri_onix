@@ -6,38 +6,36 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
   it "should be able to parse all attributes supported in Elibri" do
     xml_string = File.read File.join(File.dirname(__FILE__), "..", "test", "fixtures", "all_possible_tags.xml")
-    
+
     onix = Elibri::ONIX::Release_3_0::ONIXMessage.new(xml_string)
     assert_equal '3.0', onix.release
     assert_equal 'Elibri.com.pl', onix.header.sender.sender_name
-    assert_equal 'Tomasz Meka', onix.header.sender.contact_name
-    assert_equal 'kontakt@elibri.com.pl', onix.header.sender.email_address
     assert_equal Date.new(2011, 10, 5), onix.header.sent_date_time
 
-    assert_equal 1, onix.products.size 
+    assert_equal 1, onix.products.size
 
     product = onix.products.first
 
-    assert_equal 'miękka', product.cover_type 
+    assert_equal 'miękka', product.cover_type
     assert_equal 12.99, product.cover_price
     assert_equal 5, product.vat
     assert_equal '58.11.1', product.pkwiu
 
     assert_equal 'fdb8fa072be774d97a97', product.record_reference
     assert_equal '03', product.notification_type
-    assert_equal "Record had many errors", product.deletion_text 
+    assert_equal "Record had many errors", product.deletion_text
 
     assert_equal '9788324799992', product.isbn13
     assert_equal '9788324788882', product.ean
 
     assert_equal({"Gildia.pl" => "GILD-123", "PWN" => "pl.pwn.ksiegarnia.produkt.id.76734"}, product.proprietary_identifiers)
 
-    assert_equal "00", product.product_composition 
+    assert_equal "00", product.product_composition
     assert_equal 'BA', product.product_form
 
-    assert_equal 4, product.measures.size 
+    assert_equal 4, product.measures.size
 
-    assert_equal 195, product.height 
+    assert_equal 195, product.height
     assert_equal 125, product.width
     assert_equal 20, product.thickness
     assert_equal 90, product.weight
@@ -49,10 +47,10 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 'Trade title', product.trade_title
     assert_equal 'Collection title (Vol. 1). Title. Subtitle (part 5)', product.full_title
 
-    assert_equal 1, product.contributors.size 
+    assert_equal 1, product.contributors.size
     product.contributors.first.tap do |sienkiewicz|
-      assert_equal 'B06', sienkiewicz.role 
-      assert_equal 'pol', sienkiewicz.from_language 
+      assert_equal 'B06', sienkiewicz.role
+      assert_equal 'pol', sienkiewicz.from_language
       assert_equal "prof. Henryk von Sienkiewicz Ibrahim", sienkiewicz.person_name
       assert_equal "prof.", sienkiewicz.titles_before_names
       assert_equal "Henryk", sienkiewicz.names_before_key
@@ -71,7 +69,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 250, product.number_of_pages
     assert_equal 32, product.number_of_illustrations
 
-    assert_equal 7, product.reading_age_from 
+    assert_equal 7, product.reading_age_from
     assert_equal 25, product.reading_age_to
 
     assert_equal 1, product.text_contents.size
@@ -91,7 +89,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
     assert_equal 'National Geographic', product.imprint_name
 
-    assert_equal 'GREG', product.publisher.name 
+    assert_equal 'GREG', product.publisher.name
     assert_equal "01", product.publisher.role
 
     assert_equal "04", product.publishing_status
@@ -109,24 +107,24 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 2, product.related_products.size
 
     product.related_products.first.tap do |first_related|
-      #assert_equal 24, first_related.relation_code 
+      #assert_equal 24, first_related.relation_code
       #assert_equal '9788324705818', first_related.isbn13
       #assert_equal({"Gildia.pl" => "Title of facsimile"}, first_related.proprietary_identifiers)
     end
 
     product.related_products[1].tap do |second_related|
-      #assert_equal 23, second_related.relation_code 
+      #assert_equal 23, second_related.relation_code
       #assert_equal '9788324799992', second_related.isbn13
       #assert_equal({"PWN" => "Title of similar book"}, second_related.proprietary_identifiers)
     end
 
-    assert_equal 2, product.supply_details.size 
+    assert_equal 2, product.supply_details.size
 
     product.supply_details.first.tap do |supply_detail|
       supply_detail.supplier.tap do |supplier|
         assert_equal "03", supplier.role
         assert_equal '5213359408', supplier.nip
-        assert_equal 'Gildia.pl', supplier.name 
+        assert_equal 'Gildia.pl', supplier.name
         assert_equal "22 631 40 83", supplier.telephone_number
         assert_equal "bok@gildia.pl", supplier.email_address
         assert_equal "http://gildia.pl", supplier.website
@@ -140,7 +138,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
         assert_equal "02", price.type
         assert_equal 20, price.minimum_order_quantity
         assert_equal 12.99, price.amount
-        assert_equal 7, price.vat 
+        assert_equal 7, price.vat
         assert_equal 'PLN', price.currency_code
         assert_equal "02", price.printed_on_product
         assert price.printed_on_product?

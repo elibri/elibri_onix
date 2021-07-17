@@ -21,7 +21,6 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 5, product.vat
     assert_equal "PROMO 20", product.additional_trade_information
     assert_equal "58.11.1", product.pkwiu
-    assert_equal "twarda z obwolutą", product.cover_type
   end
 
 end

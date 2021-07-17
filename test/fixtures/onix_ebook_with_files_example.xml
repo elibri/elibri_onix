@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference" xmlns:elibri="http://elibri.com.pl/ns/extensions">
-  <elibri:Dialect>3.0.1</elibri:Dialect>
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference">
   <Header>
     <Sender>
       <SenderName>Elibri.com.pl</SenderName>
-      <ContactName>Tomasz Meka</ContactName>
-      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
     </Sender>
-    <SentDateTime>20130710</SentDateTime>
+    <SentDateTime>20210716</SentDateTime>
   </Header>
   <Product>
-    <RecordReference>fdb8fa072be774d97a97</RecordReference>
+    <RecordReference>xxx</RecordReference>
     <NotificationType>03</NotificationType>
+    <RecordSourceName>elibri</RecordSourceName>
     <ProductIdentifier>
       <ProductIDType>15</ProductIDType>
-      <IDValue>9788324799992</IDValue>
+      <IDValue>9788364057434</IDValue>
     </ProductIdentifier>
     <DescriptiveDetail>
       <ProductComposition>00</ProductComposition>
@@ -23,86 +21,120 @@
         <TitleType>01</TitleType>
         <TitleElement>
           <TitleElementLevel>01</TitleElementLevel>
-          <TitleText>Nielegalni</TitleText>
+          <TitleText language="pol">Horror show</TitleText>
         </TitleElement>
       </TitleDetail>
+      <Contributor>
+        <ContributorRole>A01</ContributorRole>
+        <UnnamedPersons>04</UnnamedPersons>
+      </Contributor>
     </DescriptiveDetail>
+    <CollateralDetail>
+      <SupportingResource>
+        <ResourceContentType>15</ResourceContentType>
+        <ContentAudience>00</ContentAudience>
+        <ResourceMode>04</ResourceMode>
+        <ResourceVersion>
+          <ResourceForm>02</ResourceForm>
+          <ResourceVersionFeature>
+            <ResourceVersionFeatureType>01</ResourceVersionFeatureType>
+            <FeatureValue>E101</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+            <ResourceVersionFeatureType>06</ResourceVersionFeatureType>
+            <FeatureValue>4b145ff46636b06f49225abdab70927f</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+            <ResourceVersionFeatureType>07</ResourceVersionFeatureType>
+            <FeatureValue>2100230</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceLink>https://www.elibri.com.pl/excerpt/767/4b145ff46636b06f49225abdab70927f/fragment.epub</ResourceLink>
+          <ContentDate>
+            <ContentDateRole>17</ContentDateRole>
+            <Date dateformat="13">20121230T1518Z</Date>
+          </ContentDate>
+        </ResourceVersion>
+        <ResourceVersion>
+          <ResourceForm>02</ResourceForm>
+          <ResourceVersionFeature>
+            <ResourceVersionFeatureType>01</ResourceVersionFeatureType>
+            <FeatureValue>E127</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+            <ResourceVersionFeatureType>06</ResourceVersionFeatureType>
+            <FeatureValue>3b452923564374efebc5bfe1059f5fd2</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+            <ResourceVersionFeatureType>07</ResourceVersionFeatureType>
+            <FeatureValue>2100244</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceLink>https://www.elibri.com.pl/excerpt/768/3b452923564374efebc5bfe1059f5fd2/fragment.mobi</ResourceLink>
+          <ContentDate>
+            <ContentDateRole>17</ContentDateRole>
+            <Date dateformat="13">20121230T1518Z</Date>
+          </ContentDate>
+        </ResourceVersion>
+      </SupportingResource>
+    </CollateralDetail>
     <PublishingDetail>
       <Publisher>
         <PublishingRole>01</PublishingRole>
-        <PublisherIdentifier>
-          <PublisherIDType>01</PublisherIDType>
-          <IDTypeName>ElibriPublisherCode</IDTypeName>
-          <IDValue>11</IDValue>
-        </PublisherIdentifier>
-        <PublisherName>GREG</PublisherName>
+        <PublisherName>Helion</PublisherName>
       </Publisher>
-      <CityOfPublication>Warszawa</CityOfPublication>
-      <PublishingStatus>04</PublishingStatus>
-      <SalesRights>
-        <SalesRightsType>01</SalesRightsType>
-        <Territory>
-          <RegionsIncluded>WORLD</RegionsIncluded>
-        </Territory>
-      </SalesRights>
+      <PublishingStatus>07</PublishingStatus>
+      <PublishingDate>
+        <PublishingDateRole>01</PublishingDateRole>
+        <DateFormat>05</DateFormat>
+        <Date dateformat="05">2014</Date>
+      </PublishingDate>
     </PublishingDetail>
-    <elibri:preview_exists>false</elibri:preview_exists>
-    <elibri:SaleNotRestricted/>
-    <elibri:excerpts>
-      <elibri:excerpt md5="4b145ff46636b06f49225abdab70927f" file_size="2100230" file_type="epub_excerpt" updated_at="2012-12-30T15:18:00+00:00" id="767">https://www.elibri.com.pl/excerpt/767</elibri:excerpt>
-      <elibri:excerpt md5="6f534ab6ab573845bb7ab221192aa86a" file_size="2101254" file_type="mobi_excerpt" updated_at="2012-12-30T15:16:00+00:00" id="768">https://www.elibri.com.pl/excerpt/768</elibri:excerpt>
-    </elibri:excerpts>
-    <elibri:masters>
-      <elibri:master id="765" md5="e9353ce40eaa677f8c5d666c2f8bbb3f" file_size="4197382" file_type="epub" updated_at="2012-12-30T15:18:00+00:00"/>
-      <elibri:master id="766" md5="d2c75a26973a1888f241125717b166cf" file_size="5246982" file_type="mobi" updated_at="2012-12-30T15:16:00+00:00"/>
-    </elibri:masters>
-  </Product>
-  <Product>
-    <RecordReference>fdb8fa072be774d97a98</RecordReference>
-    <NotificationType>03</NotificationType>
-    <ProductIdentifier>
-      <ProductIDType>15</ProductIDType>
-      <IDValue>9788324799993</IDValue>
-    </ProductIdentifier>
-    <DescriptiveDetail>
-      <ProductComposition>00</ProductComposition>
-      <ProductForm>EA</ProductForm>
-      <TitleDetail>
-        <TitleType>01</TitleType>
-        <TitleElement>
-          <TitleElementLevel>01</TitleElementLevel>
-          <TitleText>Legalni</TitleText>
-        </TitleElement>
-      </TitleDetail>
-    </DescriptiveDetail>
-    <PublishingDetail>
-      <Publisher>
-        <PublishingRole>01</PublishingRole>
-        <PublisherIdentifier>
-          <PublisherIDType>01</PublisherIDType>
-          <IDTypeName>ElibriPublisherCode</IDTypeName>
-          <IDValue>11</IDValue>
-        </PublisherIdentifier>
-        <PublisherName>GREG</PublisherName>
-      </Publisher>
-      <CityOfPublication>Warszawa</CityOfPublication>
-      <PublishingStatus>04</PublishingStatus>
-      <SalesRights>
-        <SalesRightsType>01</SalesRightsType>
-        <Territory>
-          <RegionsIncluded>WORLD</RegionsIncluded>
-        </Territory>
-      </SalesRights>
-    </PublishingDetail>
-    <elibri:preview_exists>false</elibri:preview_exists>
-    <elibri:SaleNotRestricted/>
-    <elibri:excerpts>
-      <elibri:excerpt md5="4b145ff46636b06f49225abdab70927f" file_size="2100230" file_type="epub_excerpt" updated_at="2012-12-30T15:18:00+00:00" id="777">https://www.elibri.com.pl/excerpt/767</elibri:excerpt>
-      <elibri:excerpt md5="6f534ab6ab573845bb7ab221192aa86a" file_size="2101254" file_type="mobi_excerpt" updated_at="2012-12-30T15:16:00+00:00" id="778">https://www.elibri.com.pl/excerpt/768</elibri:excerpt>
-    </elibri:excerpts>
-    <elibri:masters>
-      <elibri:master id="775" md5="e9353ce40eaa677f8c5d666c2f8bbb3f" file_size="4197382" file_type="epub" updated_at="2012-12-30T15:18:00+00:00"/>
-      <elibri:master id="776" md5="d2c75a26973a1888f241125717b166cf" file_size="5246982" file_type="mobi" updated_at="2012-12-30T15:16:00+00:00"/>
-    </elibri:masters>
+    <ProductionDetail>
+      <ProductionManifest>
+        <BodyManifest>
+          <BodyResource>
+            <SequenceNumber>1</SequenceNumber>
+            <ResourceIdentifier>
+              <ResourceIDType>01</ResourceIDType>
+              <IDTypeName>elibri internal numerical ID</IDTypeName>
+              <IDValue>765</IDValue>
+            </ResourceIdentifier>
+            <ResourceFileFeature>
+              <ResourceFileFeatureType>07</ResourceFileFeatureType>
+              <ResourceFileFeatureValue>4197382</ResourceFileFeatureValue>
+            </ResourceFileFeature>
+            <ResourceFileFeature>
+              <ResourceFileFeatureType>06</ResourceFileFeatureType>
+              <ResourceFileFeatureValue>e9353ce40eaa677f8c5d666c2f8bbb3f</ResourceFileFeatureValue>
+            </ResourceFileFeature>
+            <ResourceFileLink>pan-tadeusz.epub</ResourceFileLink>
+            <ResourceFileDate>
+              <ResourceFileDateRole>17</ResourceFileDateRole>
+              <Date dateformat="13">20121230T1518Z</Date>
+            </ResourceFileDate>
+          </BodyResource>
+          <BodyResource>
+            <SequenceNumber>2</SequenceNumber>
+            <ResourceIdentifier>
+              <ResourceIDType>01</ResourceIDType>
+              <IDTypeName>elibri internal numerical ID</IDTypeName>
+              <IDValue>2</IDValue>
+            </ResourceIdentifier>
+            <ResourceFileFeature>
+              <ResourceFileFeatureType>07</ResourceFileFeatureType>
+              <ResourceFileFeatureValue>9177122</ResourceFileFeatureValue>
+            </ResourceFileFeature>
+            <ResourceFileFeature>
+              <ResourceFileFeatureType>06</ResourceFileFeatureType>
+              <ResourceFileFeatureValue>44452923564374efebc5bfe1059f5fb8</ResourceFileFeatureValue>
+            </ResourceFileFeature>
+            <ResourceFileLink>pan-tadeusz.mobi</ResourceFileLink>
+            <ResourceFileDate>
+              <ResourceFileDateRole>17</ResourceFileDateRole>
+              <Date dateformat="13">20121230T1518Z</Date>
+            </ResourceFileDate>
+          </BodyResource>
+        </BodyManifest>
+      </ProductionManifest>
+    </ProductionDetail>
   </Product>
 </ONIXMessage>

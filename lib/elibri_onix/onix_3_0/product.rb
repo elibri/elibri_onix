@@ -207,6 +207,13 @@ module Elibri
         #max. czas gry - gry planszowe
         attr_reader :playing_time_to
 
+        #cn code
+        attr_reader :cn_code
+
+        #kraj produkcji
+        attr_reader :country_of_manufacture
+
+
         #:nodoc:
         attr_reader :text_contents
         attr_reader :file_size
@@ -318,11 +325,7 @@ module Elibri
             end
 
           end
-          begin
-            @file_infos = data.at_xpath("elibri:masters").xpath("elibri:master").map { |node| FileInfo.new(node) }
-          rescue
-            @file_infos = []
-          end
+          @file_infos = data.css("BodyResource").map { |node| FileInfo.new(node) }
           after_parse
         end
 
@@ -367,6 +370,8 @@ module Elibri
         end
 
         def descriptive_details_setup(data)
+          @country_of_manufacture = data.at_css("CountryOfManufacture").try(:text)
+
           @product_composition = data.at_css('ProductComposition').try(:text)
           @product_form = data.at_css('ProductForm').try(:text)
           if @product_form
@@ -387,9 +392,14 @@ module Elibri
             end
 
           end
-          if classification = data.css('ProductClassification').find { |cl|
-             cl.at_css('ProductClassificationType').text == Elibri::ONIX::Dict::Release_3_0::ProductClassificationType::PKWIU }
-            @pkwiu  = classification.at_css('ProductClassificationCode').text
+          data.css('ProductClassification').each do |cl|
+            cl_type = cl.at_css('ProductClassificationType').text
+            cl_value = cl.at_css('ProductClassificationCode').text
+            if cl_type == Elibri::ONIX::Dict::Release_3_0::ProductClassificationType::PKWIU
+              @pkwiu = cl_value
+            elsif cl_type == Elibri::ONIX::Dict::Release_3_0::ProductClassificationType::CN
+              @cn_code = cl_value
+            end
           end
           @measures =  data.css('Measure').map { |measure_data| Measure.new(measure_data) }
           @title_details = data.children.find_all { |node| node.name == 'TitleDetail' }.map { |title_data| TitleDetail.new(title_data) }

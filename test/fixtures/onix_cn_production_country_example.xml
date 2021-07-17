@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference">
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+    </Sender>
+    <SentDateTime>20210713</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>xxx</RecordReference>
+    <NotificationType>03</NotificationType>
+    <RecordSourceName>elibri</RecordSourceName>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9788364057434</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <ProductComposition>00</ProductComposition>
+      <ProductForm>BA</ProductForm>
+      <CountryOfManufacture>DE</CountryOfManufacture>
+      <ProductClassification>
+        <ProductClassificationType>01</ProductClassificationType>
+        <ProductClassificationCode>4901</ProductClassificationCode>
+      </ProductClassification>
+      <TitleDetail>
+        <TitleType>01</TitleType>
+        <TitleElement>
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText language="pol">Horror show</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <Contributor>
+        <ContributorRole>A01</ContributorRole>
+        <UnnamedPersons>04</UnnamedPersons>
+      </Contributor>
+    </DescriptiveDetail>
+    <PublishingDetail>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherName>Helion</PublisherName>
+      </Publisher>
+      <PublishingStatus>07</PublishingStatus>
+      <PublishingDate>
+        <PublishingDateRole>01</PublishingDateRole>
+        <DateFormat>05</DateFormat>
+        <Date dateformat="05">2014</Date>
+      </PublishingDate>
+    </PublishingDetail>
+  </Product>
+</ONIXMessage>
