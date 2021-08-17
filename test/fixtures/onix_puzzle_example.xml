@@ -102,12 +102,12 @@
       <!--PublishingStatusCode: ACTIVE--><PublishingStatus>04</PublishingStatus>
       <PublishingDate>
         <!--PublishingDateRole: PUBLICATION_DATE--><PublishingDateRole>01</PublishingDateRole>
-        <!--DateFormat: YYYYMMDD--><DateFormat>00</DateFormat>
+        <!--DateFormat: YYYYMMDD-->
         <Date dateformat="00">20190227</Date>
       </PublishingDate>
       <PublishingDate>
         <!--PublishingDateRole: PREORDER_EMBARGO_DATE--><PublishingDateRole>27</PublishingDateRole>
-        <!--DateFormat: YYYYMMDD--><DateFormat>00</DateFormat>
+        <!--DateFormat: YYYYMMDD-->
         <Date dateformat="00">20190213</Date>
       </PublishingDate>
       <SalesRights>

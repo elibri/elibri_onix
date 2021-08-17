@@ -269,8 +269,7 @@
             00 - RRRRMMDD
             01 - RRRRMM
             05 - RRRR -->
-        <DateFormat>05</DateFormat>
-        <Date>2011</Date>
+        <Date dateformat="05">2011</Date>
       </PublishingDate>
       <SalesRestriction>
         <!-- Typ restrykcji - zawsze 04 -->

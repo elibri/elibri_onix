@@ -41,8 +41,7 @@
       <PublishingStatus>04</PublishingStatus>
       <PublishingDate>
         <PublishingDateRole>01</PublishingDateRole>
-        <DateFormat>01</DateFormat>
-        <Date>201102</Date>
+        <Date dateformat="01">201102</Date>
       </PublishingDate>
       <SalesRights>
         <SalesRightsType>01</SalesRightsType>

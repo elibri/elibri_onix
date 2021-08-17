@@ -58,7 +58,7 @@
         <KeyNames>Keyes</KeyNames>
         <BiographicalNote>&lt;p&gt;
  Daniel Keyes (1927-2014) – amerykański pisarz. Jego opowiadanie &lt;em&gt;Kwiaty dla Algernona&lt;/em&gt; otrzymało nagrodę Hugo w 1960 roku. Rozwinięte do formy powieści pod tym samym tytułem doczekało się z kolei nagrody Nebula w roku 1966, a dwa lata później zostało zekranizowane jako &lt;em&gt;Charly&lt;/em&gt;. Keyes opublikował także m.in. obsypaną nagrodami książkę non-fiction &lt;em&gt;Człowiek o 24 twarzach.&lt;/em&gt;&lt;/p&gt;
- 
+
 </BiographicalNote>
       </Contributor>
       <Contributor sourcename="contributorid:221077" datestamp="20190614T0946">
@@ -194,12 +194,11 @@
       <PublishingStatus>04</PublishingStatus>
       <PublishingDate>
         <!--PublishingDateRole: PUBLICATION_DATE--><PublishingDateRole>01</PublishingDateRole>
-        <!--DateFormat: YYYYMMDD--><DateFormat>00</DateFormat>
+        <!--DateFormat: YYYYMMDD-->
         <Date dateformat="00">20190724</Date>
       </PublishingDate>
       <PublishingDate>
         <PublishingDateRole>13</PublishingDateRole>
-        <DateFormat>00</DateFormat>
         <Date dateformat="00">20250307</Date>
       </PublishingDate>
       <SalesRights>

@@ -42,7 +42,6 @@
       <PublishingStatus>07</PublishingStatus>
       <PublishingDate>
         <PublishingDateRole>01</PublishingDateRole>
-        <DateFormat>05</DateFormat>
         <Date dateformat="05">2014</Date>
       </PublishingDate>
     </PublishingDetail>
