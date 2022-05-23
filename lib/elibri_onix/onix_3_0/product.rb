@@ -295,7 +295,8 @@ module Elibri
             @cover_price = BigDecimal(data.at_xpath('elibri:CoverPrice').try(:text)) if data.at_xpath('elibri:CoverPrice')
             @vat = data.at_xpath('elibri:Vat').try(:text).try(:to_i)
           else
-            price_sd = @supply_details.find { |sd| sd.supplier && sd.supplier.role == Elibri::ONIX::Dict::Release_3_0::SupplierRole::PUB_TO_RET }
+            #00 - Supplier role - Unspecified
+            price_sd = @supply_details.find { |sd| sd.supplier && ["00", Elibri::ONIX::Dict::Release_3_0::SupplierRole::PUB_TO_RET].include?(sd.supplier.role) }
             if price_sd && price_sd.price && price_sd.price && price_sd.price.type == Elibri::ONIX::Dict::Release_3_0::PriceTypeCode::RRP_WITH_TAX
               @vat = price_sd.price.tax_rate_percent.to_i
               @cover_price = price_sd.price.amount
