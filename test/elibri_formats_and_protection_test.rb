@@ -7,7 +7,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
     product = load_fixture("onix_epub_details_example.xml")
     assert_equal ["EPUB", "MOBI"], product.digital_formats
-    assert_equal "DRM", product.technical_protection
-    assert_equal "01", product.technical_protection_onix_code
+    assert_equal "watermark", product.technical_protection
+    assert_equal "02", product.technical_protection_onix_code
   end
 end

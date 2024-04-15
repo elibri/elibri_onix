@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference" xmlns:elibri="http://elibri.com.pl/ns/extensions">
-  <elibri:Dialect>3.0.1</elibri:Dialect>
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference">
   <Header>
     <Sender>
       <SenderName>Elibri.com.pl</SenderName>
@@ -19,9 +18,6 @@
     <DescriptiveDetail>
       <ProductComposition>00</ProductComposition>
       <ProductForm>EA</ProductForm>
-      <ProductFormDetail>E101</ProductFormDetail>
-      <ProductFormDetail>E127</ProductFormDetail>
-      <EpubTechnicalProtection>02</EpubTechnicalProtection>
       <TitleDetail>
         <TitleType>01</TitleType>
         <TitleElement>
@@ -40,15 +36,27 @@
         </PublisherIdentifier>
         <PublisherName>GREG</PublisherName>
       </Publisher>
+      <CityOfPublication>Warszawa</CityOfPublication>
       <PublishingStatus>04</PublishingStatus>
+      <PublishingDate>
+        <PublishingDateRole>01</PublishingDateRole>
+        <Date dateformat="00">20120712</Date>
+      </PublishingDate>
       <SalesRights>
         <SalesRightsType>01</SalesRightsType>
         <Territory>
           <RegionsIncluded>WORLD</RegionsIncluded>
         </Territory>
       </SalesRights>
+      <SalesRestriction>
+        <SalesRestrictionType>04</SalesRestrictionType>
+        <SalesOutlet>
+          <SalesOutletIdentifier>
+            <SalesOutletIDType>03</SalesOutletIDType>
+            <IDValue>EMP</IDValue>
+          </SalesOutletIdentifier>
+        </SalesOutlet>
+      </SalesRestriction>
     </PublishingDetail>
-    <elibri:preview_exists>false</elibri:preview_exists>
-    <elibri:SaleRestrictedTo>20140307</elibri:SaleRestrictedTo>
   </Product>
 </ONIXMessage>

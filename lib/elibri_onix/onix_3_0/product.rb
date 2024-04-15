@@ -454,7 +454,12 @@ module Elibri
           else
             @sale_restricted_to_poland = false
           end
+        end
 
+        def exclusive_distributor_onix_code
+          if @sales_restrictions.size > 0
+            @sales_restrictions[0].outlet_code
+          end
         end
 
         def sales_restrictions?
