@@ -537,10 +537,7 @@ module Elibri
         #data premiery w postaci listy [rok, miesiąc, dzień], [rok, miesiąc], [rok], lub pustej listy - jeśli data premiery nie jest znana
         #(data premiery może nie być znana w przypadku backlisty)
         def parsed_publishing_date
-          if sales_restrictions?
-            date = sales_restrictions[0].end_date
-            [date.year, date.month, date.day]
-          elsif publishing_date
+          if publishing_date
             publishing_date.parsed
           else
             []
