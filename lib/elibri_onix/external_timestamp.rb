@@ -3,7 +3,7 @@ module ExternalTimestamp
   def self.included(base)
     base.send(:attr_accessor, :datestamp_before_type_cast) #, :from => "@datestamp"
   end
-  
+
   def set_datestamp(data)
     @datestamp_before_type_cast = data.attr('datestamp')
   end
@@ -15,7 +15,7 @@ module ExternalTimestamp
     h = datestamp_before_type_cast[9...11].to_i
     m = datestamp_before_type_cast[11...13].to_i
 
-    Date.new(year, month, day) + h.hours + m.minutes
+    Time.new(year, month, day, h, m)
   end
 
 end

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference" xmlns:elibri="http://elibri.com.pl/ns/extensions">
-  <elibri:Dialect>3.0.1</elibri:Dialect>
+<ONIXMessage release="3.0" xmlns="http://ns.editeur.org/onix/3.0/reference">
   <Header>
     <Sender>
       <SenderName>Elibri.com.pl</SenderName>

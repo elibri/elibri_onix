@@ -1,20 +1,9 @@
-
-
 module Elibri
   module ONIX
     module Release_3_0
-
       class FileInfo
 
-        #Informacja o fragmencie publikacji (e-book)
-
-        ATTRIBUTES = [
-          :file_type, :file_size, :md5, :updated_at
-        ]
-
-        RELATIONS = [
-          :inspect_include_fields
-        ]
+        include TimestampParser
 
         attr_accessor :file_type, :file_size, :md5, :updated_at, :eid, :to_xml
 
@@ -23,7 +12,7 @@ module Elibri
 
           data.css("ResourceFileDate").each do |date|
             if date.css("ResourceFileDateRole").first.inner_text == Elibri::ONIX::Dict::Release_3_0::ContentDateRole::LAST_UPDATED
-              @updated_at = Time.parse(date.css("Date").first.inner_text)
+              @updated_at = parse_timestamp(date.css("Date").first.inner_text)
             end
           end
 

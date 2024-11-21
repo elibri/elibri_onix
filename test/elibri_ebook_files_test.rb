@@ -11,7 +11,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 2100230, e.file_size
     assert_equal "4b145ff46636b06f49225abdab70927f", e.md5
     assert_equal "epub_excerpt", e.file_type
-    assert_equal Time.parse("2012-12-30 15:18 +00:00"), e.updated_at
+    assert_equal Time.new(2012, 12, 30, 15, 18), e.updated_at
     assert_equal "https://www.elibri.com.pl/excerpt/767/4b145ff46636b06f49225abdab70927f/fragment.epub", e.link
     assert_equal 767, e.eid
 
@@ -20,7 +20,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 4197382, f.file_size
     assert_equal "e9353ce40eaa677f8c5d666c2f8bbb3f", f.md5
     assert_equal "epub", f.file_type
-    assert_equal Time.parse("2012-12-30 15:18 +00:00"), f.updated_at
+    assert_equal Time.new(2012, 12, 30, 15, 18), f.updated_at
     assert_equal 765, f.eid
   end
 

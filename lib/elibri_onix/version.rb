@@ -2,7 +2,7 @@ module Elibri
   module ONIX
     z = $VERBOSE
     $VERBOSE = nil
-    VERSION = "0.5.19"
+    VERSION = "0.6.0"
     Version = VERSION
     $VERBOSE = z
   end

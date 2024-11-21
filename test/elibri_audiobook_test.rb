@@ -12,7 +12,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 2589928, e.file_size
     assert_equal "0bf20c528f323dd2a6d91627ccddf52e", e.md5
     assert_equal "mp3_excerpt", e.file_type
-    assert_equal Time.parse("20190712T2158Z"), e.updated_at
+    assert_equal Time.new(2019, 7, 12, 21, 58), e.updated_at
     assert_equal "https://www.elibri.com.pl/excerpt/109048/0bf20c528f323dd2a6d91627ccddf52e/kwiaty-dla-algernona-fragment.mp3", e.link
     assert_equal 109048, e.eid
 

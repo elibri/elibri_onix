@@ -1,10 +1,7 @@
-
 module Elibri
   module ONIX
     module Release_3_0
-
-      #class representing whole ONIX response from eLibri server
-      class ONIXMessage   
+      class ONIXMessage
         include Inspector
 
         #list of all products returned in this mnessage
@@ -13,7 +10,7 @@ module Elibri
         #xml representation of this message
         attr_accessor :to_xml
 
-        #ONIX version number 
+        #ONIX version number
         attr_accessor :release
 
         #returned message header - Elibri::ONIX::Release_3_0::Header
@@ -21,18 +18,6 @@ module Elibri
 
         # attributes of root ONIXMessage node
         attr_reader :attributes
-
-        include HashId
-
-        #:nodoc:
-        ATTRIBUTES = [
-          :release, :header
-        ]
-
-        #:nodoc:
-        RELATIONS = [
-          :products
-        ]
 
         def inspect_include_fields
           [:header, :release, :products]

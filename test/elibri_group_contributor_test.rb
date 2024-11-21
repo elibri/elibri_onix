@@ -18,7 +18,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal "author", cont1.role_name
     assert_nil cont1.person_name
     assert_equal ["praca zbiorowa"], product.authors
-    assert !cont1.biographical_note.present?
+    assert_nil cont1.biographical_note
 
   end
 

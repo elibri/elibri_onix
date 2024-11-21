@@ -16,11 +16,6 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
 
     product = onix.products.first
 
-    assert_equal 'miękka', product.cover_type
-    assert_equal 12.99, product.cover_price
-    assert_equal 5, product.vat
-    assert_equal '58.11.1', product.pkwiu
-
     assert_equal 'fdb8fa072be774d97a97', product.record_reference
     assert_equal '03', product.notification_type
     assert_equal "Record had many errors", product.deletion_text
@@ -134,7 +129,7 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
       assert_equal 1000, supply_detail.on_hand
       assert_equal 7, supply_detail.pack_quantity
 
-      supply_detail.price.tap do |price|
+      supply_detail.prices[0].tap do |price|
         assert_equal "02", price.type
         assert_equal 20, price.minimum_order_quantity
         assert_equal 12.99, price.amount

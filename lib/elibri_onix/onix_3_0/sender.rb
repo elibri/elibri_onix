@@ -1,9 +1,6 @@
-
 module Elibri
   module ONIX
     module Release_3_0
-
-      #Sender of the message
       class Sender
         include Inspector
 
@@ -12,14 +9,6 @@ module Elibri
 
         #xml representation of sender
         attr_accessor :to_xml
-
-        #:nodoc:
-        ATTRIBUTES = [
-          :sender_name, :contact_name, :email_address
-        ]
-
-        #:nodoc:
-        RELATIONS = []
 
         #:nodoc:
         def inspect_include_fields
@@ -32,7 +21,6 @@ module Elibri
         end
 
       end
-
     end
   end
 end

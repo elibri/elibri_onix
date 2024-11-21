@@ -1,4 +1,3 @@
-
 module Elibri
   module ONIX
     module Release_3_0
@@ -8,40 +7,10 @@ module Elibri
 
         include Inspector
 
-        #:nodoc:
-        ATTRIBUTES =
-        [
-          :height, :width, :thickness, :weight, :ean, :isbn13, :number_of_pages, :duration,
-          :file_size, :publisher_name, :publisher_id, :imprint_name, :current_state, :reading_age_from, :reading_age_to,
-          :table_of_contents, :description, :reviews, :excerpts, :series, :title, :subtitle, :collection_title,
-          :collection_part, :full_title, :original_title, :trade_title, :parsed_publishing_date, :record_reference,
-          :deletion_text, :cover_type, :cover_price, :vat, :pkwiu, :additional_info, :product_composition,
-          :publisher, :product_form, :no_contributor, :edition_statement, :edition_type_onix_code, :number_of_illustrations, :publishing_status,
-          :publishing_date, :premiere, :front_cover, :series_names, :city_of_publication,
-          :preview_exists, :short_description, :sale_restricted_to_poland,
-          :technical_protection_onix_code, :unlimited_licence, :hyphenated_isbn, :preorder_embargo_date, :additional_trade_information,
-          :number_of_pieces, :players_number_from, :players_number_to, :playing_time_from, :playing_time_to
-
-        ]
-
-        #:nodoc:
-        RELATIONS =
-        [
-          :contributors, #IMPORTANT
-          :related_products, :languages, :measures, :supply_details, :measures, :title_details,
-          :collections, :extents, :thema_subjects, :publisher_subjects, :audience_ranges,
-          :text_contents, #IMPORTANT
-          :supporting_resources, #for example: cover
-          :sales_restrictions, :authors,
-          :ghostwriters, :scenarists, :originators, :illustrators, :photographers, :author_of_prefaces, :drawers,
-          :cover_designers, :inked_or_colored_bys, :editors, :revisors, :translators, :editor_in_chiefs, :read_bys
-        ]
-
         def inspect_include_fields
           [:record_reference, :full_title, :front_cover, :publisher, :isbn13, :ean, :premiere, :contributors, :languages, :description, :product_form_name,
             :technical_protection, :digital_formats]
         end
-
 
         #:doc:
         #wysokość w milimetrach
@@ -264,20 +233,11 @@ module Elibri
           ##publishing_details
           @sales_restrictions = []
           @excerpt_infos = []
-          @cover_type = nil
           #moving to parsing attributes
 
-          @record_reference = data.at_css('RecordReference').try(:text)
-          @notification_type = data.at_css('NotificationType').try(:text)
-          @deletion_text = data.at_css('DeletionText').try(:text)
-
-          if data.namespaces.values.any? { |uri| uri =~ /elibri/ }
-            @cover_type = data.at_xpath('elibri:CoverType').try(:text)
-            @pkwiu = data.at_xpath('elibri:PKWiU').try(:text)
-            @hyphenated_isbn = data.at_xpath('elibri:HyphenatedISBN').try(:text)
-            @pdw_exclusiveness = data.at_xpath('elibri:PDWExclusiveness').try(:text)
-            @additional_info = data.at_xpath('elibri:AdditionalInfo').try(:text)
-          end
+          @record_reference = data.at_css('RecordReference')&.text
+          @notification_type = data.at_css('NotificationType')&.text
+          @deletion_text = data.at_css('DeletionText')&.text
 
           @identifiers = data.children.find_all { |node| node.name == 'ProductIdentifier' }.map { |ident_data| ProductIdentifier.new(ident_data) }
           begin
@@ -285,71 +245,49 @@ module Elibri
           rescue
             @related_products = []
           end
-          begin
-            @supply_details = data.at_css('ProductSupply').css('SupplyDetail').map { |supply_data| SupplyDetail.new(supply_data) }
-          rescue
-            @supply_details = []
-          end
+          @supply_details = data.css('SupplyDetail').map { |supply_data| SupplyDetail.new(supply_data) }
 
-          if data.namespaces.values.any? { |uri| uri =~ /elibri/ } && (data.at_xpath('elibri:Vat') || data.at_xpath('elibri:CoverPrice'))
-            @cover_price = BigDecimal(data.at_xpath('elibri:CoverPrice').try(:text)) if data.at_xpath('elibri:CoverPrice')
-            @vat = data.at_xpath('elibri:Vat').try(:text).try(:to_i)
-          else
-            #00 - Supplier role - Unspecified
-            price_sd = @supply_details.find { |sd| sd.supplier && ["00", Elibri::ONIX::Dict::Release_3_0::SupplierRole::PUB_TO_RET].include?(sd.supplier.role) }
-            if price_sd && price_sd.price && price_sd.price && price_sd.price.type == Elibri::ONIX::Dict::Release_3_0::PriceTypeCode::RRP_WITH_TAX
-              @vat = price_sd.price.tax_rate_percent.to_i
-              @cover_price = price_sd.price.amount
-              @additional_trade_information = price_sd.additional_trade_information
-            end
+          #00 - Supplier role - Unspecified
+          price_sd = @supply_details.find { |sd| sd.supplier && ["00", Elibri::ONIX::Dict::Release_3_0::SupplierRole::PUB_TO_RET].include?(sd.supplier.role) }
+          if price_sd && price_sd.prices[0] && price_sd.prices[0].type == Elibri::ONIX::Dict::Release_3_0::PriceTypeCode::RRP_WITH_TAX
+            @vat = price_sd.prices[0].tax_rate_percent.to_i
+            @cover_price = price_sd.prices[0].amount
+            @additional_trade_information = price_sd.additional_trade_information
           end
 
           descriptive_details_setup(data.at_css('DescriptiveDetail')) if data.at_css('DescriptiveDetail')
           collateral_details_setup(data.at_css('CollateralDetail')) if data.at_css('CollateralDetail')
 
-          if data.namespaces.values.any? { |uri| uri =~ /elibri/ } && data.at_xpath('elibri:preview_exists')
-            @preview_exists = (data.at_xpath('elibri:preview_exists').text == "true")
-          else
-            @preview_exists = @supporting_resources.find { |sr| sr.content_type_name == "widget" && sr.link =~ /p.elibri.com.pl/ }.present?
-          end
+          @preview_exists = !!@supporting_resources.find { |sr| sr.content_type_name == "widget" && sr.link =~ /p.elibri.com.pl/ }
 
           product_form_features_setup(data.css("ProductFormFeature"))
 
           publishing_details_setup(data.at_css('PublishingDetail')) if data.at_css('PublishingDetail')
           licence_information_setup(data)
-          begin
-            @excerpt_infos = data.at_xpath("elibri:excerpts").xpath("elibri:excerpt").map { |node| ExcerptInfo.new(node) }
-          rescue
-           demo = @supporting_resources.find { |sr| sr.content_type_name == "sample_content" }
-            if demo
-              @excerpt_infos = demo.data.css("ResourceVersion").map { |node| ExcerptInfo.new(node) }
-            end
-
+         demo = @supporting_resources.find { |sr| sr.content_type_name == "sample_content" }
+          if demo
+            @excerpt_infos = demo.data.css("ResourceVersion").map { |node| ExcerptInfo.new(node) }
           end
+
           @file_infos = data.css("BodyResource").map { |node| FileInfo.new(node) }
           after_parse
         end
 
-        def licence_information_setup(data)
-          if data.namespaces.values.any? { |uri| uri =~ /elibri/ } && (data.at_xpath("elibri:SaleNotRestricted") || data.at_xpath("elibri:SaleRestrictedTo"))
-            if data.at_xpath("elibri:SaleNotRestricted")
-              @unlimited_licence = true
-            elsif date = data.at_xpath("elibri:SaleRestrictedTo").try(:text)
-              @unlimited_licence = false
-              @licence_limited_to_before_type_cast = date
-              @licence_limited_to = _parse_date(date)
-            end
-          else
-            daten = data.css('PublishingDate').find { |d| d.at_css("PublishingDateRole") && d.at_css("PublishingDateRole").text == Elibri::ONIX::Dict::Release_3_0::PublishingDateRole::OUT_OF_PRINT_DATE }
-            if daten
-              date = daten.at_css('Date').text
-              @licence_limited_to_before_type_cast = date
-              @licence_limited_to = _parse_date(date)
-              @unlimited_licence = false
-            else
-              @unlimited_licence = true
-            end
+        def cover_type
+          if @product_form && @product_form =~ /^B/ &&
+             Elibri::ONIX::Dict::CoverType.determine_cover_type(@product_form, data.at_css('ProductFormDetail')&.text)
+          end
+        end
 
+        def licence_information_setup(data)
+          daten = data.css('PublishingDate').find { |d| d.at_css("PublishingDateRole") && d.at_css("PublishingDateRole").text == Elibri::ONIX::Dict::Release_3_0::PublishingDateRole::OUT_OF_PRINT_DATE }
+          if daten
+            date = daten.at_css('Date').text
+            @licence_limited_to_before_type_cast = date
+            @licence_limited_to = _parse_date(date)
+            @unlimited_licence = false
+          else
+            @unlimited_licence = true
           end
         end
 
@@ -371,23 +309,20 @@ module Elibri
         end
 
         def descriptive_details_setup(data)
-          @country_of_manufacture = data.at_css("CountryOfManufacture").try(:text)
+          @country_of_manufacture = data.at_css("CountryOfManufacture")&.text
 
-          @product_composition = data.at_css('ProductComposition').try(:text)
-          @product_form = data.at_css('ProductForm').try(:text)
+          @product_composition = data.at_css('ProductComposition')&.text
+          @product_form = data.at_css('ProductForm')&.text
           if @product_form
-            if @product_form.starts_with?("B") && !@cover_type
-              @cover_type = Elibri::ONIX::Dict::CoverType.determine_cover_type(@product_form, data.at_css('ProductFormDetail').try(:text))
-            end
             if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form)
               @product_form_name = Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(@product_form).name(:en).downcase
             end
 
-            simplified_product_form = @product_form.starts_with?("B") ? "BA" : @product_form
-            if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(simplified_product_form).try!(:digital?)
+            simplified_product_form = @product_form =~ /^B/ ? "BA" : @product_form
+            if Elibri::ONIX::Dict::Release_3_0::ProductFormCode::find_by_onix_code(simplified_product_form)&.digital?
               @digital_formats = []
               data.css("ProductFormDetail").each do |format|
-                format_name = Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text).try(:name)
+                format_name = Elibri::ONIX::Dict::Release_3_0::ProductFormDetail::find_by_onix_code(format.text)&.name
                 @digital_formats << format_name.upcase.gsub("MOBIPOCKET", "MOBI") if format_name
               end
             end
@@ -411,23 +346,23 @@ module Elibri
           @extents = data.css('Extent').map { |extent_data| Extent.new(extent_data) }
 
           @publisher_subjects = data.css('Subject').find_all { |sd|
-             %w{24}.include?(sd.at_css('SubjectSchemeIdentifier').try(:text)) }.map { |sd| PublisherSubject.new(sd) }
+             %w{24}.include?(sd.at_css('SubjectSchemeIdentifier')&.text) }.map { |sd| PublisherSubject.new(sd) }
           @thema_subjects = data.css('Subject').find_all { |sd|
-             %w{93 94 95 96 97 98 99}.include?(sd.at_css('SubjectSchemeIdentifier').try(:text)) }.map { |sd| ThemaSubject.new(sd) }
+             %w{93 94 95 96 97 98 99}.include?(sd.at_css('SubjectSchemeIdentifier')&.text) }.map { |sd| ThemaSubject.new(sd) }
           @audience_ranges = data.css('AudienceRange').map { |audience_data| AudienceRange.new(audience_data) }
 
           #zabezpiecznie pliku
-          if protection = data.at_css("EpubTechnicalProtection").try(:text)
-            @technical_protection =  Elibri::ONIX::Dict::Release_3_0::EpubTechnicalProtection::find_by_onix_code(protection).try(:name)
+          if protection = data.at_css("EpubTechnicalProtection")&.text
+            @technical_protection =  Elibri::ONIX::Dict::Release_3_0::EpubTechnicalProtection::find_by_onix_code(protection)&.name
             @technical_protection_onix_code = protection
           end
 
-          @edition_statement = data.at_css('EditionStatement').try(:text)
-          if Elibri::ONIX::Dict::Release_3_0::EditionType.find_by_onix_code(data.at_css('EditionType').try(:text))
-            @edition_type_onix_code = data.at_css('EditionType').try(:text)
+          @edition_statement = data.at_css('EditionStatement')&.text
+          if Elibri::ONIX::Dict::Release_3_0::EditionType.find_by_onix_code(data.at_css('EditionType')&.text)
+            @edition_type_onix_code = data.at_css('EditionType')&.text
           end
 
-          @number_of_illustrations = data.at_css('NumberOfIllustrations').try(:text).try(:to_i)
+          @number_of_illustrations = data.at_css('NumberOfIllustrations')&.text&.to_i
         end
 
         def collateral_details_setup(data)
@@ -438,8 +373,8 @@ module Elibri
         def publishing_details_setup(data)
           @imprint = Imprint.new(data.at_css('Imprint')) if data.at_css('Imprint')
           @publisher = Publisher.new(data.at_css('Publisher')) if data.at_css('Publisher')
-          @publishing_status = data.at_css('PublishingStatus').try(:text)
-          @city_of_publication = data.at_css("CityOfPublication").try(:text)
+          @publishing_status = data.at_css('PublishingStatus')&.text
+          @city_of_publication = data.at_css("CityOfPublication")&.text
           publication_dates = data.css('PublishingDate').map do |node|
             PublishingDate.new(node)
           end
@@ -449,7 +384,7 @@ module Elibri
 
           @sales_restrictions = data.css('SalesRestriction').map { |restriction_data| SalesRestriction.new(restriction_data) }
           #ograniczenia terytorialne
-          if data.at_css("CountriesIncluded").try(:text) == "PL"
+          if data.at_css("CountriesIncluded")&.text == "PL"
             @sale_restricted_to_poland = true
           else
             @sale_restricted_to_poland = false
@@ -483,7 +418,7 @@ module Elibri
 
         #flaga, czy książka to praca zbiorowa?
         def unnamed_persons?
-          @contributors.size == 1 && contributors[0].unnamed_persons.present?
+          @contributors.size == 1 && contributors[0].unnamed_persons
         end
 
         #flaga, czy istnieje podgląd produktu
@@ -553,21 +488,21 @@ module Elibri
 
         def after_parse
           %w{height width thickness weight}.each do |mn|
-            instance_variable_set("@#{mn}", measures.find { |m| m.type_name == mn }.try(:measurement))
+            instance_variable_set("@#{mn}", measures.find { |m| m.type_name == mn }&.measurement)
           end
 
-          @ean = @identifiers.find { |identifier| identifier.identifier_type == "ean" }.try(:value)
+          @ean = @identifiers.find { |identifier| identifier.identifier_type == "ean" }&.value
 
-          @number_of_pages = @extents.find {|extent| extent.type_name == "page_count" }.try(:value)
-          @duration = @extents.find {|extent| extent.type_name == "duration" }.try(:value)
-          @file_size = @extents.find {|extent| extent.type_name == "file_size" }.try(:value)
+          @number_of_pages = @extents.find {|extent| extent.type_name == "page_count" }&.value
+          @duration = @extents.find {|extent| extent.type_name == "duration" }&.value
+          @file_size = @extents.find {|extent| extent.type_name == "file_size" }&.value
           @publisher_name = @publisher.name if publisher
           @publisher_id = @publisher.eid if publisher
           @imprint_name = @imprint.name if imprint
-          @isbn13 = @identifiers.find { |identifier| identifier.identifier_type == "isbn13" }.try(:value)
+          @isbn13 = @identifiers.find { |identifier| identifier.identifier_type == "isbn13" }&.value
           @hyphenated_isbn ||= @isbn13
-          @reading_age_from = @audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "03")}.try(:value).try(:to_i)
-          @reading_age_to = @audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "04")}.try(:value).try(:to_i)
+          @reading_age_from = @audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "03")}&.value&.to_i
+          @reading_age_to = @audience_ranges.find {|ar| (ar.qualifier == "18") && (ar.precision == "04")}&.value&.to_i
           @table_of_contents = @text_contents.find { |t| t.type_name == "table_of_contents" }
           @description = @text_contents.find { |t| t.type_name == "main_description" }
           @short_description = @text_contents.find { |t| t.type_name == "short_description" }
@@ -576,14 +511,14 @@ module Elibri
           @series = @collections.map { |c| [c.title_detail.elements[0].title,  c.title_detail.elements[0].part_number] }
           distinctive_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE)
           if distinctive_title
-            @title = distinctive_title.product_level.try(:title)
-            @subtitle = distinctive_title.product_level.try(:subtitle)
-            @collection_title = distinctive_title.collection_level.try(:title)
-            @collection_part = distinctive_title.collection_level.try(:part_number)
+            @title = distinctive_title.product_level&.title
+            @subtitle = distinctive_title.product_level&.subtitle
+            @collection_title = distinctive_title.collection_level&.title
+            @collection_part = distinctive_title.collection_level&.part_number
           end
-          @full_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE).try(:full_title)
-          @original_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::ORIGINAL_TITLE).try(:full_title)
-          @trade_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTRIBUTORS_TITLE).try(:full_title)
+          @full_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTINCTIVE_TITLE)&.full_title
+          @original_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::ORIGINAL_TITLE)&.full_title
+          @trade_title = find_title(Elibri::ONIX::Dict::Release_3_0::TitleType::DISTRIBUTORS_TITLE)&.full_title
 
           compute_state!
         end

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage xmlns="http://ns.editeur.org/onix/3.1/reference" release="3.1">
+  <Header>
+    <Sender>
+      <SenderName>Elibri sp. z o. o.</SenderName>
+    </Sender>
+    <SentDateTime>20241121</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>53cd9313bd31500878e4</RecordReference>
+  <!-- NotificationType: powiadomienie o publikacji -->
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+    <!-- ProductIDType: ISBN-13 -->
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9788383578750</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+    <!-- zawsze: ProductComposition: samodzielny produkt -->
+      <ProductComposition>00</ProductComposition>
+    <!-- ProductFormCode: e-book -->
+      <ProductForm>EA</ProductForm>
+    <!-- ProductFormDetail: EPUB -->
+      <ProductFormDetail>E101</ProductFormDetail>
+    <!-- ProductFormDetail: Mobipocket -->
+      <ProductFormDetail>E127</ProductFormDetail>
+    <!-- EpubTechnicalProtection: watermark -->
+      <EpubTechnicalProtection>02</EpubTechnicalProtection>
+      <TitleDetail>
+      <!-- TitleType: tytuł -->
+        <TitleType>01</TitleType>
+        <TitleElement>
+        <!-- TitleElementLevel: produkt -->
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText language="pol">Zima w zapomnianym schronisku</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <TitleDetail>
+      <!-- TitleType: tytuł wydawcy -->
+        <TitleType>10</TitleType>
+        <TitleElement>
+        <!-- TitleElementLevel: produkt -->
+          <TitleElementLevel>01</TitleElementLevel>
+          <TitleText>ZIMA W ZAPOMNIANYM SCHRONISKU</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <Contributor sourcename="contributorid:430289" datestamp="20241018T1443">
+        <SequenceNumber>1</SequenceNumber>
+      <!-- ContributorRole: autor -->
+        <ContributorRole>A01</ContributorRole>
+        <PersonName>Julia Furmaniak</PersonName>
+        <NamesBeforeKey>Julia</NamesBeforeKey>
+        <KeyNames>Furmaniak</KeyNames>
+      </Contributor>
+      <Language>
+      <!-- LanguageRole: język publikacji -->
+        <LanguageRole>01</LanguageRole>
+      <!-- LanguageCode: polski -->
+        <LanguageCode>pol</LanguageCode>
+      </Language>
+      <Extent>
+      <!-- ExtentType: ilość stron -->
+        <ExtentType>00</ExtentType>
+        <ExtentValue>352</ExtentValue>
+      <!-- ExtentUnit: strony -->
+        <ExtentUnit>03</ExtentUnit>
+      </Extent>
+      <Subject>
+      <!-- SubjectSchemeIdentifier: Kategoria Thema -->
+        <SubjectSchemeIdentifier>93</SubjectSchemeIdentifier>
+        <SubjectSchemeVersion>1.5</SubjectSchemeVersion>
+        <SubjectCode>FS</SubjectCode>
+        <SubjectHeadingText>Proza fabularna / Literatura obyczajowo-rodzinna</SubjectHeadingText>
+      </Subject>
+    </DescriptiveDetail>
+    <CollateralDetail>
+      <TextContent sourcename="textid:261408" datestamp="20241018T1443">
+      <!-- OtherTextType: Główny opis -->
+        <TextType>03</TextType>
+      <!-- ContentAudience: brak ograniczeń -->
+        <ContentAudience>00</ContentAudience>
+        <Text language="pol">
+          <![CDATA[<p>JAK CZAS SPĘDZONY W ODCIĘTYM OD ŚWIATA MIEJSCU WPŁYNIE NA GRUPĘ PRZYJACIÓŁ? CZY TA WYPRAWA W GÓRY ZMIENI ŻYCIE MONIKI?</p>
+<p>Monika po stracie ukochanego narzeczonego postanawia spędzić święta Bożego Narodzenia w Samotni – schronisku górskim, które szczególnie ukochał sobie Michał.</p>
+<p>Aleksander wciąż czuje się winny śmierci najlepszego przyjaciela. Wyrzuca sobie, że odpuścił wyprawę w góry, z której Michał już nie wrócił. Wraz z czwórką znajomych dołącza do Moniki, aby w górach uczcić pamięć po zmarłym przyjacielu.</p>
+<p>Monikę zachwyca zimowy krajobraz polskich gór, ale nieumiejętnie poruszając się po oblodzonym szlaku, skręca kostkę. Grupa przyjaciół postanawia szukać pomocy w starym schronisku, które na pierwszy rzut oka wydaje się opuszczone. Na szczęście okazuje się, że w starej chacie ktoś mieszka. I mimo że Rafał, właściciel, nie jest skory do pomocy grupie młodych osób, ostatecznie proponuje im nocleg.</p>]]>
+        </Text>
+      </TextContent>
+      <SupportingResource sourcename="resourceid:397304" datestamp="20241018T1243">
+      <!-- ResourceContentType: okładka (przód) -->
+        <ResourceContentType>01</ResourceContentType>
+      <!-- ContentAudience: brak ograniczeń -->
+        <ContentAudience>00</ContentAudience>
+      <!-- ResourceMode: obrazek -->
+        <ResourceMode>03</ResourceMode>
+        <ResourceVersion>
+        <!-- ResourceForm: plik do pobrania -->
+          <ResourceForm>02</ResourceForm>
+          <ResourceVersionFeature>
+          <!-- ResourceVersionFeatureType: wartość hasha md5 -->
+            <ResourceVersionFeatureType>06</ResourceVersionFeatureType>
+            <FeatureValue>a5312ade838e09edcf9106eedfb42b2b</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+          <!-- ResourceVersionFeatureType: rozmiar w bajtach -->
+            <ResourceVersionFeatureType>07</ResourceVersionFeatureType>
+            <FeatureValue>7717357</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceLink>http://localhost:3000/attachments/53cd9313bd31500878e4/cover/original.jpg</ResourceLink>
+          <ContentDate>
+          <!-- zawsze: ContentDateRole: data ostatniej aktualizacji -->
+            <ContentDateRole>17</ContentDateRole>
+            <Date dateformat="13">20241018T1243Z</Date>
+          </ContentDate>
+        </ResourceVersion>
+      </SupportingResource>
+      <SupportingResource>
+      <!-- ResourceContentType: fragment książki -->
+        <ResourceContentType>15</ResourceContentType>
+      <!-- ContentAudience: brak ograniczeń -->
+        <ContentAudience>00</ContentAudience>
+      <!-- ResourceMode: tekst -->
+        <ResourceMode>04</ResourceMode>
+        <ResourceVersion>
+        <!-- ResourceForm: plik do pobrania -->
+          <ResourceForm>02</ResourceForm>
+          <ResourceVersionFeature>
+          <!-- ResourceVersionFeatureType: format pliku -->
+            <ResourceVersionFeatureType>01</ResourceVersionFeatureType>
+          <!-- FeatureValue: Mobipocket -->
+            <FeatureValue>E127</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+          <!-- ResourceVersionFeatureType: wartość hasha md5 -->
+            <ResourceVersionFeatureType>06</ResourceVersionFeatureType>
+            <FeatureValue>0a8b6a47f700014d2f86de24a92feb4c</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+          <!-- ResourceVersionFeatureType: rozmiar w bajtach -->
+            <ResourceVersionFeatureType>07</ResourceVersionFeatureType>
+            <FeatureValue>3199284</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceLink>http://localhost:3000/excerpt/298465/0a8b6a47f700014d2f86de24a92feb4c/zima-w-zapomnianym-schronisku-fragment.mobi</ResourceLink>
+          <ContentDate>
+          <!-- zawsze: ContentDateRole: data ostatniej aktualizacji -->
+            <ContentDateRole>17</ContentDateRole>
+            <Date dateformat="13">20241018T1244Z</Date>
+          </ContentDate>
+        </ResourceVersion>
+        <ResourceVersion>
+        <!-- ResourceForm: plik do pobrania -->
+          <ResourceForm>02</ResourceForm>
+          <ResourceVersionFeature>
+          <!-- ResourceVersionFeatureType: format pliku -->
+            <ResourceVersionFeatureType>01</ResourceVersionFeatureType>
+          <!-- FeatureValue: EPUB -->
+            <FeatureValue>E101</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+          <!-- ResourceVersionFeatureType: wartość hasha md5 -->
+            <ResourceVersionFeatureType>06</ResourceVersionFeatureType>
+            <FeatureValue>1e370028f8cd909b8ffe1286f9cfbfc9</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+          <!-- ResourceVersionFeatureType: rozmiar w bajtach -->
+            <ResourceVersionFeatureType>07</ResourceVersionFeatureType>
+            <FeatureValue>1487743</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceLink>http://localhost:3000/excerpt/298464/1e370028f8cd909b8ffe1286f9cfbfc9/zima-w-zapomnianym-schronisku-fragment.epub</ResourceLink>
+          <ContentDate>
+          <!-- zawsze: ContentDateRole: data ostatniej aktualizacji -->
+            <ContentDateRole>17</ContentDateRole>
+            <Date dateformat="13">20241018T1244Z</Date>
+          </ContentDate>
+        </ResourceVersion>
+      </SupportingResource>
+    </CollateralDetail>
+    <PublishingDetail>
+      <Imprint>
+        <ImprintName>FILIA</ImprintName>
+      </Imprint>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherIdentifier>
+          <PublisherIDType>01</PublisherIDType>
+          <IDTypeName>ElibriPublisherCode</IDTypeName>
+          <IDValue>402</IDValue>
+        </PublisherIdentifier>
+        <PublisherName>FILIA</PublisherName>
+      </Publisher>
+      <CityOfPublication>Poznań</CityOfPublication>
+      <ProductContact>
+      <!-- zawsze: ProductContactRole: Kontakt w sprawie bezpieczeństwa produktu -->
+        <ProductContactRole>10</ProductContactRole>
+        <ProductContactName>Wydawnictwo Filia spółka z ograniczoną odpowiedzialnością sp.k</ProductContactName>
+        <TelephoneNumber>512 027 368</TelephoneNumber>
+        <EmailAddress>kontakt@wydawnictwofilia.pl</EmailAddress>
+        <StreetAddress>Kleeberga 2</StreetAddress>
+        <LocationName>Poznań</LocationName>
+        <PostalCode>61-615</PostalCode>
+        <CountryCode>PL</CountryCode>
+      </ProductContact>
+    <!-- PublishingStatusCode: w sprzedaży -->
+      <PublishingStatus>04</PublishingStatus>
+      <PublishingDate>
+      <!-- PublishingDateRole: data publikacji -->
+        <PublishingDateRole>01</PublishingDateRole>
+        <Date dateformat="00">20241023</Date>
+      </PublishingDate>
+      <PublishingDate>
+      <!-- PublishingDateRole: data, po której książka zostanie wycofana z rynku -->
+        <PublishingDateRole>13</PublishingDateRole>
+        <Date dateformat="00">20291023</Date>
+      </PublishingDate>
+      <SalesRights>
+      <!-- zawsze: SalesRightsType: Produkt dopuszczony do sprzedaży w wymienionych krajach lub terytoriach -->
+        <SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <RegionsIncluded>WORLD</RegionsIncluded>
+        </Territory>
+      </SalesRights>
+    </PublishingDetail>
+    <RelatedMaterial>
+      <RelatedProduct>
+      <!-- zawsze: ProductRelationType: ta sama książka w innym wydaniu albo innej formie fizycznej -->
+        <ProductRelationCode>24</ProductRelationCode>
+        <ProductIdentifier>
+        <!-- ProductIDType: wewnętrzny identyfikator -->
+          <ProductIDType>01</ProductIDType>
+          <IDTypeName>elibri</IDTypeName>
+          <IDValue>5732002f7d1b3acbcb57</IDValue>
+        </ProductIdentifier>
+      </RelatedProduct>
+      <RelatedProduct>
+      <!-- zawsze: ProductRelationType: ta sama książka w innym wydaniu albo innej formie fizycznej -->
+        <ProductRelationCode>24</ProductRelationCode>
+        <ProductIdentifier>
+        <!-- ProductIDType: wewnętrzny identyfikator -->
+          <ProductIDType>01</ProductIDType>
+          <IDTypeName>elibri</IDTypeName>
+          <IDValue>11c2af5beb922c111d7f</IDValue>
+        </ProductIdentifier>
+      </RelatedProduct>
+    </RelatedMaterial>
+    <ProductionDetail>
+      <ProductionManifest>
+        <BodyManifest>
+          <BodyResource>
+            <SequenceNumber>1</SequenceNumber>
+            <ResourceIdentifier>
+            <!-- zawsze: ResourceIDType: wewnętrzny identyfikator -->
+              <ResourceIDType>01</ResourceIDType>
+              <IDTypeName>elibri internal numerical ID</IDTypeName>
+              <IDValue>298463</IDValue>
+            </ResourceIdentifier>
+            <ResourceFileFeature>
+            <!-- ResourceFileFeatureType: dokładny rozmiar pliku -->
+              <ResourceFileFeatureType>07</ResourceFileFeatureType>
+              <ResourceFileFeatureValue>4059957</ResourceFileFeatureValue>
+            </ResourceFileFeature>
+            <ResourceFileFeature>
+            <!-- ResourceFileFeatureType: md5 -->
+              <ResourceFileFeatureType>06</ResourceFileFeatureType>
+              <ResourceFileFeatureValue>b59680386ba5591c46abb7e8edee08b2</ResourceFileFeatureValue>
+            </ResourceFileFeature>
+            <ResourceFileLink>9788383578750_zima_w_zapomnianym_schronisku.mobi</ResourceFileLink>
+            <ResourceFileDate>
+            <!-- zawsze: ResourceFileDateRole: data ostatniej aktualizacji -->
+              <ResourceFileDateRole>17</ResourceFileDateRole>
+              <Date dateformat="13">20241018T1244Z</Date>
+            </ResourceFileDate>
+          </BodyResource>
+          <BodyResource>
+            <SequenceNumber>2</SequenceNumber>
+            <ResourceIdentifier>
+            <!-- zawsze: ResourceIDType: wewnętrzny identyfikator -->
+              <ResourceIDType>01</ResourceIDType>
+              <IDTypeName>elibri internal numerical ID</IDTypeName>
+              <IDValue>298462</IDValue>
+            </ResourceIdentifier>
+            <ResourceFileFeature>
+            <!-- ResourceFileFeatureType: dokładny rozmiar pliku -->
+              <ResourceFileFeatureType>07</ResourceFileFeatureType>
+              <ResourceFileFeatureValue>1683776</ResourceFileFeatureValue>
+            </ResourceFileFeature>
+            <ResourceFileFeature>
+            <!-- ResourceFileFeatureType: md5 -->
+              <ResourceFileFeatureType>06</ResourceFileFeatureType>
+              <ResourceFileFeatureValue>d4cf19a9d15d2117e81dda88588d0128</ResourceFileFeatureValue>
+            </ResourceFileFeature>
+            <ResourceFileLink>9788383578750_zima_w_zapomnianym_schronisku.epub</ResourceFileLink>
+            <ResourceFileDate>
+            <!-- zawsze: ResourceFileDateRole: data ostatniej aktualizacji -->
+              <ResourceFileDateRole>17</ResourceFileDateRole>
+              <Date dateformat="13">20241018T1244Z</Date>
+            </ResourceFileDate>
+          </BodyResource>
+        </BodyManifest>
+      </ProductionManifest>
+    </ProductionDetail>
+    <ProductSupply>
+      <SupplyDetail>
+        <Supplier>
+        <!-- SupplierRole: sprzedaż wydawnictwa do detalu -->
+          <SupplierRole>01</SupplierRole>
+          <SupplierIdentifier>
+          <!-- zawsze: SupplierIDType: Numer NIP -->
+            <SupplierIDType>23</SupplierIDType>
+            <IDValue>PL9721253428</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>FILIA</SupplierName>
+        </Supplier>
+      <!-- ProductAvailabilityType: dostępny -->
+        <ProductAvailability>20</ProductAvailability>
+        <Price>
+        <!-- zawsze: PriceTypeCode: sugerowana cena detaliczna brutto -->
+          <PriceType>02</PriceType>
+          <PriceAmount>49.9</PriceAmount>
+          <Tax>
+          <!-- zawsze: TaxType: vat -->
+            <TaxType>01</TaxType>
+            <TaxRatePercent>5</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+        </Price>
+      </SupplyDetail>
+      <SupplyDetail>
+        <Supplier>
+        <!-- SupplierRole: Wyłączny dystrybutor do klientów instytucjonalnych -->
+          <SupplierRole>10</SupplierRole>
+          <SupplierIdentifier>
+          <!-- zawsze: SupplierIDType: Numer NIP -->
+            <SupplierIDType>23</SupplierIDType>
+            <IDValue>PL9721253428</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>FILIA</SupplierName>
+        </Supplier>
+      <!-- ProductAvailabilityType: dostępny -->
+        <ProductAvailability>20</ProductAvailability>
+        <Price>
+          <PriceIdentifier>
+            <PriceIDType>01</PriceIDType>
+            <IDTypeName>ElibriLendingID</IDTypeName>
+            <IDValue>25/2 36m.</IDValue>
+          </PriceIdentifier>
+        <!-- zawsze: PriceTypeCode: sugerowana cena detaliczna brutto -->
+          <PriceType>02</PriceType>
+          <PriceQualifier>10</PriceQualifier>
+          <PriceConstraint>
+          <!-- zawsze: PriceConstraintType: wypożyczenia -->
+            <PriceConstraintType>06</PriceConstraintType>
+          <!-- zawsze: PriceConstraintStatus: limit -->
+            <PriceConstraintStatus>02</PriceConstraintStatus>
+            <PriceConstraintLimit>
+              <Quantity>25</Quantity>
+            <!-- PriceConstraintUnit: razy -->
+              <PriceConstraintUnit>10</PriceConstraintUnit>
+            </PriceConstraintLimit>
+            <PriceConstraintLimit>
+              <Quantity>2</Quantity>
+            <!-- PriceConstraintUnit: jednocześni użytkownicy -->
+              <PriceConstraintUnit>07</PriceConstraintUnit>
+            </PriceConstraintLimit>
+            <PriceConstraintLimit>
+              <Quantity>36</Quantity>
+            <!-- PriceConstraintUnit: miesiąc -->
+              <PriceConstraintUnit>14</PriceConstraintUnit>
+            </PriceConstraintLimit>
+            <PriceConstraintLimit>
+              <Quantity>20250220</Quantity>
+            <!-- PriceConstraintUnit: obowiązuje od -->
+              <PriceConstraintUnit>98</PriceConstraintUnit>
+            </PriceConstraintLimit>
+          </PriceConstraint>
+          <PriceAmount>34.0</PriceAmount>
+          <Tax>
+          <!-- zawsze: TaxType: vat -->
+            <TaxType>01</TaxType>
+            <TaxRatePercent>5</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+        </Price>
+        <Price>
+          <PriceIdentifier>
+            <PriceIDType>01</PriceIDType>
+            <IDTypeName>ElibriLendingID</IDTypeName>
+            <IDValue>10/1 bezterminowo</IDValue>
+          </PriceIdentifier>
+        <!-- zawsze: PriceTypeCode: sugerowana cena detaliczna brutto -->
+          <PriceType>02</PriceType>
+          <PriceQualifier>10</PriceQualifier>
+          <PriceConstraint>
+          <!-- zawsze: PriceConstraintType: wypożyczenia -->
+            <PriceConstraintType>06</PriceConstraintType>
+          <!-- zawsze: PriceConstraintStatus: limit -->
+            <PriceConstraintStatus>02</PriceConstraintStatus>
+            <PriceConstraintLimit>
+              <Quantity>10</Quantity>
+            <!-- PriceConstraintUnit: razy -->
+              <PriceConstraintUnit>10</PriceConstraintUnit>
+            </PriceConstraintLimit>
+            <PriceConstraintLimit>
+              <Quantity>1</Quantity>
+            <!-- PriceConstraintUnit: jednocześni użytkownicy -->
+              <PriceConstraintUnit>07</PriceConstraintUnit>
+            </PriceConstraintLimit>
+          </PriceConstraint>
+          <PriceAmount>20.0</PriceAmount>
+          <Tax>
+          <!-- zawsze: TaxType: vat -->
+            <TaxType>01</TaxType>
+            <TaxRatePercent>5</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+        </Price>
+      </SupplyDetail>
+    </ProductSupply>
+  </Product>
+</ONIXMessage>
