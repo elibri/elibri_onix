@@ -6,7 +6,7 @@ module Inspector
     if value.is_a?(String) && value.length > 50
       "#{value[0..50]}...".inspect
     elsif value.is_a?(Date) || value.is_a?(Time)
-      %("#{value.to_s(:db)}")
+      %("#{value}")
     else
       value.inspect
     end
