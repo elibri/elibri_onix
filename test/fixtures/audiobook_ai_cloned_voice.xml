@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ONIXMessage xmlns="http://ns.editeur.org/onix/3.0/reference" release="3.0">
+  <Header>
+    <Sender>
+      <SenderName>Elibri.com.pl</SenderName>
+      <ContactName>Tomasz Meka</ContactName>
+      <EmailAddress>kontakt@elibri.com.pl</EmailAddress>
+    </Sender>
+    <SentDateTime>20190815</SentDateTime>
+  </Header>
+  <Product>
+    <RecordReference>9a9248d4afcdb69d44ce</RecordReference>
+    <!--NotificationType: CONFIRMED_ON_PUBLICATION--><NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <!--ProductIDType: ISBN13--><ProductIDType>15</ProductIDType>
+      <IDValue>9788380625952</IDValue>
+    </ProductIdentifier>
+    <DescriptiveDetail>
+      <ProductComposition>00</ProductComposition>
+      <ProductForm>AJ</ProductForm>
+      <!--EpubTechnicalProtection: WATERMARK--><EpubTechnicalProtection>02</EpubTechnicalProtection>
+      <Collection>
+        <!--CollectionType: PUBLISHER_COLLECTION--><CollectionType>10</CollectionType>
+        <TitleDetail>
+          <!--TitleType: DISTINCTIVE_TITLE--><TitleType>01</TitleType>
+          <TitleElement>
+            <!--TitleElementLevel: COLLECTION--><TitleElementLevel>02</TitleElementLevel>
+            <TitleText>s-f</TitleText>
+          </TitleElement>
+        </TitleDetail>
+      </Collection>
+      <TitleDetail>
+        <!--TitleType: DISTINCTIVE_TITLE--><TitleType>01</TitleType>
+        <TitleElement>
+          <!--TitleElementLevel: PRODUCT--><TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Kwiaty dla Algernona</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <TitleDetail>
+        <!--TitleType: ORIGINAL_TITLE--><TitleType>03</TitleType>
+        <TitleElement>
+          <!--TitleElementLevel: PRODUCT--><TitleElementLevel>01</TitleElementLevel>
+          <TitleText>Flowers for Algernon</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <TitleDetail>
+        <!--TitleType: DISTRIBUTORS_TITLE--><TitleType>10</TitleType>
+        <TitleElement>
+          <!--TitleElementLevel: PRODUCT--><TitleElementLevel>01</TitleElementLevel>
+          <TitleText>KWIATY DLA ALGERNONA</TitleText>
+        </TitleElement>
+      </TitleDetail>
+      <Contributor sourcename="contributorid:221076" datestamp="20190614T0946">
+        <SequenceNumber>1</SequenceNumber>
+        <!--ContributorRole: AUTHOR--><ContributorRole>A01</ContributorRole>
+        <PersonName>Daniel Keyes</PersonName>
+        <NamesBeforeKey>Daniel</NamesBeforeKey>
+        <KeyNames>Keyes</KeyNames>
+        <BiographicalNote>&lt;p&gt;
+ Daniel Keyes (1927-2014) – amerykański pisarz. Jego opowiadanie &lt;em&gt;Kwiaty dla Algernona&lt;/em&gt; otrzymało nagrodę Hugo w 1960 roku. Rozwinięte do formy powieści pod tym samym tytułem doczekało się z kolei nagrody Nebula w roku 1966, a dwa lata później zostało zekranizowane jako &lt;em&gt;Charly&lt;/em&gt;. Keyes opublikował także m.in. obsypaną nagrodami książkę non-fiction &lt;em&gt;Człowiek o 24 twarzach.&lt;/em&gt;&lt;/p&gt;
+
+</BiographicalNote>
+      </Contributor>
+      <Contributor sourcename="contributorid:221077" datestamp="20190614T0946">
+        <SequenceNumber>2</SequenceNumber>
+        <!--ContributorRole: TRANSLATOR--><ContributorRole>B06</ContributorRole>
+        <FromLanguage>eng</FromLanguage>
+        <PersonName>Krzysztof Sokołowski</PersonName>
+        <NamesBeforeKey>Krzysztof</NamesBeforeKey>
+        <KeyNames>Sokołowski</KeyNames>
+      </Contributor>
+      <Contributor sourcename="contributorid:221078" datestamp="20190705T1500">
+        <SequenceNumber>3</SequenceNumber>
+        <!--ContributorRole: READ_BY-->
+        <ContributorRole>E07</ContributorRole>
+        <UnnamedPersons>08</UnnamedPersons> <!-- synthesised voice based on -->
+        <AlternativeName>
+          <NameType>04</NameType> <!-- real name -->
+          <PersonName>Tomasz Kowalik</PersonName>
+        </AlternativeName>
+      </Contributor>
+      <Language>
+        <!--LanguageRole: LANGUAGE_OF_TEXT--><LanguageRole>01</LanguageRole>
+        <!--LanguageCode: Polish--><LanguageCode>pol</LanguageCode>
+      </Language>
+      <Extent>
+        <!--ExtentType: FILE_SIZE--><ExtentType>22</ExtentType>
+        <ExtentValue>489.0</ExtentValue>
+        <!--ExtentUnit: MEGABYTES--><ExtentUnit>19</ExtentUnit>
+      </Extent>
+      <Extent>
+        <!--ExtentType: DURATION--><ExtentType>09</ExtentType>
+        <ExtentValue>524</ExtentValue>
+        <!--ExtentUnit: MINUTES--><ExtentUnit>05</ExtentUnit>
+      </Extent>
+      <Subject>
+        <MainSubject/>
+        <!--SubjectSchemeIdentifier: PROPRIETARY--><SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
+        <SubjectSchemeName>elibri.com.pl</SubjectSchemeName>
+        <SubjectSchemeVersion>1.0</SubjectSchemeVersion>
+        <SubjectCode>613</SubjectCode>
+        <SubjectHeadingText>Literatura piękna / Fantastyka / Science Fiction</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <!--SubjectSchemeIdentifier: THEMA--><SubjectSchemeIdentifier>93</SubjectSchemeIdentifier>
+        <SubjectSchemeVersion>1.3</SubjectSchemeVersion>
+        <SubjectCode>FL</SubjectCode>
+        <SubjectHeadingText>Proza fabularna / Fantastyka naukowa (science fiction)</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <!--SubjectSchemeIdentifier: THEMA--><SubjectSchemeIdentifier>93</SubjectSchemeIdentifier>
+        <SubjectSchemeVersion>1.3</SubjectSchemeVersion>
+        <SubjectCode>FLC</SubjectCode>
+        <SubjectHeadingText>Proza fabularna / Fantastyka naukowa (science fiction) / Klasyka fantastyki naukowej</SubjectHeadingText>
+      </Subject>
+      <Subject>
+        <!--SubjectSchemeIdentifier: PROPRIETARY--><SubjectSchemeIdentifier>24</SubjectSchemeIdentifier>
+        <SubjectSchemeName>Rebis</SubjectSchemeName>
+        <SubjectCode>614</SubjectCode>
+        <SubjectHeadingText>Science Fiction</SubjectHeadingText>
+      </Subject>
+    </DescriptiveDetail>
+    <CollateralDetail>
+      <TextContent sourcename="textid:122995" datestamp="20190614T0946">
+        <TextType>03</TextType>
+        <!--ContentAudience: UNRESTRICTED--><ContentAudience>00</ContentAudience>
+        <Text>
+          <![CDATA[<p>
+ <strong>Książka została sprzedana w ponad 5 milionach egzemplarzy, przetłumaczona na 27 języków, wydana w ponad 30 krajach.</strong></p>
+ <p>
+ Tekst wyróżniono najważniejszymi nagrodami w świecie science fiction: Hugo (opowiadanie) i Nebula (powieść). Ta ponadczasowa opowieść doczekała się kilkunastu adaptacji filmowych i teatralnych na całym świecie.</p>
+ <p>
+ Trzydziestodwuletni Charlie Gordon jest upośledzony umysłowo, ma iloraz inteligencji na poziomie 68 punktów. Uczy się czytać i pisać na zajęciach w Beekman College. Dwaj naukowcy z tej uczelni, doktor Nemur i doktor Strauss, prowadzą badania nad wzrostem inteligencji. Udało im się już za pomocą zabiegu chirurgicznego zwiększyć zdolności umysłowe myszy o imieniu Algernon i teraz chcą przeprowadzić taki sam eksperyment z człowiekiem.</p>
+ <p>
+ „Wielka literatura. Historia i główny bohater pozostają ze mną od kilkudziesięciu lat, od chwili, gdy przeczytałem książkę” - Conn Iggulden.</p>
+ <p>
+ „Arcydzieło poruszającej błyskotliwości (…) chwytające za serce i całkowicie, bezdyskusyjnie znakomite” - „The Guardian”</p>
+ <p>
+ „Przejmująco szczera. Skłoni cię do refleksji nad twoim życiem i złamie ci serce” - „The Guardian Online”</p>
+ <p>
+ „Uderzająco oryginalna” - „Publishers Weekly”</p>
+ <p>
+ „Przekonująca i poruszająca opowieść” - „New York Times”</p>
+]]>
+        </Text>
+      </TextContent>
+      <SupportingResource sourcename="resourceid:139506" datestamp="20190628T1219">
+        <!--ResourceContentType: FRONT_COVER--><ResourceContentType>01</ResourceContentType>
+        <!--ContentAudience: UNRESTRICTED--><ContentAudience>00</ContentAudience>
+        <!--ResourceMode: IMAGE--><ResourceMode>03</ResourceMode>
+        <ResourceVersion>
+          <!--ResourceForm: DOWNLOADABLE_FILE--><ResourceForm>02</ResourceForm>
+          <ResourceLink>http://www.elibri.com.pl/system/product_attachments/production/000/139/506/original/f0664143/kwiaty_dla_algernona_okladka_mp3.jpg</ResourceLink>
+          <ContentDate>
+            <!--ContentDateRole: LAST_UPDATED--><ContentDateRole>17</ContentDateRole>
+            <Date dateformat="00">20190628</Date>
+          </ContentDate>
+        </ResourceVersion>
+      </SupportingResource>
+      <SupportingResource>
+        <!--ResourceContentType: SAMPLE_CONTENT--><ResourceContentType>15</ResourceContentType>
+        <!--ContentAudience: UNRESTRICTED--><ContentAudience>00</ContentAudience>
+        <!--ResourceMode: AUDIO--><ResourceMode>02</ResourceMode>
+        <ResourceVersion>
+          <!--ResourceForm: DOWNLOADABLE_FILE--><ResourceForm>02</ResourceForm>
+          <ResourceVersionFeature>
+            <!--ResourceVersionFeatureType: FILE_FORMAT--><ResourceVersionFeatureType>01</ResourceVersionFeatureType>
+            <FeatureValue>A103</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+            <!--ResourceVersionFeatureType: MD5_HASH_VALUE--><ResourceVersionFeatureType>06</ResourceVersionFeatureType>
+            <FeatureValue>0bf20c528f323dd2a6d91627ccddf52e</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceVersionFeature>
+            <!--ResourceVersionFeatureType: SIZE_IN_BYTES--><ResourceVersionFeatureType>07</ResourceVersionFeatureType>
+            <FeatureValue>2589928</FeatureValue>
+          </ResourceVersionFeature>
+          <ResourceLink>https://www.elibri.com.pl/excerpt/109048/0bf20c528f323dd2a6d91627ccddf52e/kwiaty-dla-algernona-fragment.mp3</ResourceLink>
+          <ContentDate>
+            <!--ContentDateRole: LAST_UPDATED--><ContentDateRole>17</ContentDateRole>
+            <Date dateformat="13">20190712T2158Z</Date>
+          </ContentDate>
+        </ResourceVersion>
+      </SupportingResource>
+    </CollateralDetail>
+    <PublishingDetail>
+      <Publisher>
+        <PublishingRole>01</PublishingRole>
+        <PublisherIdentifier>
+          <PublisherIDType>01</PublisherIDType>
+          <IDTypeName>ElibriPublisherCode</IDTypeName>
+          <IDValue>17</IDValue>
+        </PublisherIdentifier>
+        <PublisherName>Rebis</PublisherName>
+      </Publisher>
+      <CityOfPublication>Poznań</CityOfPublication>
+      <PublishingStatus>04</PublishingStatus>
+      <PublishingDate>
+        <!--PublishingDateRole: PUBLICATION_DATE--><PublishingDateRole>01</PublishingDateRole>
+        <Date dateformat="00">20190724</Date>
+      </PublishingDate>
+      <SalesRights>
+        <SalesRightsType>01</SalesRightsType>
+        <Territory>
+          <RegionsIncluded>WORLD</RegionsIncluded>
+        </Territory>
+      </SalesRights>
+    </PublishingDetail>
+    <RelatedMaterial>
+      <RelatedProduct>
+        <ProductRelationCode>24</ProductRelationCode>
+        <ProductIdentifier>
+          <!--ProductIDType: PROPRIETARY--><ProductIDType>01</ProductIDType>
+          <IDTypeName>elibri</IDTypeName>
+          <IDValue>9be82a96d04d2ace41c9</IDValue>
+        </ProductIdentifier>
+      </RelatedProduct>
+      <RelatedProduct>
+        <ProductRelationCode>24</ProductRelationCode>
+        <ProductIdentifier>
+          <!--ProductIDType: PROPRIETARY--><ProductIDType>01</ProductIDType>
+          <IDTypeName>elibri</IDTypeName>
+          <IDValue>dc7c5f11116598b68463</IDValue>
+        </ProductIdentifier>
+      </RelatedProduct>
+      <RelatedProduct>
+        <ProductRelationCode>24</ProductRelationCode>
+        <ProductIdentifier>
+          <!--ProductIDType: PROPRIETARY--><ProductIDType>01</ProductIDType>
+          <IDTypeName>elibri</IDTypeName>
+          <IDValue>cd969a1053fad586ae1f</IDValue>
+        </ProductIdentifier>
+      </RelatedProduct>
+    </RelatedMaterial>
+    <ProductSupply>
+      <SupplyDetail>
+        <Supplier>
+          <!--SupplierRole: PUB_TO_RET--><SupplierRole>01</SupplierRole>
+          <SupplierIdentifier>
+            <SupplierIDType>23</SupplierIDType>
+            <IDValue>PL7790000847</IDValue>
+          </SupplierIdentifier>
+          <SupplierName>Rebis</SupplierName>
+        </Supplier>
+        <ProductAvailability>20</ProductAvailability>
+        <Price>
+          <PriceType>02</PriceType>
+          <PriceAmount>34.9</PriceAmount>
+          <Tax>
+            <TaxType>01</TaxType>
+            <TaxRatePercent>23</TaxRatePercent>
+          </Tax>
+          <CurrencyCode>PLN</CurrencyCode>
+        </Price>
+      </SupplyDetail>
+    </ProductSupply>
+  </Product>
+</ONIXMessage>

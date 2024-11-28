@@ -30,4 +30,10 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     refute product.unlimited_licence
   end
 
+  it "should be able to recognise AI voices" do
+    product = load_fixture("audiobook_ai_cloned_voice.xml")
+    lector = product.contributors.find { |c| c.role_name == "read_by" }
+    assert_equal "Tomasz Kowalik", lector.person_name
+    assert_equal Elibri::ONIX::Dict::Release_3_0::UnnamedPersons::SYNTHESISED_VOICE_BASED_ON_REAL_VOICE, lector.unnamed_persons
+  end
 end
