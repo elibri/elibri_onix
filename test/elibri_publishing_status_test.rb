@@ -43,4 +43,26 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert !product.sales_restrictions?
   end
 
+  it "should be able recognize cancelled state" do
+    product = load_fixture("onix_cancelled_product_example.xml")
+    assert_equal "02", product.notification_type
+    assert_equal "01", product.publishing_status
+    assert_equal :cancelled, product.current_state
+  end
+
+  it "should be able recognize deleted state" do
+    product = load_fixture("onix_deleted_product_example.xml")
+    assert_equal "05", product.notification_type
+    assert_equal "00", product.publishing_status
+    assert_equal :deleted, product.current_state
+    assert_equal "Błędnie założony rekord", product.deletion_text
+  end
+
+  it "should be able recognize indefinitely_postponed state" do
+    product = load_fixture("onix_indefinitely_postponed_product_example.xml")
+    assert_equal "02", product.notification_type
+    assert_equal "03", product.publishing_status
+    assert_equal :indefinitely_postponed, product.current_state
+  end
+
 end
