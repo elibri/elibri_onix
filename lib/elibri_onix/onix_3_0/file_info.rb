@@ -31,6 +31,8 @@ module Elibri
           if fname
             if File.extname(fname) == ".zip"
               @file_type = "mp3_in_zip"
+            elsif File.extname(fname) == ".lpf"
+              @file_type = "mp3_in_lpf"
             else
               @file_type = File.extname(fname)[1..-1]
             end
