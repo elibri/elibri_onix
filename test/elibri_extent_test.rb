@@ -9,7 +9,9 @@ describe Elibri::ONIX::Release_3_0::ONIXMessage do
     assert_equal 1, product.file_size
 
     product = load_fixture("onix_audiobook_extent_example.xml")
-    assert_equal 340, product.duration
+    assert_equal 1034, product.duration
+    assert_equal 943600, product.number_of_chars
+
   end
 
 end

@@ -37,6 +37,9 @@ module Elibri
         #czas trwania nagrania w audiobooku, w minutach
         attr_reader :duration
 
+        #długość książki w zanakach
+        attr_reader :number_of_chars
+
         #nazwa wydawnictwa
         attr_reader :publisher_name
 
@@ -495,6 +498,7 @@ module Elibri
 
           @number_of_pages = @extents.find {|extent| extent.type_name == "page_count" }&.value
           @duration = @extents.find {|extent| extent.type_name == "duration" }&.value
+          @number_of_chars = @extents.find {|extent| extent.type_name == "text_length" }&.value
           @file_size = @extents.find {|extent| extent.type_name == "file_size" }&.value
           @publisher_name = @publisher.name if publisher
           @publisher_id = @publisher.eid if publisher

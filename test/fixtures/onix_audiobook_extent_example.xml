@@ -27,8 +27,13 @@
       </TitleDetail>
       <Extent>
         <ExtentType>09</ExtentType>
-        <ExtentValue>340</ExtentValue>
+        <ExtentValue>1034</ExtentValue>
         <ExtentUnit>05</ExtentUnit>
+      </Extent>
+      <Extent>
+        <ExtentType>02</ExtentType>
+        <ExtentValue>943600</ExtentValue>
+        <ExtentUnit>01</ExtentUnit>
       </Extent>
     </DescriptiveDetail>
     <PublishingDetail>
